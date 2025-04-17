@@ -1,0 +1,10 @@
+# Handle page redirects
+RewriteEngine On
+
+# Redirect /public/value to /value
+RewriteRule ^public/value$ /value [R=301,L]
+RewriteRule ^public/value/$ /value [R=301,L]
+
+# Redirect /public/contact to /contact
+RewriteRule ^public/contact$ /contact [R=301,L]
+RewriteRule ^public/contact/$ /contact [R=301,L]

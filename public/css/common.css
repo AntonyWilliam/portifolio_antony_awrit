@@ -1,0 +1,359 @@
+/**
+ * Common CSS styles for Antony William's portfolio website
+ */
+
+/* Variables */
+:root {
+    --bg-color: #0A0A0A;
+    --bg-color-rgb: 10, 10, 10;
+    --card-bg: #101010;
+    --text-color: #9D9D9D; /* Changed from white to gray */
+    --secondary-text: #AAAAAA;
+    --gold: #FFD700; /* Gold */
+    --gold-rgb: 255, 215, 0; /* Gold RGB values */
+    --spacing: 6rem;
+    --transition: all 0.3s ease;
+    --section-bg: #FFFFFF;
+}
+
+/* Base styles */
+*, *::before, *::after {
+    box-sizing: border-box; /* Apply border-box sizing to all elements */
+}
+
+html {
+    scroll-behavior: smooth;
+    height: auto; /* Allow content to expand */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.3s ease;
+    margin: 0;
+    padding: 0;
+    height: auto; /* Allow content to expand */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.container {
+    width: 95%;
+    max-width: 1800px; /* Increased from 1200px for full screen width */
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Navigation styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    max-width: 1800px; /* Increased from 1200px to match container */
+    z-index: 2000;
+    background-color: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid rgba(157, 157, 157, 0.05);
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-logo img {
+    height: 30px;
+    width: auto;
+}
+
+.navbar-menu {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.navbar-links a:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--gold);
+    transition: width 0.3s ease;
+}
+
+.navbar-links a:hover {
+    color: var(--gold);
+}
+
+.navbar-links a:hover:after {
+    width: 100%;
+}
+
+.navbar-controls {
+    display: flex;
+    align-items: center;
+}
+
+.theme-toggle, .mobile-toggle {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-left: 1rem;
+    transition: color 0.3s ease;
+}
+
+.mobile-toggle {
+    display: none; /* Hide mobile toggle by default */
+}
+
+.theme-toggle:hover, .mobile-toggle:hover {
+    color: var(--gold);
+}
+
+.close-menu {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+/* Light theme styles */
+:root.light-theme {
+    --bg-color: #f5f5f5;
+    --bg-color-rgb: 245, 245, 245;
+    --card-bg: #ffffff;
+    --text-color: #333333;
+    --secondary-text: #555555;
+}
+
+:root.light-theme .navbar {
+    background-color: rgba(245, 245, 245, 0.95);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+:root.light-theme .navbar-links a,
+:root.light-theme .theme-toggle,
+:root.light-theme .mobile-toggle,
+:root.light-theme .close-menu {
+    color: #333;
+}
+
+/* Footer Styles */
+footer {
+    background: rgba(5, 5, 5, 0.85); /* Dark semi-transparent background */
+    backdrop-filter: blur(10px); /* Blur effect for glassmorphism */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    border-top: 1px solid rgba(157, 157, 157, 0.05); /* Subtle border for definition */
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    padding: 1.8rem 0 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+    overflow: hidden; /* Prevent any potential overflow issues */
+    /* Full width styles now set on the HTML element directly */
+}
+
+:root.light-theme footer {
+    background: rgba(5, 5, 5, 0.85) !important; /* Keep dark theme for footer in both modes */
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border-top: 1px solid rgba(157, 157, 157, 0.05) !important;
+    color: var(--text-color) !important; /* Maintain text color */
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.footer-logo {
+    height: 60px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.social-links a {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.social-links a:hover {
+    color: var(--text-color);
+    transform: translateY(-3px);
+    opacity: 1;
+}
+
+.copyright {
+    width: 100%;
+    font-size: 0.9rem;
+    color: var(--secondary-text);
+    margin-top: 1rem;
+}
+
+/* Section overlay */
+.section-transition-overlay {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(to bottom, 
+        rgba(var(--bg-color-rgb), 1) 0%, 
+        rgba(var(--bg-color-rgb), 0) 100%);
+    z-index: 11;
+    pointer-events: none;
+}
+
+/* Page Transitions */
+.page-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-color);
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.page-transition.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Make main content area ready for transitions */
+main {
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+
+main.fade-out {
+    opacity: 0;
+}
+
+/* Common components */
+.alert {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    display: none;
+}
+
+.alert-success {
+    background-color: rgba(40, 167, 69, 0.2);
+    border: 1px solid rgba(40, 167, 69, 0.3);
+    color: #c3e6cb;
+}
+
+.alert-error {
+    background-color: rgba(220, 53, 69, 0.2);
+    border: 1px solid rgba(220, 53, 69, 0.3);
+    color: #f8d7da;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem 5%;
+        left: 0;
+        width: 100%;
+        transform: none;
+        max-width: none;
+    }
+    
+    .navbar-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background-color: rgba(15, 15, 15, 0.98);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 4rem 2rem;
+        transition: right 0.3s ease;
+        z-index: 1001;
+    }
+    
+    :root.light-theme .navbar-menu {
+        background-color: rgba(240, 240, 240, 0.98);
+    }
+    
+    .navbar-menu.active {
+        right: 0;
+    }
+    
+    .navbar-links {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .navbar-links li {
+        margin-bottom: 1rem;
+    }
+    
+    .close-menu {
+        display: block;
+    }
+    
+    .mobile-toggle {
+        display: block;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}

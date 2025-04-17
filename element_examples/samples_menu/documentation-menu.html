@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation Samples Menu</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            padding: 16px 24px;
+            background-color: #1a1a1a;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        .menu-trigger {
+            display: flex;
+            align-items: center;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            user-select: none;
+        }
+        .menu-trigger svg {
+            margin-right: 8px;
+            transition: transform 0.3s ease;
+        }
+        .dropdown-arrow {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+        .menu-trigger.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        .mega-menu {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background-color: transparent;
+            z-index: 100;
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
+            pointer-events: none;
+        }
+        .mega-menu.active {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s;
+            pointer-events: auto;
+        }
+        .menu-content {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+        }
+        .mega-menu-column {
+            flex: 1;
+            padding: 30px 40px;
+        }
+        .mega-menu-column:nth-child(1) {
+            background-color: #252525;
+        }
+        .mega-menu-column:nth-child(2) {
+            background-color: #1a1a1a;
+        }
+        .mega-menu-heading {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            letter-spacing: 0.5px;
+        }
+        .mega-menu-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 32px;
+            padding: 16px;
+            border-radius: 6px;
+            transition: background-color 0.2s ease;
+            cursor: pointer;
+        }
+        .mega-menu-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        .mega-menu-icon {
+            margin-right: 12px;
+            color: #bbbbbb;
+            min-width: 24px;
+        }
+        .mega-menu-content h3 {
+            margin: 0 0 8px 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        .mega-menu-content p {
+            margin: 0;
+            font-size: 14px;
+            color: #aaaaaa;
+            line-height: 1.5;
+        }
+        .backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+            z-index: 90;
+        }
+        .backdrop.active {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 0.3s ease, visibility 0s;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="menu-trigger" id="menuTrigger">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            Documentation Samples
+            <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        </div>
+    </div>
+
+    <div class="backdrop" id="backdrop"></div>
+    
+    <div class="mega-menu" id="megaMenu">
+        <div class="menu-content">
+            <div class="mega-menu-column">
+                <div class="mega-menu-heading">DOCUMENTS</div>
+                
+                <div class="mega-menu-item">
+                    <div class="mega-menu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="mega-menu-content">
+                        <h3>User Guides</h3>
+                        <p>Comprehensive end-user documentation with step-by-step instructions</p>
+                    </div>
+                </div>
+                
+                <div class="mega-menu-item">
+                    <div class="mega-menu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                    </div>
+                    <div class="mega-menu-content">
+                        <h3>API Reference</h3>
+                        <p>Interactive technical documentation for developers</p>
+                    </div>
+                </div>
+                
+                <div class="mega-menu-item">
+                    <div class="mega-menu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        </svg>
+                    </div>
+                    <div class="mega-menu-content">
+                        <h3>Technical Specs</h3>
+                        <p>Detailed technical documentation for enterprise users</p>
+                    </div>
+                </div>
+                
+                <div class="mega-menu-item">
+                    <div class="mega-menu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="mega-menu-content">
+                        <h3>Tutorials</h3>
+                        <p>Step-by-step guides for common tasks and implementations</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mega-menu-column">
+                <div class="mega-menu-heading">KNOWLEDGE BASES</div>
+                
+                <div class="mega-menu-item">
+                    <div class="mega-menu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                            <polyline points="2 17 12 22 22 17"></polyline>
+                            <polyline points="2 12 12 17 22 12"></polyline>
+                        </svg>
+                    </div>
+                    <div class="mega-menu-content">
+                        <h3>Support Knowledge Base</h3>
+                        <p>Searchable database of support articles and FAQs</p>
+                    </div>
+                </div>
+                
+                <div class="mega-menu-item">
+                    <div class="mega-menu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                    </div>
+                    <div class="mega-menu-content">
+                        <h3>Troubleshooting Guides</h3>
+                        <p>Solutions to common problems organized by category</p>
+                    </div>
+                </div>
+                
+                <div class="mega-menu-item">
+                    <div class="mega-menu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 10h-4V4h-4v6H6l6 6 6-6z"></path>
+                            <path d="M21 18v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1"></path>
+                        </svg>
+                    </div>
+                    <div class="mega-menu-content">
+                        <h3>Developer Wiki</h3>
+                        <p>Collaborative knowledge base for development teams</p>
+                    </div>
+                </div>
+                
+                <div class="mega-menu-item">
+                    <div class="mega-menu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="8" y1="6" x2="21" y2="6"></line>
+                            <line x1="8" y1="12" x2="21" y2="12"></line>
+                            <line x1="8" y1="18" x2="21" y2="18"></line>
+                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                        </svg>
+                    </div>
+                    <div class="mega-menu-content">
+                        <h3>Best Practices</h3>
+                        <p>Curated collection of implementation and usage guidelines</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuTrigger = document.getElementById('menuTrigger');
+            const megaMenu = document.getElementById('megaMenu');
+            const backdrop = document.getElementById('backdrop');
+            
+            // Toggle menu on click
+            menuTrigger.addEventListener('click', function() {
+                menuTrigger.classList.toggle('active');
+                megaMenu.classList.toggle('active');
+                backdrop.classList.toggle('active');
+            });
+            
+            // Close menu when clicking outside
+            backdrop.addEventListener('click', function() {
+                menuTrigger.classList.remove('active');
+                megaMenu.classList.remove('active');
+                backdrop.classList.remove('active');
+            });
+            
+            // Staggered animation for menu items
+            if (megaMenu.classList.contains('active')) {
+                const menuItems = document.querySelectorAll('.mega-menu-item');
+                menuItems.forEach((item, index) => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(10px)';
+                    item.style.transition = `opacity 0.3s ease ${index * 0.05}s, transform 0.3s ease ${index * 0.05}s`;
+                    
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 10);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

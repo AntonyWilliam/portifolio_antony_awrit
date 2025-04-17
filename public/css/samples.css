@@ -1,0 +1,519 @@
+/**
+ * Specific styles for the Samples page
+ */
+
+/* Samples Section */
+.samples-section {
+    background-color: var(--bg-color);
+    padding: clamp(1rem, 2vw, 2rem) 0 clamp(3.5rem, 5vw, var(--spacing)) 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    z-index: 10;
+    overflow: visible;
+    transition: background-color 0.5s ease;
+    margin-top: -2rem;
+}
+
+/* Light theme section backgrounds */
+:root.light-theme .samples-section {
+    background-color: var(--section-bg);
+    border-top: 1px solid rgba(0, 51, 128, 0.1);
+    border-bottom: 1px solid rgba(0, 51, 128, 0.1);
+    box-shadow: 0 0 40px rgba(0, 51, 128, 0.05);
+}
+
+.samples-header {
+    text-align: center;
+    animation: fadeIn 0.8s ease forwards;
+    margin-top: -1rem;
+    margin-bottom: 2rem;
+}
+
+.samples-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.samples-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+    text-align: center;
+    color: var(--secondary-text);
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* Sample Categories Navigation */
+.sample-categories {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.category-button {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--secondary-text);
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.category-button:hover {
+    border-color: rgba(255, 215, 0, 0.3);
+    color: var(--text-color);
+    transform: translateY(-2px);
+}
+
+.category-button.active {
+    background-color: rgba(255, 215, 0, 0.1);
+    border-color: rgba(255, 215, 0, 0.3);
+    color: var(--gold);
+    font-weight: 500;
+}
+
+/* Sample Preview Container */
+.sample-preview-container {
+    max-width: 1000px;
+    margin: 0 auto 2rem;
+    position: relative;
+}
+
+.sample-preview {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sample-preview.active {
+    display: block;
+    opacity: 1;
+    animation: fadeIn 0.4s ease forwards;
+}
+
+/* Preview Header */
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.preview-tag {
+    display: inline-block;
+    background-color: rgba(255, 215, 0, 0.1);
+    color: var(--gold);
+    padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.preview-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-color);
+}
+
+.download-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: rgba(255, 215, 0, 0.1);
+    color: var(--gold);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.download-button:hover {
+    background-color: rgba(255, 215, 0, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.15);
+}
+
+.download-button.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.download-button.disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Preview Content */
+.preview-content {
+    background-color: rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 1.5rem;
+    height: auto;
+    max-height: none;
+    overflow-y: auto;
+    line-height: 1.6;
+    color: var(--secondary-text);
+    position: relative;
+}
+
+/* Markdown Styling */
+.preview-content h1,
+.preview-content h2,
+.preview-content h3,
+.preview-content h4 {
+    color: var(--text-color);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.preview-content h1 {
+    font-size: 1.7rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+.preview-content h2 {
+    font-size: 1.4rem;
+}
+
+.preview-content h3 {
+    font-size: 1.2rem;
+}
+
+.preview-content p {
+    margin-bottom: 1rem;
+}
+
+.preview-content ul,
+.preview-content ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+}
+
+.preview-content li {
+    margin-bottom: 0.5rem;
+}
+
+.preview-content code {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: var(--gold);
+}
+
+.preview-content pre {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 1.2rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 1rem 0;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.preview-content pre code {
+    background-color: transparent;
+    padding: 0;
+    color: inherit;
+}
+
+.preview-content a {
+    color: var(--gold);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.preview-content a:hover {
+    text-decoration: underline;
+    color: var(--gold);
+}
+
+.preview-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+    display: block;
+}
+
+.preview-content th,
+.preview-content td {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.5rem;
+}
+
+.preview-content th {
+    background-color: rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+.preview-content blockquote {
+    border-left: 3px solid var(--gold);
+    padding: 0.5rem 1rem;
+    margin: 1rem 0;
+    background-color: rgba(255, 215, 0, 0.05);
+    border-radius: 0 6px 6px 0;
+}
+
+/* Hide images for now */
+.preview-content img {
+    display: none;
+}
+
+/* Copy Button for Code Blocks */
+.copy-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: none;
+    color: var(--secondary-text);
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    opacity: 0.6;
+    z-index: 10;
+}
+
+.copy-button:hover {
+    background-color: rgba(255, 215, 0, 0.2);
+    color: var(--gold);
+    opacity: 1;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+    color: var(--secondary-text);
+    font-size: 1rem;
+    gap: 1rem;
+}
+
+.loading-spinner i {
+    font-size: 2rem;
+    color: var(--gold);
+}
+
+/* Error Message */
+.error-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    color: #ff6b6b;
+}
+
+.error-message i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.error-message small {
+    margin-top: 0.5rem;
+    opacity: 0.7;
+    font-size: 0.8rem;
+}
+
+/* Coming Soon Content */
+.coming-soon {
+    text-align: center;
+    padding: 2rem;
+}
+
+.coming-soon i {
+    font-size: 3rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+
+.coming-soon h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.coming-soon ul {
+    text-align: left;
+    list-style-type: none;
+    padding-left: 0;
+    margin: 1.5rem 0;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.coming-soon li {
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.75rem;
+}
+
+.coming-soon li:before {
+    content: '✓';
+    color: var(--gold);
+    position: absolute;
+    left: 0;
+}
+
+/* Call to action */
+.samples-cta {
+    text-align: center;
+    margin-top: 2.5rem;
+    margin-bottom: 2rem;
+    padding: 2.5rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.samples-cta p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background-color: var(--gold);
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 215, 0, 0.2);
+    background-color: #e6c300;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {    
+    .sample-categories {
+        gap: 0.5rem;
+    }
+    
+    .category-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .preview-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .download-button {
+        align-self: flex-start;
+    }
+    
+    .samples-cta {
+        padding: 2rem;
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .sample-categories {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .preview-content {
+        padding: 1.2rem;
+    }
+    
+    .samples-cta {
+        padding: 1.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .samples-title {
+        font-size: 1.8rem;
+    }
+    
+    .samples-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .sample-categories {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    
+    .category-button {
+        width: 100%;
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .preview-content {
+        padding: 1rem;
+    }
+    
+    .preview-content h1 {
+        font-size: 1.4rem;
+    }
+    
+    .preview-content h2 {
+        font-size: 1.2rem;
+    }
+    
+    .preview-content pre {
+        padding: 1rem;
+    }
+    
+    .samples-cta {
+        padding: 1.5rem;
+    }
+}

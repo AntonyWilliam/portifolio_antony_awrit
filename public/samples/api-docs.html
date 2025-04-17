@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation - Antony William</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/kb.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-http.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <style>
+        /* Custom styles for this API docs page */
+        .api-navbar {
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
+            height: 60px;
+            background-color: var(--sidebar-bg);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .api-navbar-item {
+            padding: 0 1.5rem;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+            font-weight: 500;
+            position: relative;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+        
+        .api-navbar-item.active {
+            color: var(--accent-color);
+            border-bottom: 3px solid var(--accent-color);
+        }
+        
+        .api-navbar-item:hover {
+            color: var(--accent-color);
+        }
+        
+        .api-navbar-item i {
+            margin-right: 0.5rem;
+        }
+        
+        .page-indicator {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--secondary-text);
+        }
+        
+        .test-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0033CC;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .test-button:hover {
+            background-color: #0026a3;
+        }
+        
+        .test-button i {
+            margin-left: 0.5rem;
+        }
+        
+        .code-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 0;
+            background-color: var(--sidebar-bg);
+            border-radius: 6px 6px 0 0;
+        }
+        
+        .code-tab {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            border: none;
+            background: none;
+            color: var(--secondary-text);
+        }
+        
+        .code-tab.active {
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .code-block {
+            margin-top: 0 !important;
+            border-radius: 0 0 6px 6px !important;
+        }
+        
+        .response-toggles {
+            display: flex;
+            margin-bottom: 0.5rem;
+        }
+        
+        .response-toggle {
+            margin-right: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            background: none;
+            color: var(--secondary-text);
+        }
+        
+        .response-toggle.active {
+            background-color: var(--sidebar-bg);
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+        
+        .endpoint-method {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            margin-right: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .endpoint-method.get {
+            background-color: #4CAF50;
+        }
+        
+        .endpoint-method.post {
+            background-color: #FF9800;
+        }
+        
+        .endpoint-method.patch {
+            background-color: #2196F3;
+        }
+        
+        .endpoint-method.delete {
+            background-color: #F44336;
+        }
+        
+        .endpoint-path {
+            font-family: monospace;
+            padding: 0.25rem 0.5rem;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+        }
+        
+        .authorization-panel {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 6px;
+            background-color: rgba(0, 51, 204, 0.05);
+            border: 1px solid rgba(0, 51, 204, 0.1);
+        }
+        
+        .authorization-panel h4 {
+            margin-top: 0;
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Placeholder - Will be populated by common.js -->
+    <div id="header-placeholder"></div>
+    
+    <div class="kb-container">
+        <!-- Knowledge Base Sidebar -->
+        <aside class="kb-sidebar" id="kbSidebar">
+            <div class="sidebar-header">
+                <h2>API Documentation</h2>
+            </div>
+            <div class="sidebar-content">
+                <!-- Overview Section -->
+                <div class="sidebar-section">
+                    <div class="section-title">Overview</div>
+                    
+                    <div class="menu-item active" data-target="introduction">
+                        <div class="menu-icon"><i class="fas fa-book-open"></i></div>
+                        <div class="menu-text">Introduction</div>
+                    </div>
+                    
+                    <div class="menu-item" data-target="authentication">
+                        <div class="menu-icon"><i class="fas fa-lock"></i></div>
+                        <div class="menu-text">Authentication</div>
+                    </div>
+                    
+                    <div class="menu-item" data-target="errors">
+                        <div class="menu-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                        <div class="menu-text">Error Handling</div>
+                    </div>
+                </div>
+                
+                <!-- Endpoints Section -->
+                <div class="sidebar-section">
+                    <div class="section-title">Endpoints</div>
+                    
+                    <div class="menu-item" data-toggle="dropdown" data-target="accounts-api">
+                        <div class="menu-icon"><i class="fas fa-user-circle"></i></div>
+                        <div class="menu-text">Accounts API</div>
+                        <div class="dropdown-toggle"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                    <div class="submenu">
+                        <div class="submenu-item" data-target="current-user">Current User</div>
+                        <div class="submenu-item" data-target="user-profile">User Profile</div>
+                        <div class="submenu-item" data-target="user-settings">User Settings</div>
+                    </div>
+                    
+                    <div class="menu-item" data-toggle="dropdown">
+                        <div class="menu-icon"><i class="fas fa-comments"></i></div>
+                        <div class="menu-text">Channels API</div>
+                        <div class="dropdown-toggle"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                    <div class="submenu">
+                        <div class="submenu-item">List Channels</div>
+                        <div class="submenu-item">Create Channel</div>
+                        <div class="submenu-item">Channel Messages</div>
+                    </div>
+                    
+                    <div class="menu-item" data-toggle="dropdown">
+                        <div class="menu-icon"><i class="fas fa-users"></i></div>
+                        <div class="menu-text">Collaborations API</div>
+                        <div class="dropdown-toggle"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                    
+                    <div class="menu-item" data-toggle="dropdown">
+                        <div class="menu-icon"><i class="fas fa-address-book"></i></div>
+                        <div class="menu-text">Contacts API</div>
+                        <div class="dropdown-toggle"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                    
+                    <div class="menu-item" data-toggle="dropdown">
+                        <div class="menu-icon"><i class="fas fa-comment-alt"></i></div>
+                        <div class="menu-text">Conversations API</div>
+                        <div class="dropdown-toggle"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                    
+                    <div class="menu-item" data-toggle="dropdown">
+                        <div class="menu-icon"><i class="fas fa-bell"></i></div>
+                        <div class="menu-text">Notifications API</div>
+                        <div class="dropdown-toggle"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                    
+                    <div class="menu-item" data-toggle="dropdown">
+                        <div class="menu-icon"><i class="fas fa-comment-dots"></i></div>
+                        <div class="menu-text">Touchpoints API</div>
+                        <div class="dropdown-toggle"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                    
+                    <div class="menu-item" data-toggle="dropdown">
+                        <div class="menu-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="menu-text">Verify API</div>
+                        <div class="dropdown-toggle"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                    
+                    <div class="menu-item" data-toggle="dropdown">
+                        <div class="menu-icon"><i class="fas fa-microphone"></i></div>
+                        <div class="menu-text">Voice API</div>
+                        <div class="dropdown-toggle"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                </div>
+                
+                <!-- Resources Section -->
+                <div class="sidebar-section">
+                    <div class="section-title">SDK Development</div>
+                    
+                    <div class="menu-item" data-target="applications">
+                        <div class="menu-icon"><i class="fas fa-laptop-code"></i></div>
+                        <div class="menu-text">Applications</div>
+                    </div>
+                    
+                    <div class="menu-item" data-target="app-inbox">
+                        <div class="menu-icon"><i class="fas fa-inbox"></i></div>
+                        <div class="menu-text">App Inbox</div>
+                    </div>
+                    
+                    <div class="menu-item" data-target="event-tracking">
+                        <div class="menu-icon"><i class="fas fa-chart-line"></i></div>
+                        <div class="menu-text">Event Tracking</div>
+                        <span class="notification-badge">New</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Mobile Sidebar Toggle -->
+        <div class="sidebar-toggle" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        
+        <!-- Main Content Area -->
+        <main class="kb-content">
+            <!-- API Navigation Tabs -->
+            <div class="api-navbar">
+                <div class="api-navbar-item">
+                    <i class="fas fa-file-alt"></i> Documentation
+                </div>
+                <div class="api-navbar-item active">
+                    <i class="fas fa-code"></i> API docs
+                </div>
+                <div class="api-navbar-item">
+                    <i class="fas fa-history"></i> Changelog
+                </div>
+                
+                <div class="page-indicator">
+                    <span>ON THIS PAGE</span>
+                    <i class="fas fa-chevron-down" style="margin-left: 0.5rem;"></i>
+                </div>
+            </div>
+            
+            <!-- Breadcrumb Navigation -->
+            <div class="kb-breadcrumb">
+                <div class="breadcrumb-item">API Documentation</div>
+                <div class="breadcrumb-item">Accounts API</div>
+                <div class="breadcrumb-item">Current User</div>
+            </div>
+            
+            <!-- Article Content -->
+            <div class="kb-article">
+                <h1>ACCOUNTS API</h1>
+                
+                <div class="article-tags">
+                    <span class="article-tag">Authentication</span>
+                    <span class="article-tag">User Management</span>
+                </div>
+                
+                <h2 id="current-user">Current user</h2>
+                <p>Make updates to the user to which the login token was issued.</p>
+                
+                <h3 id="get-profile">Get profile</h3>
+                
+                <p>Retrieve the profile of the currently logged in user.</p>
+                
+                <div>
+                    <span class="endpoint-method get">GET</span>
+                    <span class="endpoint-path">/me</span>
+                </div>
+                
+                <p>Retrieve the profile of the currently logged in user.</p>
+                
+                <div class="code-tabs">
+                    <button class="code-tab active">cURL</button>
+                    <button class="code-tab">JavaScript</button>
+                    <button class="code-tab">Python</button>
+                    <button class="code-tab">HTTP</button>
+                </div>
+                
+                <pre class="code-block language-python">
+import requests
+
+response = requests.get(
+    "/me",
+    headers={"Authorization":"Bearer jwt"},
+)
+data = response.json()
+</pre>
+                
+                <button class="test-button">
+                    Test it <i class="fas fa-play"></i>
+                </button>
+                
+                <div>
+                    <h4>Retrieve the profile of the currently logged in user.</h4>
+                </div>
+                
+                <h3 id="authorizations">Authorizations</h3>
+                <div class="authorization-panel">
+                    <div>
+                        <button class="response-toggle active">200</button>
+                        <button class="response-toggle">401</button>
+                    </div>
+                    
+                    <pre class="language-json">
+{
+  "id": "123e4567-e89b-12d3-a456-152648965789",
+  "status": "pending",
+  "name": "text",
+  "bio": "text",
+  "activeSessions": 1,
+  "createdAt": "2025-03-13T10:54:16.946Z",
+  "updatedAt": "2025-03-13T10:54:16.946Z",
+  "email": "name@example.com"
+}
+</pre>
+                </div>
+                
+                <h2 id="responses">Responses</h2>
+                <h3>200 OK</h3>
+                <p>The request was successful.</p>
+                
+                <h3>401 Unauthorized</h3>
+                <p>Authentication credentials were missing or incorrect.</p>
+                
+                <div class="article-feedback">
+                    <p>Was this article helpful?</p>
+                    <button class="feedback-btn yes"><i class="fas fa-thumbs-up"></i> Yes</button>
+                    <button class="feedback-btn no"><i class="fas fa-thumbs-down"></i> No</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sidebar toggle functionality for mobile
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebar = document.getElementById('kbSidebar');
+            
+            if (sidebarToggle && sidebar) {
+                sidebarToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('active');
+                    
+                    // Change icon based on sidebar state
+                    const icon = this.querySelector('i');
+                    if (sidebar.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            }
+            
+            // Dropdown menu functionality
+            const dropdownMenus = document.querySelectorAll('.menu-item[data-toggle="dropdown"]');
+            
+            dropdownMenus.forEach(menu => {
+                menu.addEventListener('click', function() {
+                    this.classList.toggle('expanded');
+                });
+            });
+            
+            // Menu item selection
+            const menuItems = document.querySelectorAll('.menu-item, .submenu-item');
+            
+            menuItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    // Skip if this is a dropdown toggle
+                    if (this.hasAttribute('data-toggle')) return;
+                    
+                    // Remove active class from all items
+                    menuItems.forEach(i => i.classList.remove('active'));
+                    
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    
+                    // If this is a submenu item, also highlight parent
+                    if (this.classList.contains('submenu-item')) {
+                        const parentMenu = this.parentElement.previousElementSibling;
+                        if (parentMenu && parentMenu.classList.contains('menu-item')) {
+                            parentMenu.classList.add('active');
+                        }
+                    }
+                    
+                    // If on mobile, close the sidebar
+                    if (window.innerWidth < 992) {
+                        sidebar.classList.remove('active');
+                        if (sidebarToggle) {
+                            const icon = sidebarToggle.querySelector('i');
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                        }
+                    }
+                });
+            });
+            
+            // Code tabs functionality
+            const codeTabs = document.querySelectorAll('.code-tab');
+            codeTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    codeTabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Here you would change the code snippet based on the selected tab
+                    // For demo purposes, we're not implementing the full functionality
+                });
+            });
+            
+            // Response toggle functionality
+            const responseToggles = document.querySelectorAll('.response-toggle');
+            responseToggles.forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    // Remove active class from all toggles
+                    responseToggles.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked toggle
+                    this.classList.add('active');
+                    
+                    // Here you would switch between different response examples
+                    // For demo purposes, we're not implementing the full functionality
+                });
+            });
+            
+            // Test button functionality
+            const testButton = document.querySelector('.test-button');
+            if (testButton) {
+                testButton.addEventListener('click', function() {
+                    alert('This would send a test request in a real implementation.');
+                });
+            }
+            
+            // Feedback buttons
+            const feedbackButtons = document.querySelectorAll('.feedback-btn');
+            
+            feedbackButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const type = this.classList.contains('yes') ? 'positive' : 'negative';
+                    const feedbackSection = document.querySelector('.article-feedback');
+                    
+                    // Remove existing buttons
+                    feedbackButtons.forEach(btn => btn.remove());
+                    
+                    // Show thank you message
+                    const thankYou = document.createElement('p');
+                    thankYou.innerText = 'Thank you for your feedback!';
+                    thankYou.className = 'feedback-thank-you';
+                    feedbackSection.appendChild(thankYou);
+                    
+                    // If negative feedback, could show a form here
+                    if (type === 'negative') {
+                        const feedbackForm = document.createElement('textarea');
+                        feedbackForm.placeholder = 'How can we improve this API documentation?';
+                        feedbackForm.className = 'feedback-form';
+                        feedbackSection.appendChild(feedbackForm);
+                        
+                        const submitBtn = document.createElement('button');
+                        submitBtn.innerText = 'Submit';
+                        submitBtn.className = 'feedback-submit';
+                        feedbackSection.appendChild(submitBtn);
+                        
+                        submitBtn.addEventListener('click', function() {
+                            // Here you would send the feedback
+                            feedbackForm.remove();
+                            submitBtn.remove();
+                            
+                            const submitThanks = document.createElement('p');
+                            submitThanks.innerText = 'Thank you for your detailed feedback!';
+                            feedbackSection.appendChild(submitThanks);
+                        });
+                    }
+                });
+            });
+            
+            // Theme functionality from existing site
+            const applyTheme = () => {
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'light') {
+                    document.documentElement.classList.add('light-theme');
+                } else {
+                    document.documentElement.classList.remove('light-theme');
+                }
+            };
+            
+            // Apply theme immediately
+            applyTheme();
+            
+            // Watch for theme changes from the main site
+            document.addEventListener('themeChanged', function(e) {
+                applyTheme();
+            });
+        });
+    </script>
+    
+    <script src="../js/common.js"></script>
+    <script src="../js/page-transitions.js"></script>
+</body>
+</html>

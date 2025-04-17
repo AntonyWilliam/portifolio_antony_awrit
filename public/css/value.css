@@ -1,0 +1,409 @@
+/**
+ * Specific styles for the "Why Hire a Tech Writer?" page
+ */
+
+/* Value Section */
+.value-section {
+    background-color: var(--bg-color);
+    padding: clamp(1rem, 2vw, 2rem) 0 clamp(3.5rem, 5vw, var(--spacing)) 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    z-index: 10;
+    overflow: visible;
+    transition: background-color 0.5s ease;
+    margin-top: -2rem;
+}
+
+/* Light theme section backgrounds */
+:root.light-theme .value-section {
+    background-color: var(--section-bg);
+    border-top: 1px solid rgba(0, 51, 128, 0.1);
+    border-bottom: 1px solid rgba(0, 51, 128, 0.1);
+    box-shadow: 0 0 40px rgba(0, 51, 128, 0.05);
+}
+
+.value-header {
+    text-align: center;
+    animation: fadeIn 0.8s ease forwards;
+    margin-top: -1rem;
+}
+
+.value-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.value-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+    text-align: center;
+    color: var(--secondary-text);
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.metrics-showcase {
+    display: flex;
+    justify-content: center;
+    align-items: stretch; /* Changed to stretch to make all cards the same height */
+    gap: 2rem;
+    margin: 2.5rem 0 4rem;
+    flex-wrap: wrap;
+    padding: 0;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.metric-highlight {
+    text-align: center;
+    animation: fadeInUp 0.8s ease forwards;
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    min-width: 220px;
+    max-width: 320px;
+}
+
+.metric-card {
+    width: 100%;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: all 0.4s ease;
+    opacity: 1;
+    visibility: visible;
+    padding: 2rem 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Light theme for metric cards */
+:root.light-theme .metric-card {
+    background: transparent;
+}
+
+:root.light-theme .big-metric {
+    background: linear-gradient(120deg, #DAA520, #F5C646, #B8860B, #DAA520);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: gradient-shift 6s ease infinite;
+}
+
+.metric-card:hover {
+    transform: translateY(-8px);
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.big-metric {
+    font-size: 3.69rem; /* Decreased by 18% */
+    font-weight: 800;
+    background: linear-gradient(120deg, var(--gold), #FFF8E1, #DAA520, var(--gold));
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+    margin-bottom: 1.2rem;
+    display: block;
+    width: 100%;
+    text-align: center;
+    letter-spacing: -0.02em;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+    animation: gradient-shift 6s ease infinite;
+}
+
+.metric-card:hover .big-metric {
+    transform: scale(1.05);
+}
+
+.percentage {
+    font-size: 1.64rem; /* Decreased by 18% */
+    font-weight: 700;
+    vertical-align: top;
+    margin-left: 2px;
+}
+
+.metric-label {
+    font-size: 0.984rem; /* Decreased by 18% */
+    color: var(--text-color);
+    text-align: center;
+    padding: 0;
+    margin: 0 auto;
+    display: block;
+    width: 100%;
+    position: relative;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.metric-card:hover .metric-label {
+    opacity: 1;
+}
+
+.value-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    max-width: 950px;
+    margin-left: auto;
+    margin-right: auto;
+    perspective: 1000px;
+}
+
+.value-card {
+    background-color: var(--card-bg);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 15px;
+    overflow: visible;
+    transition: transform 0.5s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 5;
+    transform: translateZ(0);
+    will-change: transform, box-shadow;
+    isolation: isolate;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 0 10px rgba(255, 215, 0, 0.05);
+    opacity: 1;
+    visibility: visible;
+}
+
+.value-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 5px 15px rgba(255, 215, 0, 0.2);
+    border-color: rgba(255, 215, 0, 0.5);
+}
+
+.value-card-header {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.value-number {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-right: 1rem;
+    opacity: 0.9;
+}
+
+.value-card-header h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.value-content {
+    padding: 1.5rem;
+    color: var(--secondary-text);
+}
+
+.value-content p {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.source {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    font-style: italic;
+    display: inline-block;
+    margin-left: 0.5rem;
+}
+
+.metric {
+    color: var(--gold) !important;
+    font-weight: 700;
+    font-size: 82%; /* Decreased by 18% from default */
+}
+
+.case-study {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: rgba(157, 157, 157, 0.05);
+    border-radius: 8px;
+}
+
+.case-study h4 {
+    font-size: 1rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.case-study p {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+}
+
+.bottom-line {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: 2rem;
+}
+
+.cta-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background-color: transparent;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 5px;
+    margin-top: 1.5rem;
+    transition: var(--transition);
+    font-size: 1.1rem;
+}
+
+.cta-button:hover {
+    background-color: rgba(var(--gold-rgb), 0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.cta-button-outline {
+    background-color: transparent;
+    color: var(--text-color);
+    border-color: rgba(157, 157, 157, 0.2);
+}
+
+.cta-button-outline:hover {
+    border-color: var(--text-color);
+    background-color: rgba(157, 157, 157, 0.05);
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.final-note {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    0% { 
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .value-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .metrics-showcase {
+        gap: 3rem;
+        margin: 2rem 0 3.5rem;
+    }
+    
+    .metric-highlight {
+        min-width: 200px;
+    }
+    
+    .metric-card {
+        padding: 1.5rem 1rem;
+    }
+    
+    .big-metric {
+        font-size: 3.28rem; /* Decreased by 18% */
+        margin-bottom: 1rem;
+    }
+    
+    .percentage {
+        font-size: 1.64rem; /* Decreased by 18% */
+    }
+    
+    .metric-label {
+        font-size: 0.902rem; /* Decreased by 18% */
+    }
+}
+
+@media (max-width: 480px) {
+    .metric-highlight {
+        min-width: 100%;
+    }
+    
+    .metric-card {
+        padding: 1.2rem 1rem;
+    }
+    
+    .big-metric {
+        font-size: 2.87rem; /* Decreased by 18% */
+        margin-bottom: 0.8rem;
+    }
+    
+    .percentage {
+        font-size: 1.476rem; /* Decreased by 18% */
+    }
+    
+    .metric-label {
+        font-size: 0.82rem; /* Decreased by 18% */
+    }
+    
+    .value-title {
+        font-size: 1.8rem;
+    }
+    
+    .value-subtitle {
+        font-size: 0.9rem;
+    }
+}

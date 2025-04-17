@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlocAPI Documentation</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #1a1a21;
+            color: #ffffff;
+        }
+        
+        /* Header styles */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 24px;
+            background-color: #1a1a21;
+            border-bottom: 1px solid #2a2a36;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #00e5ff;
+            font-weight: bold;
+            font-size: 22px;
+        }
+        
+        .logo-icon {
+            background-color: rgba(0, 229, 255, 0.15);
+            color: #00e5ff;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        
+        .nav-item {
+            color: #ffffff;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+            margin-left: 16px;
+        }
+        
+        .login-btn {
+            padding: 8px 16px;
+            border: 1px solid #2a2a36;
+            border-radius: 6px;
+            background-color: transparent;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .signup-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            background-color: #00e5ff;
+            color: #000;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .search-container {
+            display: flex;
+            align-items: center;
+            background-color: #2a2a36;
+            border-radius: 4px;
+            padding: 6px 12px;
+            margin-left: 10px;
+        }
+        
+        .search-input {
+            background-color: transparent;
+            border: none;
+            color: #ffffff;
+            outline: none;
+            width: 120px;
+            font-size: 14px;
+        }
+        
+        /* Secondary navigation */
+        .secondary-nav {
+            display: flex;
+            padding: 0 24px;
+            background-color: #1a1a21;
+            border-bottom: 1px solid #2a2a36;
+        }
+        
+        .secondary-nav-item {
+            padding: 12px 16px;
+            color: #888;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            margin-right: 10px;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .secondary-nav-item.active {
+            border-bottom: 2px solid #00e5ff;
+            color: #00e5ff;
+        }
+        
+        /* Main layout */
+        .main-container {
+            display: flex;
+            flex: 1;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background-color: #1a1a21;
+            padding: 20px 0;
+            overflow-y: auto;
+            border-right: 1px solid #2a2a36;
+        }
+        
+        .sidebar-section {
+            margin-bottom: 24px;
+        }
+        
+        .sidebar-section-title {
+            padding: 8px 20px;
+            font-size: 12px;
+            color: #888;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .sidebar-item {
+            padding: 8px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #cccccc;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .sidebar-item:hover {
+            background-color: #262631;
+        }
+        
+        .sidebar-item.active {
+            color: #ffffff;
+        }
+        
+        .sidebar-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+        }
+        
+        .sidebar-subitem {
+            padding: 8px 20px 8px 50px;
+            color: #cccccc;
+            cursor: pointer;
+            border-left: 2px solid transparent;
+            font-size: 14px;
+        }
+        
+        .sidebar-subitem:hover {
+            background-color: #262631;
+        }
+        
+        .sidebar-subitem.active {
+            border-left: 2px solid #00e5ff;
+            color: #00e5ff;
+        }
+        
+        /* Main content */
+        .content {
+            flex: 1;
+            padding: 32px;
+            overflow-y: auto;
+        }
+        
+        /* API Documentation specific styles */
+        .api-path {
+            margin-bottom: 40px;
+        }
+        
+        .api-path-header {
+            text-transform: uppercase;
+            color: #00e5ff;
+            font-size: 12px;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+        
+        .api-title {
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .api-description {
+            color: #cccccc;
+            margin-bottom: 40px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        
+        .endpoint-section {
+            margin-bottom: 40px;
+        }
+        
+        .endpoint-title {
+            font-size: 24px;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        
+        .endpoint-method-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .endpoint-method {
+            display: inline-block;
+            background-color: #43b581;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 500;
+            margin-right: 10px;
+            font-size: 12px;
+        }
+        
+        .endpoint-method.post {
+            background-color: #5865f2;
+        }
+        
+        .endpoint-method.put {
+            background-color: #faa61a;
+        }
+        
+        .endpoint-method.delete {
+            background-color: #ed4245;
+        }
+        
+        .endpoint-path {
+            color: #cccccc;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        
+        .endpoint-description {
+            color: #cccccc;
+            margin-bottom: 24px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        
+        /* Accordion styles */
+        .accordion {
+            border: 1px solid #2a2a36;
+            border-radius: 4px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+        
+        .accordion-header {
+            padding: 12px 16px;
+            background-color: #22222c;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+        
+        .accordion-content {
+            padding: 16px;
+            border-top: 1px solid #2a2a36;
+            background-color: #1c1c24;
+            font-size: 14px;
+        }
+        
+        /* Code examples */
+        .code-example {
+            width: 450px;
+            background-color: #22222c;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-left: 32px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .code-tabs {
+            display: flex;
+            background-color: #1c1c24;
+            border-bottom: 1px solid #2a2a36;
+        }
+        
+        .code-tab {
+            padding: 10px 16px;
+            cursor: pointer;
+            color: #888;
+            font-size: 13px;
+        }
+        
+        .code-tab.active {
+            color: #00e5ff;
+        }
+        
+        .code-content {
+            padding: 16px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            font-size: 13px;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        .code-line {
+            display: flex;
+        }
+        
+        .code-key {
+            color: #e06c75;
+        }
+        
+        .code-value {
+            color: #98c379;
+        }
+        
+        .code-method {
+            color: #61afef;
+        }
+        
+        .code-url {
+            color: #e5c07b;
+        }
+        
+        .code-function {
+            color: #c678dd;
+        }
+        
+        .code-comment {
+            color: #5c6370;
+        }
+        
+        .test-btn {
+            padding: 8px 16px;
+            background-color: #00e5ff;
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+            margin: 12px 16px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        /* Response section */
+        .response-status {
+            display: flex;
+            padding: 10px 16px;
+            background-color: #22222c;
+            border-top: 1px solid #2a2a36;
+        }
+        
+        .status-code {
+            color: #00e5ff;
+            font-size: 13px;
+            margin-right: 16px;
+            cursor: pointer;
+        }
+        
+        .status-code.muted {
+            color: #888;
+        }
+        
+        .response-body {
+            padding: 16px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            font-size: 13px;
+            line-height: 1.6;
+            background-color: #22222c;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+        
+        /* Right sidebar for on this page */
+        .right-sidebar {
+            width: 240px;
+            border-left: 1px solid #2a2a36;
+            padding: 32px 20px;
+            background-color: #1a1a21;
+        }
+        
+        .page-nav-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #cccccc;
+            margin-bottom: 16px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .page-nav-item {
+            padding: 8px 0 8px 12px;
+            font-size: 13px;
+            color: #888;
+            cursor: pointer;
+            border-left: 2px solid transparent;
+            margin-bottom: 4px;
+        }
+        
+        .page-nav-item:hover {
+            color: #cccccc;
+        }
+        
+        .page-nav-item.active {
+            color: #00e5ff;
+            border-left: 2px solid #00e5ff;
+        }
+        
+        /* Flex container for API content */
+        .api-content-container {
+            display: flex;
+        }
+        
+        /* Status dot */
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #00e5ff;
+            border-radius: 50%;
+            margin-left: 6px;
+        }
+        
+        .dropdown-icon {
+            color: #888;
+        }
+        
+        /* Request parameters */
+        .params-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+        
+        .params-table th {
+            text-align: left;
+            padding: 10px;
+            background-color: #22222c;
+            color: #cccccc;
+            font-weight: 500;
+        }
+        
+        .params-table td {
+            padding: 10px;
+            border-top: 1px solid #2a2a36;
+            color: #cccccc;
+        }
+        
+        .param-name {
+            color: #00e5ff;
+            font-family: monospace;
+        }
+        
+        .param-type {
+            font-size: 12px;
+            color: #888;
+            padding: 2px 6px;
+            background-color: #2a2a36;
+            border-radius: 4px;
+        }
+        
+        .required-badge {
+            font-size: 11px;
+            color: #fff;
+            background-color: #ed4245;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 8px;
+        }
+        
+        .optional-badge {
+            font-size: 11px;
+            color: #fff;
+            background-color: #5865f2;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 8px;
+        }
+        
+        /* Endpoint list */
+        .endpoint-list {
+            margin-top: 30px;
+            border-top: 1px solid #2a2a36;
+            padding-top: 20px;
+        }
+        
+        .endpoint-list-title {
+            margin-bottom: 16px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .endpoint-card {
+            border: 1px solid #2a2a36;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            display: flex;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .endpoint-card:hover {
+            background-color: #22222c;
+        }
+        
+        .endpoint-card-method {
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #22222c;
+            font-weight: 500;
+            width: 80px;
+            text-align: center;
+            color: #43b581;
+        }
+        
+        .endpoint-card-method.post {
+            color: #5865f2;
+        }
+        
+        .endpoint-card-method.put {
+            color: #faa61a;
+        }
+        
+        .endpoint-card-method.delete {
+            color: #ed4245;
+        }
+        
+        .endpoint-card-content {
+            padding: 16px;
+            flex: 1;
+        }
+        
+        .endpoint-card-path {
+            font-family: monospace;
+            margin-bottom: 4px;
+            color: #cccccc;
+        }
+        
+        .endpoint-card-desc {
+            font-size: 13px;
+            color: #888;
+        }
+        
+        /* Tooltips */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted #888;
+            cursor: help;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 12px;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* Status indicator for code samples */
+        .status-indicator {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: #00e5ff;
+            border-radius: 50%;
+            top: 12px;
+            right: 12px;
+        }
+        
+        /* Code example response */
+        .code-example-response {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo-icon">B</div>
+            BlocAPI
+            <div class="status-dot"></div>
+        </div>
+        
+        <div class="nav-container">
+            <div class="nav-item">Playground</div>
+            <div class="nav-item">Resources</div>
+            <div class="nav-item">Developer Docs</div>
+            
+            <div class="header-buttons">
+                <button class="login-btn">Login</button>
+                <button class="signup-btn">Sign up</button>
+            </div>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search">
+                <span style="color: #888; margin-left: 4px;">⌘ K</span>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Secondary navigation -->
+    <div class="secondary-nav">
+        <div class="secondary-nav-item">
+            <span>📄</span> Documentation
+        </div>
+        <div class="secondary-nav-item active">
+            <span>🔌</span> API docs
+        </div>
+        <div class="secondary-nav-item">
+            <span>📋</span> Changelog
+        </div>
+    </div>
+    
+    <!-- Main content -->
+    <div class="main-container">
+        <!-- Left sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">APIs</div>
+                <div class="sidebar-item active">
+                    <div class="sidebar-icon">👤</div>
+                    Accounts API
+                    <div style="flex: 1;"></div>
+                    <span class="dropdown-icon">▼</span>
+                </div>
+                <div class="sidebar-subitem active">Current user</div>
+                <div class="sidebar-subitem">User authentication</div>
+                <div class="sidebar-subitem">User profiles</div>
+                
+                <div class="sidebar-item">
+                    <div class="sidebar-icon">📢</div>
+                    Channels API
+                </div>
+                
+                <div class="sidebar-item">
+                    <div class="sidebar-icon">👥</div>
+                    Collaborations API
+                </div>
+                
+                <div class="sidebar-item">
+                    <div class="sidebar-icon">📞</div>
+                    Contacts API
+                </div>
+                
+                <div class="sidebar-item">
+                    <div class="sidebar-icon">💬</div>
+                    Conversations API
+                </div>
+                
+                <div class="sidebar-item">
+                    <div class="sidebar-icon">🔔</div>
+                    Notifications API
+                </div>
+                
+                <div class="sidebar-item">
+                    <div class="sidebar-icon">👆</div>
+                    Touchpoints API
+                </div>
+                
+                <div class="sidebar-item">
+                    <div class="sidebar-icon">✅</div>
+                    Verify API
+                </div>
+                
+                <div class="sidebar-item">
+                    <div class="sidebar-icon">🔊</div>
+                    Voice API
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">SDKs</div>
+                <div class="sidebar-item">
+                    <div class="sidebar-icon">📱</div>
+                    Applications
+                </div>
+                <div class="sidebar-item">
+                    <div class="sidebar-icon">📥</div>
+                    App Inbox
+                </div>
+                <div class="sidebar-item">
+                    <div class="sidebar-icon">📊</div>
+                    Event tracking
+                </div>
+                <div class="sidebar-item">
+                    <div class="sidebar-icon">💬</div>
+                    Conversations API
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main content area -->
+        <div class="content">
+            <div class="api-path">
+                <div class="api-path-header">ACCOUNTS API</div>
+                <h1 class="api-title">Current user</h1>
+                <p class="api-description">Make updates to the user to which the login token was issued.</p>
+            </div>
+            
+            <div class="endpoint-list">
+                <div class="endpoint-list-title">Available Endpoints</div>
+                
+                <div class="endpoint-card">
+                    <div class="endpoint-card-method">GET</div>
+                    <div class="endpoint-card-content">
+                        <div class="endpoint-card-path">/me</div>
+                        <div class="endpoint-card-desc">Retrieve the profile of the currently logged in user</div>
+                    </div>
+                </div>
+                
+                <div class="endpoint-card">
+                    <div class="endpoint-card-method post">POST</div>
+                    <div class="endpoint-card-content">
+                        <div class="endpoint-card-path">/me</div>
+                        <div class="endpoint-card-desc">Update the current user profile information</div>
+                    </div>
+                </div>
+                
+                <div class="endpoint-card">
+                    <div class="endpoint-card-method">GET</div>
+                    <div class="endpoint-card-content">
+                        <div class="endpoint-card-path">/me/sessions</div>
+                        <div class="endpoint-card-desc">List all active sessions for the current user</div>
+                    </div>
+                </div>
+                
+                <div class="endpoint-card">
+                    <div class="endpoint-card-method delete">DELETE</div>
+                    <div class="endpoint-card-content">
+                        <div class="endpoint-card-path">/me/sessions/{session_id}</div>
+                        <div class="endpoint-card-desc">Revoke a specific session for the current user</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="api-content-container">
+                <div style="flex: 1;">
+                    <div class="endpoint-section">
+                        <h2 class="endpoint-title">Get profile</h2>
+                        <div class="endpoint-method-container">
+                            <div class="endpoint-method">GET</div>
+                            <div class="endpoint-path">/me</div>
+                        </div>
+                        <p class="endpoint-description">Retrieve the profile of the currently logged in user.</p>
+                    </div>
+                    
+                    <div class="accordion">
+                        <div class="accordion-header">
+                            <span>▶ Request parameters</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p style="margin-bottom: 12px;">This endpoint doesn't require any parameters.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion">
+                        <div class="accordion-header">
+                            <span>▶ Authorizations</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>This endpoint requires authentication.</p>
+                            <table class="params-table">
+                                <tr>
+                                    <th>Header</th>
+                                    <th>Value</th>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Authorization</td>
+                                    <td>Bearer &lt;jwt_token&gt;</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion">
+                        <div class="accordion-header">
+                            <span>▶ Responses</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div style="margin-bottom: 18px; border-bottom: 1px solid #2a2a36; padding-bottom: 18px;">
+                                <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                                    <span style="background: #22222c; padding: 4px 6px; border-radius: 4px; margin-right: 8px; font-size: 12px;">200</span>
+                                    <span>OK</span>
+                                </div>
+                                <p style="margin-bottom: 8px;">Returns the user profile information when a valid token is provided.</p>
+                                <div style="font-family: monospace; background: #22222c; padding: 10px; border-radius: 4px;">
+<span class="code-key">"id"</span>: <span class="tooltip">string<span class="tooltiptext">Unique identifier for the user</span></span>,<br>
+<span class="code-key">"status"</span>: <span class="tooltip">string<span class="tooltiptext">Current user status (pending, active, suspended)</span></span>,<br>
+<span class="code-key">"name"</span>: <span class="tooltip">string<span class="tooltiptext">User's display name</span></span>,<br>
+<span class="code-key">"bio"</span>: <span class="tooltip">string<span class="tooltiptext">User's biography or description</span></span>,<br>
+<span class="code-key">"activeSessions"</span>: <span class="tooltip">integer<span class="tooltiptext">Number of active sessions</span></span>,<br>
+<span class="code-key">"createdAt"</span>: <span class="tooltip">string (ISO date)<span class="tooltiptext">When the user account was created</span></span>,<br>
+<span class="code-key">"updatedAt"</span>: <span class="tooltip">string (ISO date)<span class="tooltiptext">When the user account was last updated</span></span>,<br>
+<span class="code-key">"emails"</span>: <span class="tooltip">array<span class="tooltiptext">Email addresses associated with this user</span></span>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-bottom: 18px; border-bottom: 1px solid #2a2a36; padding-bottom: 18px;">
+                                <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                                    <span style="background: #22222c; padding: 4px 6px; border-radius: 4px; margin-right: 8px; font-size: 12px;">401</span>
+                                    <span>Unauthorized</span>
+                                </div>
+                                <p style="margin-bottom: 8px;">Returned when the authentication token is missing or invalid.</p>
+                                <div style="font-family: monospace; background: #22222c; padding: 10px; border-radius: 4px;">
+<span class="code-key">"error"</span>: <span class="code-value">"Unauthorized"</span>,<br>
+<span class="code-key">"message"</span>: <span class="code-value">"Invalid or missing authentication token"</span>,<br>
+<span class="code-key">"statusCode"</span>: <span class="code-value">401</span>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-bottom: 10px;">
+                                <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                                    <span style="background: #22222c; padding: 4px 6px; border-radius: 4px; margin-right: 8px; font-size: 12px;">403</span>
+                                    <span>Forbidden</span>
+                                </div>
+                                <p style="margin-bottom: 8px;">Returned when the authentication token doesn't have sufficient permissions.</p>
+                                <div style="font-family: monospace; background: #22222c; padding: 10px; border-radius: 4px;">
+<span class="code-key">"error"</span>: <span class="code-value">"Forbidden"</span>,<br>
+<span class="code-key">"message"</span>: <span class="code-value">"Insufficient permissions to access this resource"</span>,<br>
+<span class="code-key">"statusCode"</span>: <span class="code-value">403</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="endpoint-section">
+                        <h2 class="endpoint-title">Update profile</h2>
+                        <div class="endpoint-method-container">
+                            <div class="endpoint-method post">POST</div>
+                            <div class="endpoint-path">/me</div>
+                        </div>
+                        <p class="endpoint-description">Update the profile of the currently logged in user.</p>
+                    </div>
+                    
+                    <div class="accordion">
+                        <div class="accordion-header">
+                            <span>▶ Request parameters</span>
+                        </div>
+                        <div class="accordion-content">
+                            <table class="params-table">
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="param-name">name</span>
+                                        <span class="optional-badge">optional</span>
+                                    </td>
+                                    <td><span class="param-type">string</span></td>
+                                    <td>The user's display name</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="param-name">bio</span>
+                                        <span class="optional-badge">optional</span>
+                                    </td>
+                                    <td><span class="param-type">string</span></td>
+                                    <td>The user's biography or description</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="param-name">emails</span>
+                                        <span class="optional-badge">optional</span>
+                                    </td>
+                                    <td><span class="param-type">array</span></td>
+                                    <td>List of email addresses to add/update</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Code example section -->
+                <div class="code-example">
+                    <div class="code-tabs">
+                        <div class="code-tab">cURL</div>
+                        <div class="code-tab">JavaScript</div>
+                        <div class="code-tab active">Python</div>
+                        <div class="code-tab">HTTP</div>
+                    </div>
+                    
+                    <div class="code-content">
+<span class="status-indicator"></span>
+<span class="code-method">import</span> requests
+
+<span class="code-comment"># Get current user profile</span>
+response = requests.<span class="code-function">get</span>(
+    <span class="code-url">"/me"</span>,
+    headers={<span class="code-key">"Authorization"</span>:<span class="code-value">"Bearer jwt"</span>},
+)
+data = response.<span class="code-function">json</span>()
+
+<span class="code-comment"># Print user information</span>
+<span class="code-method">print</span>(<span class="code-value">f"User: </span>{data['name']}<span class="code-value">"</span>)
+<span class="code-method">print</span>(<span class="code-value">f"Status: </span>{data['status']}<span class="code-value">"</span>)
+                    </div>
+                    
+                    <div class="response-status">
+                        <div class="status-code">200</div>
+                        <div class="status-code muted">401</div>
+                        <div class="status-code muted">403</div>
+                    </div>
+                    
+                    <div class="response-body">
+{
+  <span class="code-key">"id"</span>: <span class="code-value">"123e4567-e89b-12d3-a456-1526489657589"</span>,
+  <span class="code-key">"status"</span>: <span class="code-value">"pending"</span>,
+  <span class="code-key">"name"</span>: <span class="code-value">"text"</span>,
+  <span class="code-key">"bio"</span>: <span class="code-value">"text"</span>,
+  <span class="code-key">"activeSessions"</span>: <span class="code-value">1</span>,
+  <span class="code-key">"createdAt"</span>: <span class="code-value">"2025-03-13T10:54:16.946Z"</span>,
+  <span class="code-key">"updatedAt"</span>: <span class="code-value">"2025-03-13T10:54:16.946Z"</span>,
+  <span class="code-key">"emails"</span>: [
+    {
+      <span class="code-key">"id"</span>: <span class="code-value">"123e4567-e89b-12d3-a456-1526489657589"</span>,
+      <span class="code-key">"userId"</span>: <span class="code-value">"123e4567-e89b-12d3-a456-1526489657589"</span>,
+      <span class="code-key">"email"</span>: <span class="code-value">"hello@example.com"</span>,
+      <span class="code-key">"verified"</span>: <span class="code-value">true</span>,
+      <span class="code-key">"passwordSet"</span>: <span class="code-value">true</span>
+    }
+  ]
+}
+                    </div>
+                    
+                    <div class="code-tabs">
+                        <div class="code-tab">cURL</div>
+                        <div class="code-tab">JavaScript</div>
+                        <div class="code-tab active">Python</div>
+                        <div class="code-tab">HTTP</div>
+                    </div>
+                    
+                    <div class="code-content">
+<span class="status-indicator"></span>
+<span class="code-method">import</span> requests
+
+<span class="code-comment"># Update user profile</span>
+response = requests.<span class="code-function">post</span>(
+    <span class="code-url">"/me"</span>,
+    headers={<span class="code-key">"Authorization"</span>:<span class="code-value">"Bearer jwt"</span>},
+    json={
+        <span class="code-key">"name"</span>: <span class="code-value">"John Doe"</span>,
+        <span class="code-key">"bio"</span>: <span class="code-value">"Developer and API enthusiast"</span>
+    }
+)
+data = response.<span class="code-function">json</span>()
+                    </div>
+                    
+                    <button class="test-btn">Test it ▶</button>
+                    
+                    <div class="response-status">
+                        <div class="status-code">200</div>
+                        <div class="status-code muted">400</div>
+                        <div class="status-code muted">401</div>
+                    </div>
+                    
+                    <div class="response-body">
+{
+  <span class="code-key">"id"</span>: <span class="code-value">"123e4567-e89b-12d3-a456-1526489657589"</span>,
+  <span class="code-key">"status"</span>code: <span class="code-value">"pending"</span>,
+  <span class="code-key">"name"</span>: <span class="code-value">"John Doe"</span>,
+  <span class="code-key">"bio"</span>: <span class="code-value">"Developer and API enthusiast"</span>,
+  <span class="code-key">"activeSessions"</span>: <span class="code-value">1</span>,
+  <span class="code-key">"createdAt"</span>: <span class="code-value">"2025-03-13T10:54:16.946Z"</span>,
+  <span class="code-key">"updatedAt"</span>: <span class="code-value">"2025-03-13T11:32:08.124Z"</span>,
+  <span class="code-key">"emails"</span>: [
+    {
+      <span class="code-key">"id"</span>: <span class="code-value">"123e4567-e89b-12d3-a456-1526489657589"</span>,
+      <span class="code-key">"userId"</span>: <span class="code-value">"123e4567-e89b-12d3-a456-1526489657589"</span>,
+      <span class="code-key">"email"</span>: <span class="code-value">"hello@example.com"</span>,
+      <span class="code-key">"verified"</span>: <span class="code-value">true</span>,
+      <span class="code-key">"passwordSet"</span>: <span class="code-value">true</span>
+    }
+  ]
+}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right sidebar -->
+        <aside class="right-sidebar">
+            <div class="page-nav-header">
+                <span>📑</span> ON THIS PAGE
+                <span class="dropdown-icon">▼</span>
+            </div>
+            
+            <div class="page-nav-item active">Get profile</div>
+            <div class="page-nav-item">Update profile</div>
+            <div class="page-nav-item">List sessions</div>
+            <div class="page-nav-item">Revoke session</div>
+        </aside>
+    </div>
+</body>
+</html>

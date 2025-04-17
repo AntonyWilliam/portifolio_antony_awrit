@@ -1,0 +1,1900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../favicon.png" type="image/png">
+    <title>API Documentation - Antony William</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #1a1a21;
+            color: #ffffff;
+        }
+        
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 24px;
+            background-color: #1a1a21;
+            border-bottom: 1px solid #2a2a36;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #00e5ff;
+            font-weight: bold;
+            font-size: 22px;
+        }
+        
+        .logo-icon {
+            background-color: rgba(0, 229, 255, 0.15);
+            color: #00e5ff;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .home-link {
+            display: flex;
+            align-items: center;
+            color: #00e5ff;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            padding: 6px 12px;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 229, 255, 0.3);
+        }
+        
+        .home-link:hover {
+            background-color: rgba(0, 229, 255, 0.1);
+        }
+        
+        .home-link i {
+            margin-right: 8px;
+        }
+        
+        /* Secondary navigation */
+        .secondary-nav {
+            display: flex;
+            padding: 0 24px;
+            background-color: #1a1a21;
+            border-bottom: 1px solid #2a2a36;
+        }
+        
+        .secondary-nav-item {
+            padding: 12px 16px;
+            color: #888;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            margin-right: 10px;
+            border-bottom: 2px solid transparent;
+            text-decoration: none;
+        }
+        
+        .secondary-nav-item.active {
+            border-bottom: 2px solid #00e5ff;
+            color: #00e5ff;
+        }
+        
+        .secondary-nav-item:hover {
+            color: #00e5ff;
+        }
+        
+        /* Main layout */
+        .main-container {
+            display: flex;
+            flex: 1;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background-color: #1a1a21;
+            padding: 20px 0;
+            overflow-y: auto;
+            border-right: 1px solid #2a2a36;
+            height: calc(100vh - 99px);
+            position: sticky;
+            top: 99px;
+        }
+        
+        .sidebar-section {
+            margin-bottom: 24px;
+        }
+        
+        .sidebar-section-title {
+            padding: 8px 20px;
+            font-size: 12px;
+            color: #888;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .sidebar-item {
+            padding: 8px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #cccccc;
+            cursor: pointer;
+            font-size: 14px;
+            position: relative;
+        }
+        
+        .sidebar-item:hover {
+            background-color: #262631;
+        }
+        
+        .sidebar-item.active {
+            color: #ffffff;
+        }
+        
+        .sidebar-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+        }
+        
+        .sidebar-subitem {
+            padding: 8px 20px 8px 50px;
+            color: #cccccc;
+            cursor: pointer;
+            border-left: 2px solid transparent;
+            font-size: 14px;
+            position: relative;
+        }
+        
+        .sidebar-subitem:hover {
+            background-color: #262631;
+        }
+        
+        .sidebar-subitem.active {
+            border-left: 2px solid #00e5ff;
+            color: #00e5ff;
+        }
+        
+        /* Main content */
+        .content {
+            flex: 1;
+            padding: 32px;
+            overflow-y: auto;
+        }
+        
+        /* API Documentation specific styles */
+        .api-path {
+            margin-bottom: 40px;
+        }
+        
+        .api-path-header {
+            text-transform: uppercase;
+            color: #00e5ff;
+            font-size: 12px;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+        
+        .api-title {
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .api-description {
+            color: #cccccc;
+            margin-bottom: 40px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        
+        .endpoint-section {
+            margin-bottom: 40px;
+        }
+        
+        .endpoint-title {
+            font-size: 24px;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        
+        .endpoint-method-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .endpoint-method {
+            display: inline-block;
+            background-color: #43b581;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 500;
+            margin-right: 10px;
+            font-size: 12px;
+        }
+        
+        .endpoint-method.post {
+            background-color: #5865f2;
+        }
+        
+        .endpoint-method.put {
+            background-color: #faa61a;
+        }
+        
+        .endpoint-method.delete {
+            background-color: #ed4245;
+        }
+        
+        .endpoint-path {
+            color: #cccccc;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        
+        .endpoint-description {
+            color: #cccccc;
+            margin-bottom: 24px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        
+        /* Right sidebar for on this page */
+        .right-sidebar {
+            width: 240px;
+            border-left: 1px solid #2a2a36;
+            padding: 32px 20px;
+            background-color: #1a1a21;
+            height: calc(100vh - 99px);
+            overflow-y: auto;
+            position: sticky;
+            top: 99px;
+        }
+        
+        .page-nav-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #cccccc;
+            margin-bottom: 16px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .page-nav-item {
+            padding: 8px 0 8px 12px;
+            font-size: 13px;
+            color: #888;
+            cursor: pointer;
+            border-left: 2px solid transparent;
+            margin-bottom: 4px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .page-nav-item:hover {
+            color: #cccccc;
+        }
+        
+        .page-nav-item.active {
+            color: #00e5ff;
+            border-left: 2px solid #00e5ff;
+        }
+        
+        /* Flex container for API content */
+        .api-content-container {
+            display: flex;
+        }
+        
+        /* Dropdown icon */
+        .dropdown-icon {
+            color: #888;
+        }
+        
+        /* Code examples */
+        .code-example {
+            width: 450px;
+            background-color: #22222c;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-left: 32px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .code-tabs {
+            display: flex;
+            background-color: #1c1c24;
+            border-bottom: 1px solid #2a2a36;
+        }
+        
+        .code-tab {
+            padding: 10px 16px;
+            cursor: pointer;
+            color: #888;
+            font-size: 13px;
+        }
+        
+        .code-tab.active {
+            color: #00e5ff;
+        }
+        
+        .code-content {
+            padding: 16px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            font-size: 13px;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        .code-line {
+            display: flex;
+        }
+        
+        .code-key {
+            color: #e06c75;
+        }
+        
+        .code-value {
+            color: #98c379;
+        }
+        
+        .code-method {
+            color: #61afef;
+        }
+        
+        .code-url {
+            color: #e5c07b;
+        }
+        
+        .code-function {
+            color: #c678dd;
+        }
+        
+        .code-comment {
+            color: #5c6370;
+        }
+        
+        .test-btn {
+            padding: 8px 16px;
+            background-color: #00e5ff;
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+            margin: 12px 16px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        /* Response section */
+        .response-status {
+            display: flex;
+            padding: 10px 16px;
+            background-color: #22222c;
+            border-top: 1px solid #2a2a36;
+        }
+        
+        .status-code {
+            color: #00e5ff;
+            font-size: 13px;
+            margin-right: 16px;
+            cursor: pointer;
+        }
+        
+        .status-code.muted {
+            color: #888;
+        }
+        
+        .response-body {
+            padding: 16px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            font-size: 13px;
+            line-height: 1.6;
+            background-color: #22222c;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+        
+        /* Status indicator for code samples */
+        .status-indicator {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: #00e5ff;
+            border-radius: 50%;
+            top: 12px;
+            right: 12px;
+        }
+        
+        /* Mobile nav toggle */
+        .mobile-nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #00e5ff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Navigation pills */
+        .endpoint-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        
+        .endpoint-pill {
+            padding: 6px 12px;
+            background-color: #22222c;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            color: #ccc;
+            transition: all 0.3s ease;
+        }
+        
+        .endpoint-pill.active, .endpoint-pill:hover {
+            background-color: rgba(0, 229, 255, 0.15);
+            color: #00e5ff;
+        }
+        
+        .endpoint-pill i {
+            margin-right: 6px;
+        }
+        
+        /* Tabs and screens */
+        .screens {
+            margin-top: 40px;
+        }
+        
+        .screen-tabs {
+            display: flex;
+            border-bottom: 1px solid #2a2a36;
+            margin-bottom: 20px;
+        }
+        
+        .screen-tab {
+            padding: 10px 16px;
+            cursor: pointer;
+            color: #888;
+            font-size: 14px;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .screen-tab.active {
+            color: #00e5ff;
+            border-bottom: 2px solid #00e5ff;
+        }
+        
+        .screen-content {
+            display: none;
+        }
+        
+        .screen-content.active {
+            display: block;
+        }
+        
+        /* Documentation navbar */
+        .docs-navbar {
+            display: flex;
+            margin-bottom: 24px;
+            background-color: #22222c;
+            border-radius: 8px 8px 0 0;
+            overflow-x: auto;
+            position: sticky;
+            top: 99px;
+            z-index: 10;
+        }
+        
+        .docs-nav-item {
+            padding: 14px 20px;
+            color: #ccc;
+            font-size: 14px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .docs-nav-item:hover {
+            background-color: #2a2a36;
+            color: #fff;
+        }
+        
+        .docs-nav-item.active {
+            color: #00e5ff;
+            border-bottom: 3px solid #00e5ff;
+            background-color: #2a2a36;
+        }
+        
+        .docs-section-content {
+            display: none;
+        }
+        
+        .docs-section-content.active {
+            display: block;
+        }
+        
+        /* Documentation section */
+        .docs-container {
+            background-color: #22222c;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 30px;
+        }
+        
+        .docs-title {
+            font-size: 20px;
+            margin-bottom: 16px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .docs-section {
+            margin-bottom: 20px;
+        }
+        
+        .docs-section h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #00e5ff;
+        }
+        
+        .docs-section p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+        
+        /* Guide cards */
+        .guide-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+        
+        .guide-card {
+            background-color: #2a2a36;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .guide-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .guide-card-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 229, 255, 0.15);
+            color: #00e5ff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        
+        .guide-card-content h4 {
+            margin: 0 0 8px 0;
+            color: #fff;
+            font-size: 15px;
+        }
+        
+        .guide-card-content p {
+            margin: 0;
+            font-size: 13px;
+            color: #aaa;
+        }
+        
+        /* Tutorial cards */
+        .tutorial-card {
+            background-color: #2a2a36;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        
+        .tutorial-card-header {
+            background-color: rgba(0, 229, 255, 0.1);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .tutorial-card-header i {
+            color: #00e5ff;
+            font-size: 18px;
+        }
+        
+        .tutorial-card-header h4 {
+            margin: 0;
+            color: #fff;
+            font-size: 16px;
+        }
+        
+        .tutorial-card-content {
+            padding: 20px;
+        }
+        
+        .tutorial-steps {
+            margin-top: 16px;
+        }
+        
+        .tutorial-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .step-number {
+            width: 24px;
+            height: 24px;
+            background-color: #00e5ff;
+            color: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .step-text {
+            color: #ccc;
+            font-size: 14px;
+            padding-top: 2px;
+        }
+        
+        /* Reference links */
+        .reference-link {
+            color: #00e5ff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .reference-link:hover {
+            text-decoration: underline;
+        }
+        
+        .code-block {
+            background-color: #1c1c24;
+            border-radius: 4px;
+            padding: 12px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 13px;
+            overflow-x: auto;
+        }
+        
+        .example-note {
+            background-color: rgba(0, 229, 255, 0.1);
+            border-left: 3px solid #00e5ff;
+            padding: 10px 15px;
+            margin: 15px 0;
+            font-size: 13px;
+            color: #ccc;
+        }
+        
+        /* Collapsible sections */
+        .collapsible {
+            background-color: #262631;
+            border: 1px solid #2a2a36;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        
+        .collapsible-header {
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .collapsible-header:hover {
+            background-color: #2f2f3d;
+        }
+        
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 16px;
+        }
+        
+        .collapsible.active .collapsible-content {
+            max-height: 1000px;
+            padding: 16px;
+            border-top: 1px solid #2a2a36;
+        }
+        
+        .collapsible i {
+            transition: transform 0.3s ease;
+        }
+        
+        .collapsible.active i {
+            transform: rotate(180deg);
+        }
+        
+        /* Parameter tables */
+        .param-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .param-table th {
+            background-color: #262631;
+            color: #ccc;
+            text-align: left;
+            padding: 10px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        .param-table td {
+            padding: 10px;
+            border-top: 1px solid #2a2a36;
+            font-size: 13px;
+            color: #ccc;
+        }
+        
+        .param-table .param-required {
+            color: #ff5757;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 3px;
+            background-color: rgba(255, 87, 87, 0.1);
+            display: inline-block;
+        }
+        
+        .param-table .param-optional {
+            color: #00e5ff;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 3px;
+            background-color: rgba(0, 229, 255, 0.1);
+            display: inline-block;
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 1200px) {
+            .right-sidebar {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .api-content-container {
+                flex-direction: column;
+            }
+            
+            .code-example {
+                width: 100%;
+                margin-left: 0;
+                margin-top: 32px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                left: -260px;
+                top: 99px;
+                height: calc(100vh - 99px);
+                transition: left 0.3s ease;
+                z-index: 90;
+            }
+            
+            .sidebar.active {
+                left: 0;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .mobile-nav-toggle {
+                display: block;
+            }
+            
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 99px;
+                left: 0;
+                width: 100%;
+                height: calc(100vh - 99px);
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 80;
+            }
+            
+            .overlay.active {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header {
+                padding: 12px 16px;
+            }
+            
+            .secondary-nav {
+                padding: 0 16px;
+            }
+            
+            .content {
+                padding: 16px;
+            }
+            
+            .api-title {
+                font-size: 28px;
+            }
+            
+            .endpoint-title {
+                font-size: 20px;
+            }
+        }
+        
+        /* Screen reader only */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo-icon">A</div>
+            API Documentation
+        </div>
+        
+        <div style="display: flex; align-items: center; gap: 16px;">
+            <a href="../index.html" class="home-link">
+                <i class="fas fa-home"></i> Back to Portfolio
+            </a>
+            
+            <button class="mobile-nav-toggle" id="mobileNavToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Secondary navigation -->
+    <div class="secondary-nav">
+        <a href="#documentation" class="secondary-nav-item" data-screen="docs">
+            <i class="fas fa-file-alt"></i> Documentation
+        </a>
+        <a href="#api" class="secondary-nav-item active" data-screen="api">
+            <i class="fas fa-code"></i> API docs
+        </a>
+        <a href="#examples" class="secondary-nav-item" data-screen="examples">
+            <i class="fas fa-laptop-code"></i> Examples
+        </a>
+    </div>
+    
+    <!-- Main content -->
+    <div class="main-container">
+        <!-- Left sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">APIs</div>
+                <div class="sidebar-item active" data-target="accounts">
+                    <div class="sidebar-icon"><i class="fas fa-user-circle"></i></div>
+                    Accounts API
+                    <div style="flex: 1;"></div>
+                    <span class="dropdown-icon">▼</span>
+                </div>
+                <div class="sidebar-subitem active" data-endpoint="current-user">Current user</div>
+                <div class="sidebar-subitem" data-endpoint="user-auth">User authentication</div>
+                <div class="sidebar-subitem" data-endpoint="user-profiles">User profiles</div>
+                
+                <div class="sidebar-item" data-target="channels">
+                    <div class="sidebar-icon"><i class="fas fa-comments"></i></div>
+                    Channels API
+                    <div style="flex: 1;"></div>
+                    <span class="dropdown-icon">▶</span>
+                </div>
+                
+                <div class="sidebar-item" data-target="collaborations">
+                    <div class="sidebar-icon"><i class="fas fa-users"></i></div>
+                    Collaborations API
+                    <div style="flex: 1;"></div>
+                    <span class="dropdown-icon">▶</span>
+                </div>
+                
+                <div class="sidebar-item" data-target="contacts">
+                    <div class="sidebar-icon"><i class="fas fa-address-book"></i></div>
+                    Contacts API
+                    <div style="flex: 1;"></div>
+                    <span class="dropdown-icon">▶</span>
+                </div>
+                
+                <div class="sidebar-item" data-target="conversations">
+                    <div class="sidebar-icon"><i class="fas fa-comment-alt"></i></div>
+                    Conversations API
+                    <div style="flex: 1;"></div>
+                    <span class="dropdown-icon">▶</span>
+                </div>
+                
+                <div class="sidebar-item" data-target="notifications">
+                    <div class="sidebar-icon"><i class="fas fa-bell"></i></div>
+                    Notifications API
+                    <div style="flex: 1;"></div>
+                    <span class="dropdown-icon">▶</span>
+                </div>
+                
+                <div class="sidebar-item" data-target="touchpoints">
+                    <div class="sidebar-icon"><i class="fas fa-hand-pointer"></i></div>
+                    Touchpoints API
+                    <div style="flex: 1;"></div>
+                    <span class="dropdown-icon">▶</span>
+                </div>
+                
+                <div class="sidebar-item" data-target="verify">
+                    <div class="sidebar-icon"><i class="fas fa-check-circle"></i></div>
+                    Verify API
+                    <div style="flex: 1;"></div>
+                    <span class="dropdown-icon">▶</span>
+                </div>
+                
+                <div class="sidebar-item" data-target="voice">
+                    <div class="sidebar-icon"><i class="fas fa-microphone"></i></div>
+                    Voice API
+                    <div style="flex: 1;"></div>
+                    <span class="dropdown-icon">▶</span>
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">SDKs</div>
+                <div class="sidebar-item" data-target="applications">
+                    <div class="sidebar-icon"><i class="fas fa-laptop-code"></i></div>
+                    Applications
+                    <div style="flex: 1;"></div>
+                    <span class="dropdown-icon">▶</span>
+                </div>
+                <div class="sidebar-item" data-target="app-inbox">
+                    <div class="sidebar-icon"><i class="fas fa-inbox"></i></div>
+                    App inbox
+                    <div style="flex: 1;"></div>
+                    <span class="dropdown-icon">▶</span>
+                </div>
+                <div class="sidebar-item" data-target="event-tracking">
+                    <div class="sidebar-icon"><i class="fas fa-chart-line"></i></div>
+                    Event tracking
+                    <div style="flex: 1;"></div>
+                    <span class="dropdown-icon">▶</span>
+                </div>
+                <div class="sidebar-item" data-target="sdk-conversations">
+                    <div class="sidebar-icon"><i class="fas fa-comment-alt"></i></div>
+                    Conversations SDK
+                    <div style="flex: 1;"></div>
+                    <span class="dropdown-icon">▶</span>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Mobile overlay -->
+        <div class="overlay" id="overlay"></div>
+        
+        <!-- Main content area -->
+        <div class="content">
+            <div class="screens">
+                <!-- API Documentation Screen -->
+                <div class="screen-content active" id="api-screen">
+                    <div class="endpoint-pills">
+                        <div class="endpoint-pill active" data-endpoint="current-user">
+                            <i class="fas fa-user"></i> Current User
+                        </div>
+                        <div class="endpoint-pill" data-endpoint="user-auth">
+                            <i class="fas fa-key"></i> Authentication
+                        </div>
+                        <div class="endpoint-pill" data-endpoint="user-profiles">
+                            <i class="fas fa-id-card"></i> User Profiles
+                        </div>
+                        <div class="endpoint-pill" data-endpoint="sessions">
+                            <i class="fas fa-shield-alt"></i> Sessions
+                        </div>
+                        <div class="endpoint-pill" data-endpoint="admin">
+                            <i class="fas fa-users-cog"></i> Admin
+                        </div>
+                    </div>
+                
+                    <div class="api-path">
+                        <div class="api-path-header">ACCOUNTS API</div>
+                        <h1 class="api-title">Current user</h1>
+                        <p class="api-description">Make updates to the user to which the login token was issued.</p>
+                    </div>
+                    
+                    <div class="api-content-container">
+                        <div style="flex: 1;">
+                            <div class="endpoint-section">
+                                <h2 class="endpoint-title">Get profile</h2>
+                                <div class="endpoint-method-container">
+                                    <div class="endpoint-method">GET</div>
+                                    <div class="endpoint-path">/me</div>
+                                </div>
+                                <p class="endpoint-description">Retrieve the profile of the currently logged in user.</p>
+                                
+                                <div class="collapsible">
+                                    <div class="collapsible-header">
+                                        <span>Request parameters</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="collapsible-content">
+                                        <p>This endpoint doesn't require any parameters.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="collapsible">
+                                    <div class="collapsible-header">
+                                        <span>Authorization</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="collapsible-content">
+                                        <p>This endpoint requires authorization with a JWT token.</p>
+                                        
+                                        <table class="param-table">
+                                            <tr>
+                                                <th>Header</th>
+                                                <th>Value</th>
+                                                <th>Description</th>
+                                            </tr>
+                                            <tr>
+                                                <td>Authorization</td>
+                                                <td><code>Bearer &lt;token&gt;</code></td>
+                                                <td>Valid JWT token</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                
+                                <div class="collapsible">
+                                    <div class="collapsible-header">
+                                        <span>Responses</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="collapsible-content">
+                                        <h3>200 OK</h3>
+                                        <p>Successful response returns the user information.</p>
+                                        
+                                        <div class="code-block">
+{
+  "id": "123e4567-e89b-12d3-a456-152648965789",
+  "status": "pending",
+  "name": "text",
+  "bio": "text",
+  "activeSessions": 1,
+  "createdAt": "2025-03-13T10:54:16.946Z",
+  "updatedAt": "2025-03-13T10:54:16.946Z",
+  "email": "name@example.com"
+}
+                                        </div>
+                                        
+                                        <h3>401 Unauthorized</h3>
+                                        <p>Returned when the token is invalid or missing.</p>
+                                        
+                                        <div class="code-block">
+{
+  "error": "Unauthorized",
+  "message": "Invalid or missing authentication token"
+}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="endpoint-section">
+                                <h2 class="endpoint-title">Update profile</h2>
+                                <div class="endpoint-method-container">
+                                    <div class="endpoint-method post">POST</div>
+                                    <div class="endpoint-path">/me</div>
+                                </div>
+                                <p class="endpoint-description">Update the current user's profile information.</p>
+                                
+                                <div class="collapsible">
+                                    <div class="collapsible-header">
+                                        <span>Request parameters</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="collapsible-content">
+                                        <table class="param-table">
+                                            <tr>
+                                                <th>Parameter</th>
+                                                <th>Type</th>
+                                                <th>Required</th>
+                                                <th>Description</th>
+                                            </tr>
+                                            <tr>
+                                                <td>name</td>
+                                                <td>string</td>
+                                                <td><span class="param-optional">Optional</span></td>
+                                                <td>User's display name</td>
+                                            </tr>
+                                            <tr>
+                                                <td>bio</td>
+                                                <td>string</td>
+                                                <td><span class="param-optional">Optional</span></td>
+                                                <td>User's biography or description</td>
+                                            </tr>
+                                            <tr>
+                                                <td>email</td>
+                                                <td>string</td>
+                                                <td><span class="param-optional">Optional</span></td>
+                                                <td>User's email address</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Code example section -->
+                        <div class="code-example">
+                            <div class="code-tabs">
+                                <div class="code-tab">cURL</div>
+                                <div class="code-tab">JavaScript</div>
+                                <div class="code-tab active">Python</div>
+                                <div class="code-tab">HTTP</div>
+                            </div>
+                            
+                            <div class="code-content">
+<span class="status-indicator"></span>
+<span class="code-method">import</span> requests
+response = requests.<span class="code-function">get</span>(
+    <span class="code-url">"/me"</span>,
+    headers={<span class="code-key">"Authorization"</span>:<span class="code-value">"Bearer jwt"</span>},
+)
+data = response.<span class="code-function">json</span>()
+                            </div>
+                            
+                            <button class="test-btn">Test it ▶</button>
+                            
+                            <div class="response-status">
+                                <div class="status-code">200</div>
+                                <div class="status-code muted">401</div>
+                            </div>
+                            
+                            <div class="response-body">
+{
+  <span class="code-key">"id"</span>: <span class="code-value">"123e4567-e89b-12d3-a456-152648965789"</span>,
+  <span class="code-key">"status"</span>: <span class="code-value">"pending"</span>,
+  <span class="code-key">"name"</span>: <span class="code-value">"text"</span>,
+  <span class="code-key">"bio"</span>: <span class="code-value">"text"</span>,
+  <span class="code-key">"activeSessions"</span>: <span class="code-value">1</span>,
+  <span class="code-key">"createdAt"</span>: <span class="code-value">"2025-03-13T10:54:16.946Z"</span>,
+  <span class="code-key">"updatedAt"</span>: <span class="code-value">"2025-03-13T10:54:16.946Z"</span>,
+  <span class="code-key">"email"</span>: <span class="code-value">"name@example.com"</span>
+}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Documentation Screen -->
+                <div class="screen-content" id="docs-screen">
+                    <!-- Documentation Navbar -->
+                    <div class="docs-navbar">
+                        <div class="docs-nav-item active" data-docs-section="overview">
+                            <i class="fas fa-book"></i> Overview
+                        </div>
+                        <div class="docs-nav-item" data-docs-section="getting-started">
+                            <i class="fas fa-rocket"></i> Getting Started
+                        </div>
+                        <div class="docs-nav-item" data-docs-section="guides">
+                            <i class="fas fa-map-signs"></i> Guides
+                        </div>
+                        <div class="docs-nav-item" data-docs-section="references">
+                            <i class="fas fa-list-ul"></i> References
+                        </div>
+                        <div class="docs-nav-item" data-docs-section="tutorials">
+                            <i class="fas fa-chalkboard-teacher"></i> Tutorials
+                        </div>
+                    </div>
+
+                    <!-- Overview Section -->
+                    <div class="docs-section-content active" id="overview-section">
+                        <div class="docs-container">
+                            <div class="docs-title">
+                                <i class="fas fa-book"></i> API Documentation Overview
+                            </div>
+                            
+                            <div class="docs-section">
+                                <h3>Introduction</h3>
+                                <p>This API documentation provides information on available endpoints, authentication methods, and expected responses. The API follows RESTful principles and uses standard HTTP methods.</p>
+                                
+                                <p>All API requests should be made to the base URL:</p>
+                                <div class="code-block">https://api.example.com/v2</div>
+                                
+                                <div class="example-note">
+                                    <strong>Note:</strong> API versions are part of the URL path. Always check for the latest version in your integration.
+                                </div>
+                            </div>
+                            
+                            <div class="docs-section">
+                                <h3>Authentication</h3>
+                                <p>Most API endpoints require authentication using a Bearer token in the Authorization header:</p>
+                                
+                                <div class="code-block">Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...</div>
+                                
+                                <p>To obtain a token, use the authentication endpoints explained in the API docs section.</p>
+                            </div>
+                            
+                            <div class="docs-section">
+                                <h3>Rate Limits</h3>
+                                <p>API requests are limited to 100 requests per minute per IP address. When you exceed the rate limit, the API will return a 429 Too Many Requests response.</p>
+                                
+                                <p>Each response includes rate limit information in the headers:</p>
+                                <div class="code-block">
+X-RateLimit-Limit: 100
+X-RateLimit-Remaining: 95
+X-RateLimit-Reset: 1678721893
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Getting Started Section -->
+                    <div class="docs-section-content" id="getting-started-section">
+                        <div class="docs-container">
+                            <div class="docs-title">
+                                <i class="fas fa-rocket"></i> Getting Started
+                            </div>
+                            
+                            <div class="docs-section">
+                                <h3>Making Your First Request</h3>
+                                <p>To get started with the API, follow these steps:</p>
+                                
+                                <ol style="padding-left: 20px; color: #ccc;">
+                                    <li>Register an application to get your API credentials</li>
+                                    <li>Authenticate and obtain a token</li>
+                                    <li>Make an API request using your token</li>
+                                </ol>
+                                
+                                <p>Here's an example request using curl:</p>
+                                <div class="code-block">
+curl -X GET \
+  https://api.example.com/v2/me \
+  -H 'Authorization: Bearer YOUR_TOKEN_HERE'
+                                </div>
+                            </div>
+                            
+                            <div class="docs-section">
+                                <h3>Error Handling</h3>
+                                <p>The API uses standard HTTP status codes to indicate success or failure of requests:</p>
+                                
+                                <table class="param-table">
+                                    <tr>
+                                        <th>Status Code</th>
+                                        <th>Description</th>
+                                    </tr>
+                                    <tr>
+                                        <td>200 - 299</td>
+                                        <td>Success</td>
+                                    </tr>
+                                    <tr>
+                                        <td>400</td>
+                                        <td>Bad Request - Client-side error</td>
+                                    </tr>
+                                    <tr>
+                                        <td>401</td>
+                                        <td>Unauthorized - Invalid credentials</td>
+                                    </tr>
+                                    <tr>
+                                        <td>403</td>
+                                        <td>Forbidden - Insufficient permissions</td>
+                                    </tr>
+                                    <tr>
+                                        <td>404</td>
+                                        <td>Not Found - Resource doesn't exist</td>
+                                    </tr>
+                                    <tr>
+                                        <td>429</td>
+                                        <td>Too Many Requests - Rate limit exceeded</td>
+                                    </tr>
+                                    <tr>
+                                        <td>500 - 599</td>
+                                        <td>Server Error - Issue on our end</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Guides Section -->
+                    <div class="docs-section-content" id="guides-section">
+                        <div class="docs-container">
+                            <div class="docs-title">
+                                <i class="fas fa-map-signs"></i> Guides
+                            </div>
+                            
+                            <div class="docs-section">
+                                <h3>Authentication Guide</h3>
+                                <p>Learn how to authenticate with our API using different methods.</p>
+                                
+                                <div class="guide-cards">
+                                    <div class="guide-card">
+                                        <div class="guide-card-icon">
+                                            <i class="fas fa-key"></i>
+                                        </div>
+                                        <div class="guide-card-content">
+                                            <h4>OAuth 2.0 Authentication</h4>
+                                            <p>Implement secure user authentication with OAuth 2.0</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="guide-card">
+                                        <div class="guide-card-icon">
+                                            <i class="fas fa-lock"></i>
+                                        </div>
+                                        <div class="guide-card-content">
+                                            <h4>API Keys</h4>
+                                            <p>Use API keys for server-to-server authentication</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="guide-card">
+                                        <div class="guide-card-icon">
+                                            <i class="fas fa-user-shield"></i>
+                                        </div>
+                                        <div class="guide-card-content">
+                                            <h4>Security Best Practices</h4>
+                                            <p>Learn how to keep your integration secure</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- References Section -->
+                    <div class="docs-section-content" id="references-section">
+                        <div class="docs-container">
+                            <div class="docs-title">
+                                <i class="fas fa-list-ul"></i> References
+                            </div>
+                            
+                            <div class="docs-section">
+                                <h3>API Reference</h3>
+                                <p>Complete reference documentation for all API endpoints.</p>
+                                
+                                <table class="param-table">
+                                    <tr>
+                                        <th>API</th>
+                                        <th>Description</th>
+                                        <th>Version</th>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#api" class="reference-link">Accounts API</a></td>
+                                        <td>User management, authentication, and profiles</td>
+                                        <td>v2</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#" class="reference-link">Channels API</a></td>
+                                        <td>Communication channels and messaging</td>
+                                        <td>v2</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#" class="reference-link">Collaborations API</a></td>
+                                        <td>Team collaboration features</td>
+                                        <td>v1</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#" class="reference-link">Analytics API</a></td>
+                                        <td>Data analytics and reporting</td>
+                                        <td>v1</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tutorials Section -->
+                    <div class="docs-section-content" id="tutorials-section">
+                        <div class="docs-container">
+                            <div class="docs-title">
+                                <i class="fas fa-chalkboard-teacher"></i> Tutorials
+                            </div>
+                            
+                            <div class="docs-section">
+                                <h3>Step-by-Step Tutorials</h3>
+                                <p>Learn how to build specific features with our API through hands-on tutorials.</p>
+                                
+                                <div class="tutorial-card">
+                                    <div class="tutorial-card-header">
+                                        <i class="fas fa-user-plus"></i>
+                                        <h4>Building a User Authentication System</h4>
+                                    </div>
+                                    <div class="tutorial-card-content">
+                                        <p>In this tutorial, you'll learn how to implement a complete user authentication system using our API.</p>
+                                        <div class="tutorial-steps">
+                                            <div class="tutorial-step">
+                                                <div class="step-number">1</div>
+                                                <div class="step-text">Setting up your development environment</div>
+                                            </div>
+                                            <div class="tutorial-step">
+                                                <div class="step-number">2</div>
+                                                <div class="step-text">Creating registration and login forms</div>
+                                            </div>
+                                            <div class="tutorial-step">
+                                                <div class="step-number">3</div>
+                                                <div class="step-text">Making API requests and handling responses</div>
+                                            </div>
+                                            <div class="tutorial-step">
+                                                <div class="step-number">4</div>
+                                                <div class="step-text">Implementing token storage and refresh logic</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Examples Screen -->
+                <div class="screen-content" id="examples-screen">
+                    <div class="docs-container">
+                        <div class="docs-title">
+                            <i class="fas fa-laptop-code"></i> Code Examples
+                        </div>
+                        
+                        <div class="docs-section">
+                            <h3>Python Example</h3>
+                            <p>Complete user authentication and profile retrieval:</p>
+                            
+                            <div class="code-block">
+import requests
+
+# Configuration
+API_URL = "https://api.example.com/v2"
+CLIENT_ID = "your_client_id"
+CLIENT_SECRET = "your_client_secret"
+
+# Authenticate and get token
+def get_token():
+    response = requests.post(
+        f"{API_URL}/oauth/token",
+        json={
+            "grant_type": "client_credentials",
+            "client_id": CLIENT_ID,
+            "client_secret": CLIENT_SECRET
+        }
+    )
+    return response.json()["access_token"]
+
+# Get current user profile
+def get_user_profile(token):
+    response = requests.get(
+        f"{API_URL}/me",
+        headers={"Authorization": f"Bearer {token}"}
+    )
+    return response.json()
+
+# Run example
+token = get_token()
+user = get_user_profile(token)
+print(f"User: {user['name']}")
+print(f"Email: {user['email']}")
+                            </div>
+                        </div>
+                        
+                        <div class="docs-section">
+                            <h3>JavaScript Example</h3>
+                            <p>Using async/await with fetch:</p>
+                            
+                            <div class="code-block">
+const API_URL = 'https://api.example.com/v2';
+const CLIENT_ID = 'your_client_id';
+const CLIENT_SECRET = 'your_client_secret';
+
+// Get authentication token
+async function getToken() {
+  const response = await fetch(`${API_URL}/oauth/token`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      grant_type: 'client_credentials',
+      client_id: CLIENT_ID,
+      client_secret: CLIENT_SECRET
+    })
+  });
+  
+  const data = await response.json();
+  return data.access_token;
+}
+
+// Get user profile
+async function getUserProfile(token) {
+  const response = await fetch(`${API_URL}/me`, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+  
+  return response.json();
+}
+
+// Run example
+async function main() {
+  try {
+    const token = await getToken();
+    const user = await getUserProfile(token);
+    console.log(`User: ${user.name}`);
+    console.log(`Email: ${user.email}`);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+main();
+                            </div>
+                        </div>
+                        
+                        <div class="docs-section">
+                            <h3>Integration Examples</h3>
+                            
+                            <div class="endpoint-pills" style="margin-top: 15px;">
+                                <div class="endpoint-pill active">
+                                    <i class="fab fa-node-js"></i> Node.js
+                                </div>
+                                <div class="endpoint-pill">
+                                    <i class="fab fa-python"></i> Python
+                                </div>
+                                <div class="endpoint-pill">
+                                    <i class="fab fa-php"></i> PHP
+                                </div>
+                                <div class="endpoint-pill">
+                                    <i class="fab fa-java"></i> Java
+                                </div>
+                                <div class="endpoint-pill">
+                                    <i class="fas fa-code"></i> Ruby
+                                </div>
+                            </div>
+                            
+                            <div class="example-note" style="margin-top: 20px;">
+                                <strong>Note:</strong> To run these examples, replace the placeholder credentials with your actual API credentials. Never expose your credentials in client-side code.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right sidebar -->
+        <aside class="right-sidebar">
+            <div class="page-nav-header">
+                <i class="fas fa-list"></i> ON THIS PAGE
+            </div>
+            
+            <a href="#current-user" class="page-nav-item active">Get profile</a>
+            <a href="#update-profile" class="page-nav-item">Update profile</a>
+            <a href="#authorization" class="page-nav-item">Authorization</a>
+            <a href="#responses" class="page-nav-item">Responses</a>
+            <a href="#examples" class="page-nav-item">Examples</a>
+            <a href="#errors" class="page-nav-item">Error handling</a>
+            <a href="#rate-limits" class="page-nav-item">Rate limits</a>
+        </aside>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile navigation toggle
+            const mobileNavToggle = document.getElementById('mobileNavToggle');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            
+            if (mobileNavToggle && sidebar && overlay) {
+                mobileNavToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('active');
+                    overlay.classList.toggle('active');
+                    
+                    // Change icon based on sidebar state
+                    const icon = this.querySelector('i');
+                    if (sidebar.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+                
+                // Close sidebar when clicking overlay
+                overlay.addEventListener('click', function() {
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                    mobileNavToggle.querySelector('i').classList.remove('fa-times');
+                    mobileNavToggle.querySelector('i').classList.add('fa-bars');
+                });
+            }
+            
+            // Code tabs functionality
+            const codeTabs = document.querySelectorAll('.code-tab');
+            
+            codeTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Get parent container
+                    const tabContainer = this.closest('.code-tabs');
+                    // Get all tabs in this container
+                    const tabs = tabContainer.querySelectorAll('.code-tab');
+                    
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                });
+            });
+            
+            // Response status functionality
+            const statusCodes = document.querySelectorAll('.status-code');
+            
+            statusCodes.forEach(code => {
+                code.addEventListener('click', function() {
+                    // Get parent container
+                    const statusContainer = this.closest('.response-status');
+                    // Get all status codes in this container
+                    const codes = statusContainer.querySelectorAll('.status-code');
+                    
+                    // Update classes
+                    codes.forEach(c => {
+                        c.classList.remove('active');
+                        c.classList.add('muted');
+                    });
+                    this.classList.remove('muted');
+                    this.classList.add('active');
+                });
+            });
+            
+            // Test button functionality
+            const testBtn = document.querySelector('.test-btn');
+            
+            if (testBtn) {
+                testBtn.addEventListener('click', function() {
+                    alert('This would send a test request in a real implementation.');
+                });
+            }
+            
+            // Navigation items
+            const navItems = document.querySelectorAll('.page-nav-item');
+            
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    navItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Sidebar items
+            const sidebarItems = document.querySelectorAll('.sidebar-item');
+            
+            sidebarItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Toggle dropdown icon
+                    const icon = this.querySelector('.dropdown-icon');
+                    const isExpanded = icon.textContent === '▼';
+                    
+                    if (isExpanded) {
+                        icon.textContent = '▶';
+                    } else {
+                        // Close all other dropdowns first
+                        sidebarItems.forEach(i => {
+                            const otherIcon = i.querySelector('.dropdown-icon');
+                            if (otherIcon && otherIcon.textContent === '▼') {
+                                otherIcon.textContent = '▶';
+                            }
+                        });
+                        icon.textContent = '▼';
+                    }
+                    
+                    // Update active state
+                    sidebarItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Sidebar subitems
+            const sidebarSubitems = document.querySelectorAll('.sidebar-subitem');
+            
+            sidebarSubitems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent triggering parent click
+                    
+                    // Activate parent item if not already active
+                    const parentItem = this.closest('.sidebar-section').querySelector('.sidebar-item.active');
+                    if (parentItem) {
+                        const dropdownIcon = parentItem.querySelector('.dropdown-icon');
+                        if (dropdownIcon && dropdownIcon.textContent === '▶') {
+                            dropdownIcon.textContent = '▼';
+                        }
+                    }
+                    
+                    // Update active state
+                    sidebarSubitems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update endpoint pills if they exist
+                    const endpointId = this.getAttribute('data-endpoint');
+                    if (endpointId) {
+                        const pills = document.querySelectorAll('.endpoint-pill');
+                        pills.forEach(pill => {
+                            if (pill.getAttribute('data-endpoint') === endpointId) {
+                                pills.forEach(p => p.classList.remove('active'));
+                                pill.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            });
+            
+            // Endpoint pills
+            const endpointPills = document.querySelectorAll('.endpoint-pill');
+            
+            endpointPills.forEach(pill => {
+                pill.addEventListener('click', function() {
+                    // Update active state
+                    endpointPills.forEach(p => p.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update sidebar if corresponding subitem exists
+                    const endpointId = this.getAttribute('data-endpoint');
+                    if (endpointId) {
+                        const subitems = document.querySelectorAll('.sidebar-subitem');
+                        subitems.forEach(item => {
+                            if (item.getAttribute('data-endpoint') === endpointId) {
+                                subitems.forEach(i => i.classList.remove('active'));
+                                item.classList.add('active');
+                                
+                                // Also activate parent item
+                                const parentItem = item.closest('.sidebar-section').querySelector('.sidebar-item');
+                                if (parentItem) {
+                                    const sidebarItems = document.querySelectorAll('.sidebar-item');
+                                    sidebarItems.forEach(i => i.classList.remove('active'));
+                                    parentItem.classList.add('active');
+                                    
+                                    // Update dropdown icon
+                                    const dropdownIcon = parentItem.querySelector('.dropdown-icon');
+                                    if (dropdownIcon) {
+                                        dropdownIcon.textContent = '▼';
+                                    }
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+            
+            // Collapsible sections
+            const collapsibles = document.querySelectorAll('.collapsible');
+            
+            collapsibles.forEach(collapsible => {
+                const header = collapsible.querySelector('.collapsible-header');
+                
+                header.addEventListener('click', function() {
+                    collapsible.classList.toggle('active');
+                });
+            });
+            
+            // Screen tabs functionality
+            const screenTabs = document.querySelectorAll('.secondary-nav-item');
+            
+            screenTabs.forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Get screen ID
+                    const screenId = this.getAttribute('data-screen');
+                    
+                    // Update active tab
+                    screenTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update active screen
+                    const screens = document.querySelectorAll('.screen-content');
+                    screens.forEach(screen => {
+                        screen.classList.remove('active');
+                        
+                        if (screen.id === `${screenId}-screen`) {
+                            screen.classList.add('active');
+                        }
+                    });
+                });
+            });
+            
+            // Documentation navbar functionality
+            const docsNavItems = document.querySelectorAll('.docs-nav-item');
+            
+            docsNavItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Get section ID
+                    const sectionId = this.getAttribute('data-docs-section');
+                    
+                    // Update active nav item
+                    docsNavItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update active section
+                    const sections = document.querySelectorAll('.docs-section-content');
+                    sections.forEach(section => {
+                        section.classList.remove('active');
+                        
+                        if (section.id === `${sectionId}-section`) {
+                            section.classList.add('active');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import responsive design system */
+@import url('./responsive.css');
+
+body {
+  @apply bg-black text-white;
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Base styles for responsive components */
+.primary-button {
+  @apply bg-blue-600 text-white hover:bg-blue-700 transition-all;
+}
+
+.secondary-button {
+  @apply bg-transparent border border-gray-500 text-white hover:border-white transition-all;
+}
+
+/* Ensure images maintain aspect ratio and don't overflow */
+img {
+  max-width: 100%;
+  height: auto;
+}

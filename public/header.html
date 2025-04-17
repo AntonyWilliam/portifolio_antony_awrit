@@ -1,0 +1,728 @@
+<!-- Common header navigation to be included in all pages -->
+<style>
+    /* Navigation styles */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 95%;
+        max-width: 1800px; /* Match the updated container width */
+        z-index: 2000;
+        background-color: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(10px);
+        transition: background-color 0.3s ease;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .navbar-logo {
+        display: flex;
+        align-items: center;
+    }
+    
+    .navbar-logo img {
+        height: 30px;
+        width: auto;
+    }
+    
+    .navbar-menu {
+        display: flex;
+        align-items: center;
+    }
+    
+    .navbar-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .navbar-links a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-weight: 500;
+        position: relative;
+        transition: color 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .navbar-links a i {
+        font-size: 0.9rem;
+        transition: transform 0.3s ease;
+    }
+    
+    .navbar-links a:hover i {
+        transform: translateY(-2px);
+    }
+    
+    /* Mega Menu styling */
+    .has-submenu {
+        position: relative;
+    }
+    
+    .menu-arrow {
+        margin-left: 6px;
+        transition: all 0.3s ease;
+        background-color: rgba(255, 215, 0, 0.15);
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .menu-arrow i {
+        font-size: 0.8rem;
+        transition: transform 0.3s ease;
+    }
+    
+    .has-submenu:hover .menu-arrow {
+        background-color: rgba(255, 215, 0, 0.25);
+    }
+    
+    .has-submenu:hover .menu-arrow i {
+        transform: rotate(-180deg);
+        color: var(--gold);
+    }
+    
+    .mega-menu {
+        position: absolute;
+        top: 100%;
+        left: 0; /* Align with the left edge of the "Samples" menu item */
+        width: 700px; /* Reduced width for more compact look */
+        background-color: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        padding: 1rem; /* Reduced padding */
+        margin-top: 0.75rem; /* Reduced margin */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        overflow: hidden;
+    }
+    
+    .has-submenu:hover .mega-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    
+    /* Two-column layout */
+    .mega-menu-columns {
+        display: flex;
+        width: 100%;
+    }
+    
+    .mega-menu-column {
+        flex: 1;
+        padding: 0.75rem 1rem; /* Reduced padding */
+        border-right: 1px solid rgba(255, 255, 255, 0.05);
+        margin: 0 0.5rem; /* Reduced margin */
+    }
+    
+    .mega-menu-column:first-child {
+        margin-left: 0.5rem;
+    }
+    
+    .mega-menu-column:last-child {
+        border-right: none;
+        margin-right: 0.5rem;
+    }
+    
+    .mega-menu-header {
+        font-size: 1rem; /* Reduced font size */
+        font-weight: 600;
+        color: var(--gold);
+        padding: 0.7rem 0.5rem; /* Reduced padding */
+        margin-bottom: 0.8rem; /* Reduced margin */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+        letter-spacing: 0.4px; /* Reduced letter spacing */
+    }
+    
+    .knowledge-column {
+        border-right: none;
+        background-color: rgba(255, 255, 255, 0.03);
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+    
+    .kb-item {
+        border: 1px solid transparent;
+    }
+    
+    .kb-item:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 215, 0, 0.1);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .kb-item:hover .submenu-title {
+        color: var(--gold);
+    }
+    
+    .kb-icon {
+        color: var(--gold);
+        font-size: 0.9rem; /* Reduced font size */
+    }
+    
+    .kb-item:hover .kb-icon {
+        transform: scale(1.12); /* Reduced scale effect */
+    }
+    
+    /* Submenu styling */
+    .submenu {
+        list-style: none;
+        padding: 0.5rem 0; /* Reduced padding */
+        margin: 0;
+        width: 100%;
+    }
+    
+    .submenu li {
+        padding: 0;
+        margin: 0 0 0.6rem; /* Reduced margin */
+    }
+    
+    .submenu li:last-child {
+        margin-bottom: 0;
+    }
+    
+    /* Submenu item with description */
+    .submenu-item {
+        padding: 0.8rem 1rem; /* Reduced padding */
+        display: flex;
+        align-items: flex-start;
+        gap: 0.8rem; /* Reduced gap */
+        color: var(--secondary-text);
+        transition: all 0.25s ease;
+        border-radius: 6px; /* Reduced border radius */
+        border: 1px solid transparent;
+    }
+    
+    .submenu-item:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 215, 0, 0.1);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .submenu-icon {
+        flex-shrink: 0;
+        width: 30px; /* Reduced size */
+        height: 30px; /* Reduced size */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gold);
+        font-size: 0.9rem; /* Reduced font size */
+        margin-top: 2px;
+        transition: all 0.3s ease;
+    }
+    
+    .submenu-item:hover .submenu-icon {
+        transform: scale(1.12);
+        color: var(--gold);
+    }
+    
+    .submenu-content {
+        flex: 1;
+        padding-top: 0.15rem; /* Reduced padding */
+    }
+    
+    .submenu-title {
+        font-size: 0.95rem; /* Reduced font size */
+        font-weight: 500;
+        color: var(--text-color);
+        margin-bottom: 0.25rem; /* Reduced margin */
+        transition: color 0.2s ease;
+    }
+    
+    .submenu-item:hover .submenu-title {
+        color: var(--gold);
+    }
+    
+    .submenu-desc {
+        font-size: 0.8rem; /* Reduced font size */
+        color: var(--secondary-text);
+        line-height: 1.4; /* Reduced line height */
+        opacity: 0.8; /* Reduced opacity */
+    }
+    
+    .submenu a:after {
+        display: none;
+    }
+    
+    /* Light theme submenu */
+    :root.light-theme .mega-menu {
+        background-color: rgba(245, 245, 245, 0.95);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    
+    :root.light-theme .mega-menu-tabs {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    :root.light-theme .knowledge-column {
+        background-color: rgba(0, 0, 0, 0.01);
+        border: 1px solid rgba(0, 0, 0, 0.03);
+    }
+    
+    :root.light-theme .submenu-icon {
+        color: var(--gold);
+    }
+    
+    :root.light-theme .submenu-item:hover .submenu-icon {
+        color: var(--gold);
+    }
+    
+    .navbar-links a:after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--gold);
+        transition: width 0.3s ease;
+    }
+    
+    .navbar-links a:hover {
+        color: var(--gold);
+    }
+    
+    .navbar-links a:hover:after {
+        width: 100%;
+    }
+    
+    .navbar-controls {
+        display: flex;
+        align-items: center;
+    }
+    
+    .theme-toggle, .mobile-toggle {
+        background: none;
+        border: none;
+        color: var(--text-color);
+        font-size: 1.2rem;
+        cursor: pointer;
+        padding: 0.5rem;
+        margin-left: 1rem;
+        transition: color 0.3s ease;
+    }
+    
+    .mobile-toggle {
+        display: none; /* Hide mobile toggle by default */
+    }
+    
+    .theme-toggle:hover, .mobile-toggle:hover {
+        color: var(--gold);
+    }
+    
+    .close-menu {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--text-color);
+        font-size: 1.5rem;
+        cursor: pointer;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+    
+    /* Light theme styles */
+    :root.light-theme .navbar {
+        background-color: rgba(245, 245, 245, 0.95);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    
+    :root.light-theme .navbar-links a,
+    :root.light-theme .theme-toggle,
+    :root.light-theme .mobile-toggle,
+    :root.light-theme .close-menu {
+        color: #333;
+    }
+    
+    /* Mobile styles */
+    @media (max-width: 768px) {
+        .navbar {
+            padding: 1rem 5%;
+            left: 0;
+            width: 100%;
+            transform: none;
+            max-width: none;
+        }
+        
+        .navbar-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background-color: rgba(15, 15, 15, 0.98);
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 4rem 2rem;
+            transition: right 0.3s ease;
+            z-index: 1001;
+            overflow-y: auto;
+        }
+        
+        :root.light-theme .navbar-menu {
+            background-color: rgba(240, 240, 240, 0.98);
+        }
+        
+        .navbar-menu.active {
+            right: 0;
+        }
+        
+        .navbar-links {
+            flex-direction: column;
+            width: 100%;
+        }
+        
+        .navbar-links li {
+            margin-bottom: 1rem;
+        }
+        
+        /* Mobile mega menu styles */
+        .mega-menu {
+            position: static;
+            width: 100%;
+            background-color: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            margin-top: 0.5rem;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            visibility: visible;
+            transform: none;
+            transition: all 0.3s ease;
+            left: 0;
+        }
+        
+        .has-submenu.active .mega-menu {
+            opacity: 1;
+            max-height: 1000px;
+            visibility: visible;
+        }
+        
+        .mega-menu-columns {
+            flex-direction: column;
+        }
+        
+        .mega-menu-column {
+            border-right: none;
+            padding: 0;
+            margin: 0 0 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .mega-menu-column:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .mega-menu-header {
+            text-align: left;
+            padding: 0.7rem;
+            background-color: rgba(255, 215, 0, 0.1);
+            border-radius: 6px;
+            margin-bottom: 0.75rem;
+        }
+        
+        .knowledge-column {
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 6px;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+        }
+        
+        .knowledge-header {
+            background-color: rgba(255, 215, 0, 0.1);
+            border-radius: 6px;
+        }
+        
+        .has-submenu .menu-arrow {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+        }
+        
+        .has-submenu.active .menu-arrow {
+            background-color: rgba(255, 215, 0, 0.25);
+        }
+        
+        .has-submenu.active .menu-arrow i {
+            transform: rotate(-180deg);
+        }
+        
+        .submenu {
+            padding: 0.25rem 0 0.25rem 0.5rem;
+        }
+        
+        .submenu li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .submenu-item {
+            padding: 0.5rem;
+        }
+        
+        .submenu-icon, .kb-icon {
+            width: 24px;
+            height: 24px;
+            font-size: 0.9rem;
+        }
+        
+        .submenu-desc {
+            display: none; /* Hide descriptions on very small screens */
+        }
+        
+        /* Show descriptions on slightly larger mobile screens */
+        @media (min-width: 480px) {
+            .submenu-desc {
+                display: block;
+            }
+        }
+        
+        .close-menu {
+            display: block;
+        }
+        
+        .mobile-toggle {
+            display: block;
+        }
+    }
+</style>
+
+<header class="navbar">
+    <div class="navbar-logo">
+        <a href="index.html">
+            <img src="images/logo/AWRITE-Logo-Icon-White.png" alt="AWrit Logo">
+        </a>
+    </div>
+    <div class="navbar-menu" id="navbarMenu">
+        <ul class="navbar-links">
+            <li><a href="index.html"><i class="far fa-user"></i> Home</a></li>
+            <li><a href="value.html"><i class="far fa-chart-bar"></i> Why Hire a Tech Writer?</a></li>
+            <li class="has-submenu">
+                <a href="samples.html">
+                    <i class="far fa-copy"></i> Samples
+                    <span class="menu-arrow">
+                        <i class="fas fa-chevron-down"></i>
+                    </span>
+                </a>
+                <div class="mega-menu">
+                    <div class="mega-menu-columns">
+                        <div class="mega-menu-column">
+                            <div class="mega-menu-header">Document Samples</div>
+                            <ul class="submenu">
+                                <li>
+                                    <a href="samples.html" onclick="window.openSampleCategory('financial'); return true;" class="submenu-item">
+                                        <div class="submenu-icon"><i class="far fa-bookmark"></i></div>
+                                        <div class="submenu-content">
+                                            <div class="submenu-title">User Guide</div>
+                                            <div class="submenu-desc">Step-by-step banking instructions</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="samples.html" onclick="window.openSampleCategory('api'); return true;" class="submenu-item">
+                                        <div class="submenu-icon"><i class="far fa-file-code"></i></div>
+                                        <div class="submenu-content">
+                                            <div class="submenu-title">API Docs</div>
+                                            <div class="submenu-desc">Detailed API reference documentation</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="samples.html" onclick="window.openSampleCategory('technical'); return true;" class="submenu-item">
+                                        <div class="submenu-icon"><i class="far fa-clock"></i></div>
+                                        <div class="submenu-content">
+                                            <div class="submenu-title">Technical Guide</div>
+                                            <div class="submenu-desc">Redis configuration guide</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="samples.html" onclick="window.openSampleCategory('ai'); return true;" class="submenu-item">
+                                        <div class="submenu-icon"><i class="far fa-file-alt"></i></div>
+                                        <div class="submenu-content">
+                                            <div class="submenu-title">AI Documentation</div>
+                                            <div class="submenu-desc">AI Agent implementation guide</div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mega-menu-column knowledge-column">
+                            <div class="mega-menu-header knowledge-header">Documentation Projects</div>
+                            <p style="color: var(--secondary-text); font-size: 0.9rem; padding: 0.75rem; margin: 0 0 0.8rem; line-height: 1.5; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                              Projects I have participated in production of content, managed or created myself from scratch that are available to the public. This includes API documentation, prompt engineering, knowledge base creation, team training workshops, technical guides, user manuals, and process documentation for enterprise solutions.
+                            </p>
+                            <ul class="submenu kb-submenu">
+                                <li>
+                                    <a href="https://ai.stackspot.com/docs/" target="_blank" class="submenu-item kb-item">
+                                        <div class="submenu-icon kb-icon"><i class="far fa-robot"></i></div>
+                                        <div class="submenu-content">
+                                            <div class="submenu-title">StackSpot AI Documentation</div>
+                                            <div class="submenu-desc">AI development platform guides</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://tote.horizonpay.tech/" target="_blank" class="submenu-item kb-item">
+                                        <div class="submenu-icon kb-icon"><i class="far fa-credit-card"></i></div>
+                                        <div class="submenu-content">
+                                            <div class="submenu-title">Horizonpay Documentation</div>
+                                            <div class="submenu-desc">Payment solution developer portal</div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li><a href="contact.html"><i class="far fa-envelope"></i> Contact</a></li>
+        </ul>
+        <button class="close-menu" id="closeMenu">
+            <i class="far fa-times-circle"></i>
+        </button>
+    </div>
+    <div class="navbar-controls">
+        <button class="mobile-toggle" id="mobileToggle">
+            <i class="far fa-list-alt"></i>
+        </button>
+    </div>
+</header>
+
+<!-- Common JavaScript for navigation -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const closeMenu = document.getElementById('closeMenu');
+        const navbarMenu = document.getElementById('navbarMenu');
+        
+        if (mobileToggle && closeMenu && navbarMenu) {
+            mobileToggle.addEventListener('click', function() {
+                navbarMenu.classList.add('active');
+            });
+            
+            closeMenu.addEventListener('click', function() {
+                navbarMenu.classList.remove('active');
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!navbarMenu.contains(event.target) && !mobileToggle.contains(event.target)) {
+                    navbarMenu.classList.remove('active');
+                }
+            });
+            
+            // Mega menu tab functionality
+            const hasSubmenu = document.querySelector('.has-submenu');
+            if (hasSubmenu) {
+                // Main menu toggle (mobile only)
+                const menuLink = hasSubmenu.querySelector('a');
+                
+                menuLink.addEventListener('click', function(e) {
+                    // Only handle submenu toggle on mobile
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        hasSubmenu.classList.toggle('active');
+                        
+                        // We don't need to change the icon class, just the rotation
+                        // The rotation is handled by CSS based on the active class
+                    }
+                });
+                
+                // We're showing both columns simultaneously now, so no need for tab switching
+                
+                // Close other mega menus when opening a new one
+                document.querySelectorAll('.has-submenu').forEach(item => {
+                    item.addEventListener('click', function(e) {
+                        if (window.innerWidth <= 768 && e.currentTarget === item) {
+                            document.querySelectorAll('.has-submenu').forEach(otherItem => {
+                                if (otherItem !== item) {
+                                    otherItem.classList.remove('active');
+                                }
+                            });
+                        }
+                    });
+                });
+            }
+        }
+        
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        
+        if (themeToggle) {
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            
+            if (savedTheme === 'light') {
+                document.documentElement.classList.add('light-theme');
+                themeToggle.querySelector('i').classList.remove('fa-moon');
+                themeToggle.querySelector('i').classList.add('fa-sun');
+                themeToggle.querySelector('i').classList.remove('fas');
+                themeToggle.querySelector('i').classList.add('far');
+            } else {
+                // Ensure moon icon is using outline style
+                themeToggle.querySelector('i').classList.remove('fas');
+                themeToggle.querySelector('i').classList.add('far');
+            }
+            
+            // Toggle theme when button is clicked
+            themeToggle.addEventListener('click', function() {
+                document.documentElement.classList.toggle('light-theme');
+                
+                const isLight = document.documentElement.classList.contains('light-theme');
+                
+                if (isLight) {
+                    localStorage.setItem('theme', 'light');
+                    themeToggle.querySelector('i').classList.remove('fa-moon');
+                    themeToggle.querySelector('i').classList.add('fa-sun');
+                    themeToggle.querySelector('i').classList.remove('fas');
+                    themeToggle.querySelector('i').classList.add('far');
+                    // Dispatch event for theme change
+                    document.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme: 'light' } }));
+                } else {
+                    localStorage.setItem('theme', 'dark');
+                    themeToggle.querySelector('i').classList.remove('fa-sun');
+                    themeToggle.querySelector('i').classList.add('fa-moon');
+                    themeToggle.querySelector('i').classList.remove('fas');
+                    themeToggle.querySelector('i').classList.add('far');
+                    // Dispatch event for theme change
+                    document.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme: 'dark' } }));
+                }
+            });
+        }
+    });
+</script>
+
+<!-- Page Transitions Script -->
+<script src="js/page-transitions.js"></script>

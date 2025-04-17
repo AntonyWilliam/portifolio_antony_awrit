@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <title>Why Hire a Tech Writer? - Antony William</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/value.css">
+    <!-- Common styles moved to common.css and value.css -->
+</head>
+<body style="padding-top: 4rem;"> <!-- Reduced top padding -->
+    <!-- Navigation - Full Width -->
+    <!-- Header Placeholder - Will be populated by common.js -->
+    <div id="header-placeholder"></div>
+    
+    <main>
+    <div class="container" style="padding-top: 0;">
+
+    <!-- Modern Value of Technical Writers Section -->
+    <section class="value-section" id="value">
+        <div class="section-transition-overlay"></div>
+        <div class="container">
+            <div class="value-header">
+                <h2 class="value-title">Why Hire a Tech Writer?</h2>
+                <p class="value-subtitle">How I deliver measurable results for your business:</p>
+            </div>
+            
+            <div class="metrics-showcase">
+                <div class="metric-highlight">
+                    <div class="metric-card">
+                        <span class="big-metric">65<span class="percentage">%</span></span>
+                        <span class="metric-label">Reduced Search Time</span>
+                    </div>
+                </div>
+                <div class="metric-highlight">
+                    <div class="metric-card">
+                        <span class="big-metric">$4.50</span>
+                        <span class="metric-label">ROI per $1 Spent</span>
+                    </div>
+                </div>
+                <div class="metric-highlight">
+                    <div class="metric-card">
+                        <span class="big-metric">70<span class="percentage">%</span></span>
+                        <span class="metric-label">Less Compliance Issues</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="value-grid">
+                <div class="value-card" data-depth="0.35">
+                    <div class="value-card-header">
+                        <span class="value-number">01</span>
+                        <h3>Boost Productivity</h3>
+                    </div>
+                    <div class="value-content">
+                        <p>Clear documentation reduces search time by <span class="metric">65%</span> and improves team efficiency. <span class="source">Source: Gartner, 2025</span></p>
+                        <p>For every $1 invested in technical writing, companies see <span class="metric">$4.50</span> in productivity gains. <span class="source">Source: Society for Technical Communication, 2024</span></p>
+                        
+                        <div class="case-study">
+                            <h4>Real Results</h4>
+                            <p>I helped a tech company reduce support tickets by <span class="metric">40%</span> through improved documentation and self-service guides.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="value-card" data-depth="0.6">
+                    <div class="value-card-header">
+                        <span class="value-number">02</span>
+                        <h3>Mitigate Risk</h3>
+                    </div>
+                    <div class="value-content">
+                        <p><span class="metric">83%</span> of IT leaders cite poor documentation as a major security and compliance risk. <span class="source">Source: IBM Security Survey, 2024</span></p>
+                        <p>Well-documented processes can reduce compliance issues by <span class="metric">70%</span> in regulated industries. <span class="source">Source: Deloitte Compliance Report, 2025</span></p>
+                    </div>
+                </div>
+                
+                <div class="value-card" data-depth="0.45">
+                    <div class="value-card-header">
+                        <span class="value-number">03</span>
+                        <h3>Engineering Efficiency</h3>
+                    </div>
+                    <div class="value-content">
+                        <p>Technical writers cost <span class="metric">60% less</span> than engineers yet can free up to <span class="metric">20%</span> of engineering time. <span class="source">Source: Stack Overflow Survey, 2025</span></p>
+                        <p>Documentation-first approach reduces development rework by <span class="metric">30%</span>. <span class="source">Source: GitHub Developer Survey, 2024</span></p>
+                    </div>
+                </div>
+                
+                <div class="value-card" data-depth="0.7">
+                    <div class="value-card-header">
+                        <span class="value-number">04</span>
+                        <h3>Enhanced User Experience</h3>
+                    </div>
+                    <div class="value-content">
+                        <p><span class="metric">67%</span> of customers prefer self-service over contacting support. <span class="source">Source: Salesforce Customer Experience Report, 2025</span></p>
+                        <p>Companies with excellent documentation report <span class="metric">50%</span> higher customer satisfaction scores. <span class="source">Source: Zendesk Benchmark, 2024</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bottom-line animated-element">
+                <div class="cta-container">
+                    <p class="final-note">Quality documentation is essential for business growth</p>
+                    <div class="cta-buttons">
+                        <a href="contact.html" class="cta-button">Get Started</a>
+                        <a href="#" class="cta-button cta-button-outline">View Samples</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer removed for cleaner design -->
+
+    <script>
+        // Mobile Navigation Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileToggle = document.getElementById('mobileToggle');
+            const closeMenu = document.getElementById('closeMenu');
+            const navbarMenu = document.getElementById('navbarMenu');
+            
+            // Toggle mobile menu
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', function() {
+                    navbarMenu.classList.add('active');
+                    closeMenu.classList.add('active');
+                });
+            }
+            
+            // Close mobile menu
+            if (closeMenu) {
+                closeMenu.addEventListener('click', function() {
+                    navbarMenu.classList.remove('active');
+                    closeMenu.classList.remove('active');
+                });
+            }
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (navbarMenu.classList.contains('active') && 
+                    !navbarMenu.contains(event.target) && 
+                    event.target !== mobileToggle) {
+                    navbarMenu.classList.remove('active');
+                    closeMenu.classList.remove('active');
+                }
+            });
+        });
+        
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const rootElement = document.documentElement;
+        
+        // Add transition for smooth theme changes
+        rootElement.style.transition = "background-color 0.3s ease, color 0.3s ease";
+        
+        // Always use dark theme for this page, regardless of saved preference
+        localStorage.setItem('theme', 'dark');
+        rootElement.classList.remove('light-theme');
+        themeToggle.innerHTML = '<i class="far fa-moon"></i>';
+        
+        // Toggle between dark and light themes
+        themeToggle.addEventListener('click', () => {
+            rootElement.classList.toggle('light-theme');
+            
+            // Update the icon based on current theme
+            if (rootElement.classList.contains('light-theme')) {
+                themeToggle.innerHTML = '<i class="fas fa-sun" style="color: #0d47a1;"></i>';
+                localStorage.setItem('theme', 'light');
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+        
+    </script>
+    <script src="js/common.js"></script>
+    </main>
+    
+    <!-- Page Transitions Script -->
+    <script src="js/page-transitions.js"></script>
+</body>
+</html>

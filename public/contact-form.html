@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Form</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init({
+              publicKey: "oZEGRY9kdetbwBNKtkbVj",
+            });
+        })();
+    </script>
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                // Generate loading animation
+                document.getElementById('submit-btn').textContent = 'Sending...';
+                document.getElementById('submit-btn').disabled = true;
+                
+                // Send the form using EmailJS
+                emailjs.sendForm('service_8ca4upp', 'template_ixcdi8b', this)
+                    .then(() => {
+                        console.log('SUCCESS!');
+                        // Show success message
+                        document.getElementById('success-message').style.display = 'block';
+                        document.getElementById('error-message').style.display = 'none';
+                        // Reset form
+                        document.getElementById('contact-form').reset();
+                    }, (error) => {
+                        console.log('FAILED...', error);
+                        // Show error message
+                        document.getElementById('error-message').style.display = 'block';
+                        document.getElementById('success-message').style.display = 'none';
+                    })
+                    .finally(() => {
+                        document.getElementById('submit-btn').textContent = 'Send Message';
+                        document.getElementById('submit-btn').disabled = false;
+                    });
+            });
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            font-size: 28px;
+        }
+        .intro-text {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 17px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        input:focus, textarea:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+        textarea {
+            min-height: 150px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            transition: background-color 0.3s;
+            letter-spacing: 0.5px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .message {
+            padding: 16px;
+            margin: 20px 0;
+            border-radius: 6px;
+            display: none;
+            text-align: center;
+            font-size: 16px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .success {
+            background-color: #d4f6e0;
+            color: #0f6e3a;
+            border-left: 4px solid #2ecc71;
+        }
+        .error {
+            background-color: #fae1e4;
+            color: #8a1f2c;
+            border-left: 4px solid #e74c3c;
+        }
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+    </style>
+</head>
+<body>
+    <h1>Let's Work Together</h1>
+    <p class="intro-text">Ready to enhance your documentation? Let's talk about your project.</p>
+    
+    <div id="success-message" class="message success">
+        <strong>Message sent successfully!</strong> I'll get back to you soon to discuss how we can work together on your documentation needs.
+    </div>
+    
+    <div id="error-message" class="message error">
+        <strong>Oops! Something went wrong.</strong> Please try again or contact me directly at <a href="mailto:antonyramalhopro@gmail.com" style="color: inherit; text-decoration: underline;">antonyramalhopro@gmail.com</a>
+    </div>
+    
+    <div class="form-container">
+        <form id="contact-form">
+            <div class="form-group">
+                <label for="user_name">Your Name</label>
+                <input type="text" id="user_name" name="user_name" placeholder="Enter your name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="user_email">Email Address</label>
+                <input type="email" id="user_email" name="user_email" placeholder="Enter your email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="subject">Project Subject</label>
+                <input type="text" id="subject" name="subject" placeholder="What is your project about?" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Tell Me About Your Project</label>
+                <textarea id="message" name="message" placeholder="Describe your documentation needs and how I can help..." required></textarea>
+            </div>
+            
+            <button type="submit" id="submit-btn">Let's Get Started</button>
+        </form>
+    </div>
+</body>
+</html>

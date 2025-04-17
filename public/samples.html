@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <title>Document Samples - Antony William</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/samples.css">
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
+</head>
+<body style="padding-top: 4rem;">
+    <!-- Header Placeholder - Will be populated by common.js -->
+    <div id="header-placeholder"></div>
+    
+    <main>
+    <div class="container" style="padding-top: 0;">
+        <!-- Samples Section -->
+        <section class="samples-section" id="samples">
+            <div class="section-transition-overlay"></div>
+            <div class="container">
+                <div class="samples-header">
+                    <h2 class="samples-title">Document Samples</h2>
+                    <p class="samples-subtitle">Examples of my technical documentation work across different industries and project types.</p>
+                </div>
+                
+                <!-- Sample Categories -->
+                <div class="sample-categories">
+                    <button class="category-button active" data-category="financial">Financial Guide</button>
+                    <button class="category-button" data-category="api">API Documentation</button>
+                    <button class="category-button" data-category="technical">Technical Guide</button>
+                    <button class="category-button" data-category="ai">AI Documentation</button>
+                </div>
+                
+                <!-- Sample Preview Area -->
+                <div class="sample-preview-container">
+                    <!-- API Documentation Sample -->
+                    <div class="sample-preview" id="api-preview">
+                        <div class="preview-header">
+                            <div>
+                                <span class="preview-tag">API Documentation</span>
+                                <h3 class="preview-title">RESTful API Reference</h3>
+                            </div>
+                            <a href="samples/ApiDocSample.md" class="download-button" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> View Full Sample
+                            </a>
+                        </div>
+                        <div class="preview-content" id="api-content">
+                            <div class="loading-spinner">
+                                <i class="fas fa-circle-notch fa-spin"></i>
+                                <span>Loading preview...</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Technical Guide Sample -->
+                    <div class="sample-preview" id="technical-preview">
+                        <div class="preview-header">
+                            <div>
+                                <span class="preview-tag">Technical Guide</span>
+                                <h3 class="preview-title">Redis Configuration Guide</h3>
+                            </div>
+                            <a href="samples/docsample.md" class="download-button" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> View Full Sample
+                            </a>
+                        </div>
+                        <div class="preview-content" id="technical-content">
+                            <div class="loading-spinner">
+                                <i class="fas fa-circle-notch fa-spin"></i>
+                                <span>Loading preview...</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Financial Guide Sample -->
+                    <div class="sample-preview active" id="financial-preview">
+                        <div class="preview-header">
+                            <div>
+                                <span class="preview-tag">Financial Guide</span>
+                                <h3 class="preview-title">Banking System User Guide</h3>
+                            </div>
+                            <a href="samples/GuideSample.md" class="download-button" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> View Full Sample
+                            </a>
+                        </div>
+                        <div class="preview-content" id="financial-content">
+                            <div class="loading-spinner">
+                                <i class="fas fa-circle-notch fa-spin"></i>
+                                <span>Loading preview...</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- AI Documentation Sample -->
+                    <div class="sample-preview" id="ai-preview">
+                        <div class="preview-header">
+                            <div>
+                                <span class="preview-tag">AI Documentation</span>
+                                <h3 class="preview-title">AI Agent Implementation Guide</h3>
+                            </div>
+                            <a href="samples/agent.markdown" class="download-button" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> View Full Sample
+                            </a>
+                        </div>
+                        <div class="preview-content" id="ai-content">
+                            <div class="loading-spinner">
+                                <i class="fas fa-circle-notch fa-spin"></i>
+                                <span>Loading preview...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="samples-cta">
+                    <p>Need customized documentation for your project?</p>
+                    <a href="contact.html" class="cta-button">Get in Touch</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer removed for cleaner design -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configure marked options
+            marked.setOptions({
+                breaks: true,
+                gfm: true,
+                headerIds: false,
+                highlight: function(code, lang) {
+                    if (Prism.languages[lang]) {
+                        try {
+                            return Prism.highlight(code, Prism.languages[lang], lang);
+                        } catch (e) {
+                            console.error("Error highlighting code:", e);
+                            return code;
+                        }
+                    }
+                    return code;
+                }
+            });
+            
+            // Format emojis and icons
+            const renderer = new marked.Renderer();
+            renderer.text = function(text) {
+                // Replace emoji shortcodes with Font Awesome
+                text = text.replace(/:information_source:/g, '<i class="fas fa-info-circle"></i>');
+                text = text.replace(/:white_check_mark:/g, '<i class="fas fa-check-circle"></i>');
+                text = text.replace(/:x:/g, '<i class="fas fa-times-circle"></i>');
+                text = text.replace(/:heavy_check_mark:/g, '<i class="fas fa-check"></i>');
+                text = text.replace(/:calendar:/g, '<i class="far fa-calendar-alt"></i>');
+                text = text.replace(/:alarm_clock:/g, '<i class="far fa-clock"></i>');
+                text = text.replace(/:clock10:/g, '<i class="far fa-clock"></i>');
+                text = text.replace(/:money_with_wings:/g, '<i class="fas fa-money-bill-wave"></i>');
+                return text;
+            };
+            
+            marked.use({ renderer });
+            
+            // Simpler approach to rendering markdown samples
+            function renderSample(samplePath, containerId) {
+                const container = document.getElementById(containerId);
+                
+                // Show loading spinner
+                container.innerHTML = `
+                    <div class="loading-spinner">
+                        <i class="fas fa-circle-notch fa-spin"></i>
+                        <span>Loading sample...</span>
+                    </div>
+                `;
+                
+                // Fetch the markdown file with cache busting
+                fetch(`${samplePath}?t=${Date.now()}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`Failed to load sample: ${response.status}`);
+                        }
+                        return response.text();
+                    })
+                    .then(markdown => {
+                        try {
+                            // Parse markdown to HTML
+                            const htmlContent = marked.parse(markdown);
+                            
+                            // Update the container
+                            container.innerHTML = htmlContent;
+                            
+                            // Apply syntax highlighting
+                            Prism.highlightAllUnder(container);
+                            
+                            // Add copy buttons to code blocks
+                            addCopyButtons(container);
+                        } catch (error) {
+                            container.innerHTML = `
+                                <div class="error-message">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <p>Error rendering sample</p>
+                                </div>
+                            `;
+                            console.error('Error rendering markdown:', error);
+                        }
+                    })
+                    .catch(error => {
+                        container.innerHTML = `
+                            <div class="error-message">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <p>Could not load the sample</p>
+                            </div>
+                        `;
+                        console.error('Error loading sample:', error);
+                    });
+            }
+            
+            // Load all samples - financial guide first
+            renderSample('samples/GuideSample.md', 'financial-content');
+            renderSample('samples/ApiDocSample.md', 'api-content');
+            renderSample('samples/docsample.md', 'technical-content');
+            renderSample('samples/agent.markdown', 'ai-content');
+            
+            // Tab switching functionality
+            const categoryButtons = document.querySelectorAll('.category-button');
+            const samplePreviews = document.querySelectorAll('.sample-preview');
+            
+            // Function to switch to a specific category
+            function switchToCategory(category) {
+                // Remove active class from all buttons and previews
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                samplePreviews.forEach(preview => preview.classList.remove('active'));
+                
+                // Add active class to the button with matching data-category
+                const buttonToActivate = document.querySelector(`.category-button[data-category="${category}"]`);
+                if (buttonToActivate) {
+                    buttonToActivate.classList.add('active');
+                }
+                
+                // Show corresponding preview
+                const previewElement = document.getElementById(`${category}-preview`);
+                if (previewElement) {
+                    previewElement.classList.add('active');
+                }
+            }
+            
+            // Check for selected category from navbar
+            const selectedCategory = sessionStorage.getItem('selectedSampleCategory');
+            if (selectedCategory) {
+                // Switch to the selected category
+                switchToCategory(selectedCategory);
+                // Clear the selection from session storage
+                sessionStorage.removeItem('selectedSampleCategory');
+            }
+            
+            // Add click listeners to category buttons
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    switchToCategory(category);
+                });
+            });
+            
+            // Add copy buttons to code blocks
+            function addCopyButtons(container) {
+                const codeBlocks = container.querySelectorAll('pre code');
+                
+                codeBlocks.forEach(block => {
+                    const button = document.createElement('button');
+                    button.className = 'copy-button';
+                    button.innerHTML = '<i class="fas fa-copy"></i>';
+                    
+                    const pre = block.parentNode;
+                    pre.style.position = 'relative';
+                    pre.appendChild(button);
+                    
+                    button.addEventListener('click', () => {
+                        navigator.clipboard.writeText(block.textContent)
+                            .then(() => {
+                                button.innerHTML = '<i class="fas fa-check"></i>';
+                                setTimeout(() => {
+                                    button.innerHTML = '<i class="fas fa-copy"></i>';
+                                }, 2000);
+                            })
+                            .catch(() => {
+                                button.innerHTML = '<i class="fas fa-times"></i>';
+                                setTimeout(() => {
+                                    button.innerHTML = '<i class="fas fa-copy"></i>';
+                                }, 2000);
+                            });
+                    });
+                });
+            }
+        });
+    </script>
+    
+    <script src="js/common.js"></script>
+    </main>
+    
+    <!-- Page Transitions Script -->
+    <script src="js/page-transitions.js"></script>
+</body>
+</html>

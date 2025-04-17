@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <title>Contact - Antony William</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // EmailJS initialization
+            emailjs.init({
+              publicKey: "oZEGRY9kdetbwBNKtkbVj",
+            });
+        })();
+    </script>
+    <!-- Common styles moved to common.css and contact.css -->
+</head>
+<body style="padding-top: 4rem;"> <!-- Reduced top padding -->
+    <!-- Header Placeholder - Will be populated by common.js -->
+    <div id="header-placeholder"></div>
+    
+    <main>
+    <div class="container" style="padding-top: 0;">
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact">
+            <div class="section-transition-overlay"></div>
+            <div class="container">
+                <div class="contact-header">
+                    <h2 class="contact-title">Let's Work Together</h2>
+                    <p class="contact-subtitle">Ready to enhance your documentation? Let's talk.</p>
+                </div>
+                
+                <div class="contact-grid">
+                    <div class="contact-form-container">
+                        <form id="contact-form" class="contact-form" style="position: relative; z-index: 100;">
+                            <div id="success-message" class="alert alert-success">
+                                Your message has been sent successfully! I'll get back to you soon.
+                            </div>
+                            <div id="error-message" class="alert alert-error">
+                                There was an error sending your message. Please try again later.
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" name="name" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Your Email</label>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Your Message</label>
+                                <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-submit" id="submit-btn">Send Message</button>
+                        </form>
+                    </div>
+                    
+                    <div class="contact-info-container">
+                        <div class="contact-social">
+                            <h3>Connect With Me</h3>
+                            <div class="social-icons">
+                                <a href="https://www.linkedin.com/in/antony-william/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://github.com/AntonyWilliam" target="_blank"><i class="fab fa-github"></i></a>
+                                <a href="https://wa.me/5512988965741" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                                <a href="https://t.me/+5512988965741" target="_blank"><i class="fab fa-telegram"></i></a>
+                                <a href="mailto:antonyramalhopro@gmail.com"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Location</h3>
+                                <p>Based in São Paulo, Brazil</p>
+                                <p>Available for remote projects worldwide</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-language"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Languages</h3>
+                                <div class="language-skills">
+                                    <div class="language">
+                                        <span class="language-name">English</span>
+                                        <div class="proficiency-bar">
+                                            <div class="proficiency-level" style="width:100%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="language">
+                                        <span class="language-name">Portuguese</span>
+                                        <div class="proficiency-bar">
+                                            <div class="proficiency-level" style="width:100%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="language">
+                                        <span class="language-name">Spanish</span>
+                                        <div class="proficiency-bar">
+                                            <div class="proficiency-level" style="width:90%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="language">
+                                        <span class="language-name" style="display: flex; justify-content: space-between; width: 100%;">
+                                            Chinese (Mandarin)
+                                            <span class="studying-note" style="color: var(--gold); font-size: 0.8rem; font-style: italic;">Studying</span>
+                                        </span>
+                                        <div class="proficiency-bar">
+                                            <div class="proficiency-level" style="width:20%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Availability</h3>
+                                <p>Currently available for new projects</p>
+                                <p>10 days notice period after signing contract</p>
+                                <p>Response time: Within 24 hours</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer removed for cleaner design -->
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle form submission
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                // Set loading state
+                document.getElementById('submit-btn').textContent = 'Sending...';
+                document.getElementById('submit-btn').disabled = true;
+                
+                // Get form data
+                const templateParams = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    subject: document.getElementById('subject').value,
+                    message: document.getElementById('message').value
+                };
+                
+                // Send the email using EmailJS
+                emailjs.send('service_32s2xdl', 'template_s9eyo35', templateParams)
+                    .then(function(response) {
+                        console.log('SUCCESS!', response.status, response.text);
+                        
+                        // Show success message
+                        document.getElementById('success-message').style.display = 'block';
+                        document.getElementById('error-message').style.display = 'none';
+                        
+                        // Reset form
+                        document.getElementById('contact-form').reset();
+                    })
+                    .catch(function(error) {
+                        console.log('FAILED...', error);
+                        
+                        // Show error message
+                        document.getElementById('error-message').style.display = 'block';
+                        document.getElementById('success-message').style.display = 'none';
+                    })
+                    .finally(function() {
+                        // Reset button state
+                        document.getElementById('submit-btn').textContent = 'Send Message';
+                        document.getElementById('submit-btn').disabled = false;
+                    });
+            });
+        });
+    </script>
+    <script src="js/common.js"></script>
+    </main>
+    
+    <!-- Page Transitions Script -->
+    <script src="js/page-transitions.js"></script>
+</body>
+</html>

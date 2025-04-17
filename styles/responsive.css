@@ -1,0 +1,227 @@
+/**
+ * Responsive design system with fluid typography and spacing
+ * Supports all device sizes from mobile to extra large monitors
+ */
+
+:root {
+  /* Base sizing units */
+  --space-unit: 0.25rem;
+  --rhythm: clamp(1rem, 2vw, 1.5rem);
+  
+  /* Fluid typography scales using clamp for min, ideal and max sizes */
+  --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --font-size-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem); 
+  --font-size-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  --font-size-md: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+  --font-size-lg: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  --font-size-xl: clamp(1.5rem, 1.3rem + 1vw, 1.875rem);
+  --font-size-2xl: clamp(1.875rem, 1.6rem + 1.375vw, 2.25rem);
+  --font-size-3xl: clamp(2.25rem, 1.9rem + 1.75vw, 3rem);
+  --font-size-4xl: clamp(3rem, 2.5rem + 2.5vw, 4rem);
+  
+  /* Spacing scale using clamp for fluid spacing that scales with viewport */
+  --space-1: calc(var(--space-unit) * 1); /* 0.25rem */
+  --space-2: calc(var(--space-unit) * 2); /* 0.5rem */
+  --space-3: calc(var(--space-unit) * 3); /* 0.75rem */
+  --space-4: calc(var(--space-unit) * 4); /* 1rem */
+  --space-5: calc(var(--space-unit) * 6); /* 1.5rem */
+  --space-6: calc(var(--space-unit) * 8); /* 2rem */
+  --space-8: calc(var(--space-unit) * 12); /* 3rem */
+  --space-10: calc(var(--space-unit) * 16); /* 4rem */
+  --space-12: calc(var(--space-unit) * 20); /* 5rem */
+  --space-16: calc(var(--space-unit) * 24); /* 6rem */
+  --space-20: calc(var(--space-unit) * 32); /* 8rem */
+  --space-24: calc(var(--space-unit) * 40); /* 10rem */
+  
+  /* Fluid container max-widths for different breakpoints */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1536px;
+  --container-3xl: 1920px;
+  
+  /* Aspect ratios */
+  --aspect-square: 1/1;
+  --aspect-video: 16/9;
+  --aspect-portrait: 3/4;
+  --aspect-widescreen: 21/9;
+  
+  /* Border radius scale */
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 2rem;
+  --radius-full: 9999px;
+  
+  /* Z-index scale */
+  --z-below: -1;
+  --z-normal: 0;
+  --z-above: 1;
+  --z-header: 100;
+  --z-tooltip: 500;
+  --z-modal: 1000;
+}
+
+/* Core responsive grid system */
+.responsive-grid {
+  display: grid;
+  width: 100%;
+  gap: var(--rhythm);
+}
+
+/* Grid item with full height and width */
+.grid-item {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Aspect ratio container for consistent proportions */
+.aspect-ratio-container {
+  position: relative;
+  width: 100%;
+}
+
+.aspect-ratio-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsive section with consistent padding */
+.responsive-section {
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Responsive container */
+.responsive-container {
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Container with max-width constraints for different screen sizes */
+.container-sm { max-width: var(--container-sm); width: 100%; margin: 0 auto; padding: 0 var(--rhythm); }
+.container-md { max-width: var(--container-md); width: 100%; margin: 0 auto; padding: 0 var(--rhythm); }
+.container-lg { max-width: var(--container-lg); width: 100%; margin: 0 auto; padding: 0 var(--rhythm); }
+.container-xl { max-width: var(--container-xl); width: 100%; margin: 0 auto; padding: 0 var(--rhythm); }
+.container-2xl { max-width: var(--container-2xl); width: 100%; margin: 0 auto; padding: 0 var(--rhythm); }
+.container-3xl { max-width: var(--container-3xl); width: 100%; margin: 0 auto; padding: 0 var(--rhythm); }
+
+/* Utility classes for aspect ratio */
+.aspect-square { aspect-ratio: var(--aspect-square); }
+.aspect-video { aspect-ratio: var(--aspect-video); }
+.aspect-portrait { aspect-ratio: var(--aspect-portrait); }
+.aspect-widescreen { aspect-ratio: var(--aspect-widescreen); }
+
+/* Fluid padding utility classes */
+.p-fluid-sm { padding: clamp(0.5rem, 1vw, 0.75rem); }
+.p-fluid-md { padding: clamp(0.75rem, 2vw, 1.25rem); }
+.p-fluid-lg { padding: clamp(1rem, 3vw, 2rem); }
+.p-fluid-xl { padding: clamp(1.5rem, 5vw, 3rem); }
+
+/* Fluid margin utility classes */
+.m-fluid-sm { margin: clamp(0.5rem, 1vw, 0.75rem); }
+.m-fluid-md { margin: clamp(0.75rem, 2vw, 1.25rem); }
+.m-fluid-lg { margin: clamp(1rem, 3vw, 2rem); }
+.m-fluid-xl { margin: clamp(1.5rem, 5vw, 3rem); }
+
+/* Fluid gap utility classes for flex and grid layouts */
+.gap-fluid-sm { gap: clamp(0.5rem, 1vw, 0.75rem); }
+.gap-fluid-md { gap: clamp(0.75rem, 2vw, 1.25rem); }
+.gap-fluid-lg { gap: clamp(1rem, 3vw, 2rem); }
+.gap-fluid-xl { gap: clamp(1.5rem, 5vw, 3rem); }
+
+/* Helper class to create a visual boundary for debugging */
+.debug-layout {
+  outline: 1px dashed rgba(255, 0, 0, 0.2);
+}
+
+/* CSS for container queries when they're needed */
+@supports (container-type: inline-size) {
+  .container-query {
+    container-type: inline-size;
+  }
+  
+  /* Container query breakpoints */
+  @container (min-width: 400px) {
+    .cq-md {
+      /* Styles apply when container is at least 400px */
+    }
+  }
+  
+  @container (min-width: 800px) {
+    .cq-lg {
+      /* Styles apply when container is at least 800px */
+    }
+  }
+}
+
+/* Media query breakpoints for device-specific styling */
+@media (max-width: 480px) {
+  :root {
+    --rhythm: 0.75rem;
+  }
+  
+  /* Additional mobile-specific styles */
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  :root {
+    --rhythm: 0.875rem;
+  }
+  
+  /* Additional large mobile-specific styles */
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  :root {
+    --rhythm: 1rem;
+  }
+  
+  /* Additional tablet-specific styles */
+}
+
+@media (min-width: 1025px) and (max-width: 1600px) {
+  :root {
+    --rhythm: 1.25rem;
+  }
+  
+  /* Additional desktop-specific styles */
+}
+
+@media (min-width: 1601px) and (max-width: 2000px) {
+  :root {
+    --rhythm: 1.5rem;
+  }
+  
+  /* Additional large desktop-specific styles */
+}
+
+@media (min-width: 2001px) {
+  :root {
+    --rhythm: 1.75rem;
+  }
+  
+  /* Additional extra large desktop-specific styles */
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

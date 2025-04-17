@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <title>Antony William | Technical Writer</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" as="style">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" as="script">
+    <!-- Particles preload removed -->
+    <link rel="preload" href="images/logo/AWRITE-Logo-Icon-White.png" as="image">
+    <link rel="preload" href="images/logos/Dell_logo_2016.svg.png" as="image">
+    
+    <!-- Load styles and scripts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <!-- Particles library removed -->
+    <script src="https://cdn.jsdelivr.net/npm/countup.js@2.0.7/dist/countUp.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+    <div class="page-transition"></div>
+    
+    <div id="header-placeholder"></div>
+    
+    <main>
+        <!-- Viewport-height wrapper -->
+        <div class="vh-wrapper">
+            <!-- Main content loaded from hero-section.html -->
+            <div id="hero-placeholder"></div>
+            
+            <!-- Trusted By Section -->
+            <section class="trusted-section">
+                <div class="container">
+                    <h3 class="trusted-title">Trusted by Industry Leaders</h3>
+                    <div class="title-line"></div>
+                    <p class="trusted-description">Companies that have utilized and implemented my documentation solutions</p>
+                    <div class="client-logos">
+                        <!-- Top row logos -->
+                        <div class="client-logo featured-logo">
+                            <a href="https://www.dell.com" target="_blank" rel="noopener noreferrer">
+                                <img src="images/logos/Dell_logo_2016.svg.png" alt="Dell" loading="lazy" />
+                            </a>
+                        </div>
+                        <div class="client-logo featured-logo">
+                            <a href="https://www.qumulo.com" target="_blank" rel="noopener noreferrer">
+                                <img src="images/logos/Qumulo.svg" alt="Qumulo" />
+                            </a>
+                        </div>
+                        <div class="client-logo featured-logo vast-logo">
+                            <a href="https://www.vastdata.com" target="_blank" rel="noopener noreferrer">
+                                <img src="images/logos/vast_logo_2.jpeg" alt="VAST" />
+                            </a>
+                        </div>
+                        <div class="client-logo featured-logo">
+                            <a href="https://superna.io" target="_blank" rel="noopener noreferrer">
+                                <img src="images/logos/SUPERNA.png" alt="SUPERNA" />
+                            </a>
+                        </div>
+                        <div class="client-logo featured-logo">
+                            <a href="https://www.itau.com.br" target="_blank" rel="noopener noreferrer">
+                                <img src="images/logos/2023_Itaú_Unibanco_Logo.png" alt="Itaú Unibanco" />
+                            </a>
+                        </div>
+                        <div class="client-logo featured-logo">
+                            <a href="https://www.zup.com.br" target="_blank" rel="noopener noreferrer">
+                                <img src="images/logos/ZUP.png" alt="ZUP" />
+                            </a>
+                        </div>
+                        
+                        <!-- Bottom row logos -->
+                        <div class="client-logo featured-logo itecsa-logo">
+                            <a href="https://itecsa.com.br" target="_blank" rel="noopener noreferrer">
+                                <img src="images/logos/ITECSA-TECNOLOGIA-E-SERVICOS-SA (1).webp" alt="ITECSA" />
+                            </a>
+                        </div>
+                        <div class="client-logo featured-logo dock-logo">
+                            <a href="https://dock.tech" target="_blank" rel="noopener noreferrer">
+                                <img src="images/logos/DOCK LOGO.png" alt="Dock" />
+                            </a>
+                        </div>
+                        <div class="client-logo">
+                            <a href="https://www.rpe.tech" target="_blank" rel="noopener noreferrer">
+                                <img src="images/logos/rpe_retail_payment_ecosystem_logo.jpeg" alt="RPE" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <!-- Footer removed for cleaner design -->
+    
+    <script src="js/common.js"></script>
+    <script>
+        // Inline typing animation for reliability
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const typingElement = document.querySelector('.typing-text');
+                if (!typingElement) return;
+                
+                const phrases = [
+                    'technical documentation',
+                    'data-driven documentation',
+                    'prompt engineering solutions',
+                    'knowledge dissemination strategies',
+                    'API documentation',
+                    'user-friendly guides',
+                    'technical content that converts'
+                ];
+                
+                new Typed('.typing-text', {
+                    strings: phrases,
+                    typeSpeed: 40,
+                    backSpeed: 25,
+                    backDelay: 1800,
+                    loop: true,
+                    cursorChar: '|'
+                });
+                
+                const cursor = document.querySelector('.typed-cursor');
+                if (cursor) {
+                    cursor.style.color = '#9D9D9D'; /* Light grey cursor */
+                    cursor.style.opacity = '0.6';
+                }
+            }, 500);
+        });
+    </script>
+    <!-- Particles script removed -->
+</body>
+</html>
