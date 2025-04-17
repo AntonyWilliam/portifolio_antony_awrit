@@ -1,36 +1,12 @@
 {
-  "name": "portifolio_antony",
+  "name": "antony-portfolio",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "directories": {
-    "lib": "lib"
-  },
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "start": "http-server ./public -p 3000",
+    "build": "echo 'Static site - no build required'"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "@emailjs/browser": "^4.4.1",
-    "@emailjs/nodejs": "^5.0.2",
-    "framer-motion": "^12.5.0",
-    "next": "^13.5.6",
-    "nodemailer": "^6.10.0",
-    "react": "^18.2.0",
-    "react-countup": "^6.5.3",
-    "react-dom": "^18.2.0",
-    "react-intersection-observer": "^9.16.0",
-    "react-markdown": "^10.1.0",
-    "tsparticles": "^3.8.1"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.31",
-    "tailwindcss": "^3.3.3"
+    "http-server": "^14.1.1"
   }
 }

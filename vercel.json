@@ -2,12 +2,5 @@
   "version": 2,
   "cleanUrls": true,
   "trailingSlash": false,
-  "rewrites": [
-    { "source": "/", "destination": "/public/index.html" },
-    { "source": "/index", "destination": "/public/index.html" },
-    { "source": "/kb", "destination": "/public/kb/index.html" },
-    { "source": "/value", "destination": "/public/value/index.html" },
-    { "source": "/contact", "destination": "/public/contact/index.html" },
-    { "source": "/samples", "destination": "/public/samples.html" }
-  ]
+  "outputDirectory": "public"
 }
