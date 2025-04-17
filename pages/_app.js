@@ -5,10 +5,12 @@ import Layout from '../components/Layout';
 function MyApp({ Component, pageProps }) {
   // Add client-side only code
   useEffect(() => {
-    // Handle localStorage theme support
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-      document.documentElement.classList.add('light-theme');
+    // Handle localStorage theme support - only runs in browser
+    if (typeof window !== 'undefined') {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        document.documentElement.classList.add('light-theme');
+      }
     }
   }, []);
 
