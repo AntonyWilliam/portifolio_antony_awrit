@@ -2,13 +2,12 @@
   "version": 2,
   "cleanUrls": true,
   "trailingSlash": false,
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/", "dest": "/public/index.html" },
-    { "src": "/index", "dest": "/public/index.html" },
-    { "src": "/kb", "dest": "/public/kb/index.html" },
-    { "src": "/value", "dest": "/public/value/index.html" },
-    { "src": "/contact", "dest": "/public/contact/index.html" },
-    { "src": "/samples", "dest": "/public/samples.html" }
+  "rewrites": [
+    { "source": "/", "destination": "/public/index.html" },
+    { "source": "/index", "destination": "/public/index.html" },
+    { "source": "/kb", "destination": "/public/kb/index.html" },
+    { "source": "/value", "destination": "/public/value/index.html" },
+    { "source": "/contact", "destination": "/public/contact/index.html" },
+    { "source": "/samples", "destination": "/public/samples.html" }
   ]
 }
