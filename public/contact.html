@@ -12,10 +12,11 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
         (function() {
-            // EmailJS initialization
+            // Initialize EmailJS with the public key (from EmailJS dashboard)
             emailjs.init({
-              publicKey: "oZEGRY9kdetbwBNKtkbVj",
+              publicKey: "8uraiXsn_cvxE85zu",
             });
+            console.log("EmailJS initialized with public key");
         })();
     </script>
     <!-- Common styles moved to common.css and contact.css -->
@@ -47,12 +48,12 @@
                             
                             <div class="form-group">
                                 <label for="name">Your Name</label>
-                                <input type="text" id="name" name="name" class="form-control" required>
+                                <input type="text" id="name" name="user_name" class="form-control" required>
                             </div>
                             
                             <div class="form-group">
                                 <label for="email">Your Email</label>
-                                <input type="email" id="email" name="email" class="form-control" required>
+                                <input type="email" id="email" name="user_email" class="form-control" required>
                             </div>
                             
                             <div class="form-group">
@@ -64,6 +65,9 @@
                                 <label for="message">Your Message</label>
                                 <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
                             </div>
+                            
+                            <!-- Hidden field for recipient name -->
+                            <input type="hidden" name="to_name" value="Antony William">
                             
                             <button type="submit" class="btn-submit" id="submit-btn">Send Message</button>
                         </form>
@@ -151,8 +155,11 @@
 
     <!-- Scripts -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Handle form submission
+        // Main form submission handler - using the approach from the example
+        window.onload = function() {
+            // Keep test button functionality for debugging
+            addTestButton();
+            
             document.getElementById('contact-form').addEventListener('submit', function(event) {
                 event.preventDefault();
                 
@@ -160,32 +167,33 @@
                 document.getElementById('submit-btn').textContent = 'Sending...';
                 document.getElementById('submit-btn').disabled = true;
                 
-                // Get form data
-                const templateParams = {
-                    name: document.getElementById('name').value,
-                    email: document.getElementById('email').value,
-                    subject: document.getElementById('subject').value,
-                    message: document.getElementById('message').value
-                };
+                // Hide any previous messages
+                document.getElementById('success-message').style.display = 'none';
+                document.getElementById('error-message').style.display = 'none';
                 
-                // Send the email using EmailJS
-                emailjs.send('service_32s2xdl', 'template_s9eyo35', templateParams)
-                    .then(function(response) {
-                        console.log('SUCCESS!', response.status, response.text);
-                        
-                        // Show success message
+                // Simple approach following the example - just send the form directly
+                // Gmail service with the correct template ID
+                emailjs.sendForm('service_8ca4upp', 'template_ixcdi8b', this)
+                    .then(function() {
+                        console.log('SUCCESS!');
                         document.getElementById('success-message').style.display = 'block';
-                        document.getElementById('error-message').style.display = 'none';
-                        
-                        // Reset form
                         document.getElementById('contact-form').reset();
                     })
                     .catch(function(error) {
                         console.log('FAILED...', error);
                         
-                        // Show error message
-                        document.getElementById('error-message').style.display = 'block';
-                        document.getElementById('success-message').style.display = 'none';
+                        // Show error message with details if available
+                        const errorMsg = document.getElementById('error-message');
+                        errorMsg.innerHTML = 'There was an error sending your message. Please try again later.';
+                        
+                        // Add the specific error if available
+                        if (error && error.text) {
+                            errorMsg.innerHTML += '<br>Error: ' + error.text;
+                        } else if (error && error.message) {
+                            errorMsg.innerHTML += '<br>Error: ' + error.message;
+                        }
+                        
+                        errorMsg.style.display = 'block';
                     })
                     .finally(function() {
                         // Reset button state
@@ -193,7 +201,54 @@
                         document.getElementById('submit-btn').disabled = false;
                     });
             });
-        });
+        };
+        
+        // Add test button for debugging purposes
+        function addTestButton() {
+            const testButton = document.createElement("button");
+            testButton.textContent = "Test EmailJS";
+            testButton.style.position = "fixed";
+            testButton.style.bottom = "10px";
+            testButton.style.right = "10px";
+            testButton.style.zIndex = "9999";
+            testButton.style.padding = "8px 12px";
+            testButton.style.backgroundColor = "#333";
+            testButton.style.color = "#fff";
+            testButton.style.border = "none";
+            testButton.style.borderRadius = "4px";
+            testButton.style.cursor = "pointer";
+            testButton.addEventListener("click", function() {
+                // Simple test that follows the example approach
+                const tempForm = document.createElement('form');
+                tempForm.innerHTML = `
+                    <input type="hidden" name="user_name" value="Test User">
+                    <input type="hidden" name="user_email" value="test@example.com">
+                    <input type="hidden" name="subject" value="Test Email">
+                    <input type="hidden" name="message" value="This is a test message">
+                    <input type="hidden" name="to_name" value="Antony William">
+                `;
+                document.body.appendChild(tempForm);
+                
+                emailjs.sendForm('service_8ca4upp', 'template_ixcdi8b', tempForm)
+                    .then(function() {
+                        console.log('TEST SUCCESS!');
+                        alert('Test email sent successfully!');
+                        document.body.removeChild(tempForm);
+                    })
+                    .catch(function(error) {
+                        console.log('TEST FAILED...', error);
+                        let errorMsg = 'Test failed.';
+                        if (error && error.text) {
+                            errorMsg += ' ' + error.text;
+                        } else if (error && error.message) {
+                            errorMsg += ' ' + error.message;
+                        }
+                        alert(errorMsg);
+                        document.body.removeChild(tempForm);
+                    });
+            });
+            document.body.appendChild(testButton);
+        }
     </script>
     <script src="js/common.js"></script>
     </main>

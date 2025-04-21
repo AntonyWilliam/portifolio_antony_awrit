@@ -1,22 +1,20 @@
-# Building an AI-Powered Customer Support Agent with n8n and OpenAI
-
 This document describes how to create an automated customer support agent using n8n and the OpenAI API to respond to user queries via email.
 
 **Table of Contents**:
 
-- Building an AI-Powered Customer Support Agent with n8n and OpenAI
-  - What is n8n?
-  - What is OpenAI?
-    - What is an AI Agent?
-  - Prerequisites
-  - Setting up the AI Agent Workflow
-    - Step 1: Set up n8n
-    - Step 2: Obtain OpenAI API Key
-    - Step 3: Configure OpenAI Credentials in n8n
-    - Step 4: Create the Workflow
-    - Step 5: Test the Workflow
-  - Example Use Case
-  - Related Topics
+- [Building an AI-Powered Customer Support Agent with n8n and OpenAI]()
+  - [What is n8n?]()
+  - [What is OpenAI?]()
+    - [What is an AI Agent?]()
+  - [Prerequisites]()
+  - [Setting up the AI Agent Workflow]()
+    - [Step 1: Set up n8n]()
+    - [Step 2: Obtain OpenAI API Key]()
+    - [Step 3: Configure OpenAI Credentials in n8n]()
+    - [Step 4: Create the Workflow]()
+    - [Step 5: Test the Workflow]()
+  - [Example Use Case]()
+  - [Related Topics]()
 
 ## What is n8n?
 

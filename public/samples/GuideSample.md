@@ -1,14 +1,11 @@
-# Welcome to BestBank
-
 This document describes how to set up a PIX key for your transactions.
 
 **Table of Contents**:
 
-- [Welcome to BestBank](#welcome-to-bestbank)
-  - [What is PIX?](#what-is-pix)
-    - [What is a PIX key?](#what-is-a-pix-key)
-  - [How to set up a PIX key for my account at BestBank?](#how-to-set-up-a-pix-key-for-my-account-at-bestbank)
-  - [Related Topics](#related-topics)
+- [What is PIX?](#what-is-pix)
+  - [What is a PIX key?](#what-is-a-pix-key)
+- [How to set up a PIX key for my account at BestBank?](#how-to-set-up-a-pix-key-for-my-account-at-bestbank)
+- [Related Topics](#related-topics)
 
 
 ## What is PIX?
