@@ -166,6 +166,16 @@ h2 {
     letter-spacing: 0.2px;
 }
 
+.i-create-text {
+    color: #ADADAD;
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+:root.light-theme .i-create-text {
+    color: #555555;
+}
+
 .typing-text {
     color: #EFEFEF; /* Light grey-white instead of gold */
     font-weight: 500; /* Slightly lighter weight */

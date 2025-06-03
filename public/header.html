@@ -1,22 +1,23 @@
 <!-- Common header navigation to be included in all pages -->
 <style>
-    /* Navigation styles */
+    /* Modern Minimalist Navigation styles */
     .navbar {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 1rem 0;
+        padding: 1.2rem 0;
         position: fixed;
         top: 0;
         left: 50%;
         transform: translateX(-50%);
         width: 95%;
-        max-width: 1800px; /* Match the updated container width */
+        max-width: 1800px;
         z-index: 2000;
-        background-color: rgba(10, 10, 10, 0.95);
-        backdrop-filter: blur(10px);
-        transition: background-color 0.3s ease;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        background-color: rgba(10, 10, 10, 0.75);
+        backdrop-filter: blur(15px);
+        transition: all 0.3s ease;
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
     
     .navbar-logo {
@@ -25,8 +26,13 @@
     }
     
     .navbar-logo img {
-        height: 30px;
+        height: 28px;
         width: auto;
+        transition: transform 0.3s ease;
+    }
+    
+    .navbar-logo:hover img {
+        transform: scale(1.05);
     }
     
     .navbar-menu {
@@ -36,7 +42,7 @@
     
     .navbar-links {
         display: flex;
-        gap: 2rem;
+        gap: 2.5rem;
         list-style: none;
         margin: 0;
         padding: 0;
@@ -45,21 +51,31 @@
     .navbar-links a {
         color: var(--text-color);
         text-decoration: none;
-        font-weight: 500;
+        font-weight: 400;
+        font-size: 0.95rem;
+        letter-spacing: 0.5px;
         position: relative;
-        transition: color 0.3s ease;
+        transition: all 0.25s ease;
         display: flex;
         align-items: center;
         gap: 0.5rem;
+        opacity: 0.85;
     }
     
     .navbar-links a i {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         transition: transform 0.3s ease;
+        opacity: 0.7;
+    }
+    
+    .navbar-links a:hover {
+        color: #fff;
+        opacity: 1;
     }
     
     .navbar-links a:hover i {
-        transform: translateY(-2px);
+        transform: translateY(-1px);
+        opacity: 1;
     }
     
     /* Mega Menu styling */
@@ -68,24 +84,23 @@
     }
     
     .menu-arrow {
-        margin-left: 6px;
+        margin-left: 4px;
         transition: all 0.3s ease;
-        background-color: rgba(255, 215, 0, 0.15);
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
+        width: 16px;
+        height: 16px;
         display: flex;
         align-items: center;
         justify-content: center;
+        opacity: 0.6;
     }
     
     .menu-arrow i {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         transition: transform 0.3s ease;
     }
     
     .has-submenu:hover .menu-arrow {
-        background-color: rgba(255, 215, 0, 0.25);
+        opacity: 1;
     }
     
     .has-submenu:hover .menu-arrow i {
@@ -96,19 +111,18 @@
     .mega-menu {
         position: absolute;
         top: 100%;
-        left: 0; /* Align with the left edge of the "Samples" menu item */
-        width: 700px; /* Reduced width for more compact look */
-        background-color: rgba(10, 10, 10, 0.95);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        border-radius: 8px;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-        padding: 1rem; /* Reduced padding */
-        margin-top: 0.75rem; /* Reduced margin */
+        left: 0;
+        width: 650px;
+        background-color: rgba(15, 15, 15, 0.95);
+        backdrop-filter: blur(15px);
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2), 0 0 1px rgba(255, 255, 255, 0.1);
+        padding: 1rem;
+        margin-top: 1rem;
         opacity: 0;
         visibility: hidden;
-        transform: translateY(-10px);
-        transition: all 0.3s ease;
+        transform: translateY(-5px);
+        transition: all 0.25s ease;
         z-index: 1000;
         overflow: hidden;
     }
@@ -127,47 +141,39 @@
     
     .mega-menu-column {
         flex: 1;
-        padding: 0.75rem 1rem; /* Reduced padding */
-        border-right: 1px solid rgba(255, 255, 255, 0.05);
-        margin: 0 0.5rem; /* Reduced margin */
-    }
-    
-    .mega-menu-column:first-child {
-        margin-left: 0.5rem;
+        padding: 0.75rem;
+        border-right: 1px solid rgba(255, 255, 255, 0.03);
     }
     
     .mega-menu-column:last-child {
         border-right: none;
-        margin-right: 0.5rem;
     }
     
     .mega-menu-header {
-        font-size: 1rem; /* Reduced font size */
-        font-weight: 600;
+        font-size: 0.9rem;
+        font-weight: 500;
         color: var(--gold);
-        padding: 0.7rem 0.5rem; /* Reduced padding */
-        margin-bottom: 0.8rem; /* Reduced margin */
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        text-align: center;
-        letter-spacing: 0.4px; /* Reduced letter spacing */
+        padding: 0.5rem 0;
+        margin-bottom: 0.75rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        letter-spacing: 0.5px;
     }
     
     .knowledge-column {
-        border-right: none;
-        background-color: rgba(255, 255, 255, 0.03);
+        background-color: rgba(255, 255, 255, 0.04);
         border-radius: 8px;
-        border: 1px solid rgba(255, 255, 255, 0.04);
     }
     
     .kb-item {
         border: 1px solid transparent;
+        border-radius: 6px;
+        transition: all 0.2s ease;
     }
     
     .kb-item:hover {
-        background-color: rgba(255, 255, 255, 0.05);
-        border-color: rgba(255, 215, 0, 0.1);
+        background-color: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 215, 0, 0.05);
         transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
     
     .kb-item:hover .submenu-title {
@@ -176,24 +182,25 @@
     
     .kb-icon {
         color: var(--gold);
-        font-size: 0.9rem; /* Reduced font size */
+        font-size: 0.8rem;
+        opacity: 0.8;
     }
     
     .kb-item:hover .kb-icon {
-        transform: scale(1.12); /* Reduced scale effect */
+        opacity: 1;
     }
     
     /* Submenu styling */
     .submenu {
         list-style: none;
-        padding: 0.5rem 0; /* Reduced padding */
+        padding: 0;
         margin: 0;
         width: 100%;
     }
     
     .submenu li {
         padding: 0;
-        margin: 0 0 0.6rem; /* Reduced margin */
+        margin: 0 0 0.5rem;
     }
     
     .submenu li:last-child {
@@ -202,51 +209,50 @@
     
     /* Submenu item with description */
     .submenu-item {
-        padding: 0.8rem 1rem; /* Reduced padding */
+        padding: 0.7rem;
         display: flex;
         align-items: flex-start;
-        gap: 0.8rem; /* Reduced gap */
+        gap: 0.7rem;
         color: var(--secondary-text);
-        transition: all 0.25s ease;
-        border-radius: 6px; /* Reduced border radius */
+        transition: all 0.2s ease;
+        border-radius: 6px;
         border: 1px solid transparent;
     }
     
     .submenu-item:hover {
-        background-color: rgba(255, 255, 255, 0.05);
-        border-color: rgba(255, 215, 0, 0.1);
+        background-color: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 215, 0, 0.05);
         transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
     
     .submenu-icon {
         flex-shrink: 0;
-        width: 30px; /* Reduced size */
-        height: 30px; /* Reduced size */
+        width: 24px;
+        height: 24px;
         display: flex;
         align-items: center;
         justify-content: center;
         color: var(--gold);
-        font-size: 0.9rem; /* Reduced font size */
+        font-size: 0.85rem;
         margin-top: 2px;
-        transition: all 0.3s ease;
+        transition: all 0.2s ease;
+        opacity: 0.8;
     }
     
     .submenu-item:hover .submenu-icon {
-        transform: scale(1.12);
-        color: var(--gold);
+        opacity: 1;
     }
     
     .submenu-content {
         flex: 1;
-        padding-top: 0.15rem; /* Reduced padding */
+        padding-top: 0.1rem;
     }
     
     .submenu-title {
-        font-size: 0.95rem; /* Reduced font size */
-        font-weight: 500;
-        color: var(--text-color);
-        margin-bottom: 0.25rem; /* Reduced margin */
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: #f5f5f5;
+        margin-bottom: 0.2rem;
         transition: color 0.2s ease;
     }
     
@@ -255,58 +261,43 @@
     }
     
     .submenu-desc {
-        font-size: 0.8rem; /* Reduced font size */
+        font-size: 0.75rem;
         color: var(--secondary-text);
-        line-height: 1.4; /* Reduced line height */
-        opacity: 0.8; /* Reduced opacity */
+        line-height: 1.3;
+        opacity: 0.7;
     }
     
-    .submenu a:after {
-        display: none;
+    /* Light theme styles */
+    :root.light-theme .navbar {
+        background-color: rgba(245, 245, 245, 0.75);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     }
     
-    /* Light theme submenu */
     :root.light-theme .mega-menu {
         background-color: rgba(245, 245, 245, 0.95);
-        border: 1px solid rgba(0, 0, 0, 0.05);
-    }
-    
-    :root.light-theme .mega-menu-tabs {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.1);
     }
     
     :root.light-theme .knowledge-column {
         background-color: rgba(0, 0, 0, 0.01);
-        border: 1px solid rgba(0, 0, 0, 0.03);
     }
     
-    :root.light-theme .submenu-icon {
-        color: var(--gold);
+    :root.light-theme .submenu-item:hover {
+        background-color: rgba(0, 0, 0, 0.02);
     }
     
-    :root.light-theme .submenu-item:hover .submenu-icon {
-        color: var(--gold);
+    :root.light-theme .submenu-title {
+        color: #333;
     }
     
-    .navbar-links a:after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background-color: var(--gold);
-        transition: width 0.3s ease;
+    :root.light-theme .navbar-links a,
+    :root.light-theme .theme-toggle,
+    :root.light-theme .mobile-toggle,
+    :root.light-theme .close-menu {
+        color: #333;
     }
     
-    .navbar-links a:hover {
-        color: var(--gold);
-    }
-    
-    .navbar-links a:hover:after {
-        width: 100%;
-    }
-    
+    /* Navbar controls */
     .navbar-controls {
         display: flex;
         align-items: center;
@@ -316,19 +307,21 @@
         background: none;
         border: none;
         color: var(--text-color);
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         cursor: pointer;
         padding: 0.5rem;
         margin-left: 1rem;
-        transition: color 0.3s ease;
+        transition: all 0.2s ease;
+        opacity: 0.8;
     }
     
     .mobile-toggle {
-        display: none; /* Hide mobile toggle by default */
+        display: none;
     }
     
     .theme-toggle:hover, .mobile-toggle:hover {
         color: var(--gold);
+        opacity: 1;
     }
     
     .close-menu {
@@ -336,24 +329,18 @@
         background: none;
         border: none;
         color: var(--text-color);
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         cursor: pointer;
         position: absolute;
         top: 1rem;
         right: 1rem;
+        opacity: 0.8;
+        transition: all 0.2s ease;
     }
     
-    /* Light theme styles */
-    :root.light-theme .navbar {
-        background-color: rgba(245, 245, 245, 0.95);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    }
-    
-    :root.light-theme .navbar-links a,
-    :root.light-theme .theme-toggle,
-    :root.light-theme .mobile-toggle,
-    :root.light-theme .close-menu {
-        color: #333;
+    .close-menu:hover {
+        opacity: 1;
+        color: var(--gold);
     }
     
     /* Mobile styles */
@@ -364,27 +351,31 @@
             width: 100%;
             transform: none;
             max-width: none;
+            border-radius: 0;
         }
         
         .navbar-menu {
             position: fixed;
             top: 0;
             right: -100%;
-            width: 80%;
-            max-width: 300px;
+            width: 75%;
+            max-width: 280px;
             height: 100vh;
-            background-color: rgba(15, 15, 15, 0.98);
+            background-color: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(15px);
             flex-direction: column;
             justify-content: flex-start;
             align-items: flex-start;
-            padding: 4rem 2rem;
+            padding: 4rem 1.5rem;
             transition: right 0.3s ease;
             z-index: 1001;
             overflow-y: auto;
+            border-left: 1px solid rgba(255, 255, 255, 0.03);
         }
         
         :root.light-theme .navbar-menu {
-            background-color: rgba(240, 240, 240, 0.98);
+            background-color: rgba(245, 245, 245, 0.95);
+            border-left: 1px solid rgba(0, 0, 0, 0.03);
         }
         
         .navbar-menu.active {
@@ -394,10 +385,11 @@
         .navbar-links {
             flex-direction: column;
             width: 100%;
+            gap: 1.5rem;
         }
         
         .navbar-links li {
-            margin-bottom: 1rem;
+            margin-bottom: 0;
         }
         
         /* Mobile mega menu styles */
@@ -408,14 +400,13 @@
             border: none;
             box-shadow: none;
             padding: 0;
-            margin-top: 0.5rem;
+            margin-top: 1rem;
             opacity: 0;
             max-height: 0;
             overflow: hidden;
             visibility: visible;
             transform: none;
             transition: all 0.3s ease;
-            left: 0;
         }
         
         .has-submenu.active .mega-menu {
@@ -431,8 +422,8 @@
         .mega-menu-column {
             border-right: none;
             padding: 0;
-            margin: 0 0 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            margin: 0 0 1.2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
         
         .mega-menu-column:last-child {
@@ -443,35 +434,23 @@
         .mega-menu-header {
             text-align: left;
             padding: 0.7rem;
-            background-color: rgba(255, 215, 0, 0.1);
+            background-color: rgba(255, 215, 0, 0.05);
             border-radius: 6px;
             margin-bottom: 0.75rem;
         }
         
         .knowledge-column {
-            background-color: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.03);
+            background-color: rgba(255, 255, 255, 0.01);
             border-radius: 6px;
             padding: 0.5rem;
             margin: 0.5rem 0;
         }
         
-        .knowledge-header {
-            background-color: rgba(255, 215, 0, 0.1);
-            border-radius: 6px;
-        }
-        
         .has-submenu .menu-arrow {
             position: absolute;
-            right: 5px;
+            right: 0;
             top: 50%;
             transform: translateY(-50%);
-            width: 24px;
-            height: 24px;
-        }
-        
-        .has-submenu.active .menu-arrow {
-            background-color: rgba(255, 215, 0, 0.25);
         }
         
         .has-submenu.active .menu-arrow i {
@@ -493,14 +472,13 @@
         .submenu-icon, .kb-icon {
             width: 24px;
             height: 24px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
         
         .submenu-desc {
-            display: none; /* Hide descriptions on very small screens */
+            display: none;
         }
         
-        /* Show descriptions on slightly larger mobile screens */
         @media (min-width: 480px) {
             .submenu-desc {
                 display: block;
@@ -525,10 +503,10 @@
     </div>
     <div class="navbar-menu" id="navbarMenu">
         <ul class="navbar-links">
-            <li><a href="index.html"><i class="far fa-user"></i> Home</a></li>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
             <li class="has-submenu">
                 <a href="samples.html">
-                    <i class="far fa-copy"></i> Samples
+                    <i class="fas fa-file-alt"></i> Samples
                     <span class="menu-arrow">
                         <i class="fas fa-chevron-down"></i>
                     </span>
@@ -536,85 +514,82 @@
                 <div class="mega-menu">
                     <div class="mega-menu-columns">
                         <div class="mega-menu-column">
-                            <div class="mega-menu-header">Document Samples</div>
+                            <div class="mega-menu-header">Sample Work</div>
                             <ul class="submenu">
                                 <li>
                                     <a href="samples.html" onclick="window.openSampleCategory('financial'); return true;" class="submenu-item">
-                                        <div class="submenu-icon"><i class="far fa-bookmark"></i></div>
+                                        <div class="submenu-icon"><i class="fas fa-bookmark"></i></div>
                                         <div class="submenu-content">
                                             <div class="submenu-title">User Guide</div>
-                                            <div class="submenu-desc">Step-by-step banking instructions</div>
+                                            <div class="submenu-desc">Banking guide examples</div>
                                         </div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="samples.html" onclick="window.openSampleCategory('api'); return true;" class="submenu-item">
-                                        <div class="submenu-icon"><i class="far fa-file-code"></i></div>
+                                        <div class="submenu-icon"><i class="fas fa-code"></i></div>
                                         <div class="submenu-content">
-                                            <div class="submenu-title">API Docs</div>
-                                            <div class="submenu-desc">Detailed API reference documentation</div>
+                                            <div class="submenu-title">API Documentation</div>
+                                            <div class="submenu-desc">Reference documentation</div>
                                         </div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="samples.html" onclick="window.openSampleCategory('technical'); return true;" class="submenu-item">
-                                        <div class="submenu-icon"><i class="far fa-clock"></i></div>
+                                        <div class="submenu-icon"><i class="fas fa-cog"></i></div>
                                         <div class="submenu-content">
-                                            <div class="submenu-title">Technical Guide</div>
-                                            <div class="submenu-desc">Redis configuration guide</div>
+                                            <div class="submenu-title">Technical Guides</div>
+                                            <div class="submenu-desc">Configuration samples</div>
                                         </div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="samples.html" onclick="window.openSampleCategory('ai'); return true;" class="submenu-item">
-                                        <div class="submenu-icon"><i class="far fa-file-alt"></i></div>
+                                        <div class="submenu-icon"><i class="fas fa-robot"></i></div>
                                         <div class="submenu-content">
                                             <div class="submenu-title">AI Documentation</div>
-                                            <div class="submenu-desc">AI Agent implementation guide</div>
+                                            <div class="submenu-desc">Agent implementation</div>
                                         </div>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="mega-menu-column knowledge-column">
-                            <div class="mega-menu-header knowledge-header">Documentation Projects</div>
-                            <p style="color: var(--secondary-text); font-size: 0.9rem; padding: 0.75rem; margin: 0 0 0.8rem; line-height: 1.5; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-                              Projects I have participated in production of content, managed or created myself from scratch that are available to the public. This includes API documentation, prompt engineering, knowledge base creation, team training workshops, technical guides, user manuals, and process documentation for enterprise solutions.
-                            </p>
+                            <div class="mega-menu-header">Projects</div>
                             <ul class="submenu kb-submenu">
                                 <li>
                                     <a href="https://ai.stackspot.com/docs/" target="_blank" class="submenu-item kb-item">
-                                        <div class="submenu-icon kb-icon"><i class="far fa-robot"></i></div>
+                                        <div class="submenu-icon kb-icon"><i class="fas fa-robot"></i></div>
                                         <div class="submenu-content">
-                                            <div class="submenu-title">StackSpot AI Documentation</div>
-                                            <div class="submenu-desc">AI development platform guides</div>
+                                            <div class="submenu-title">StackSpot AI</div>
+                                            <div class="submenu-desc">AI platform documentation</div>
                                         </div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="https://tote.horizonpay.tech/" target="_blank" class="submenu-item kb-item">
-                                        <div class="submenu-icon kb-icon"><i class="far fa-credit-card"></i></div>
+                                        <div class="submenu-icon kb-icon"><i class="fas fa-credit-card"></i></div>
                                         <div class="submenu-content">
-                                            <div class="submenu-title">Horizonpay Documentation</div>
-                                            <div class="submenu-desc">Payment solution developer portal</div>
+                                            <div class="submenu-title">Horizonpay</div>
+                                            <div class="submenu-desc">Payment developer portal</div>
                                         </div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="https://help.velixo.com/support/home" target="_blank" class="submenu-item kb-item">
-                                        <div class="submenu-icon kb-icon"><i class="far fa-chart-bar"></i></div>
+                                        <div class="submenu-icon kb-icon"><i class="fas fa-chart-bar"></i></div>
                                         <div class="submenu-content">
-                                            <div class="submenu-title">Velixo Documentation</div>
-                                            <div class="submenu-desc">Financial reporting solution knowledge base</div>
+                                            <div class="submenu-title">Velixo</div>
+                                            <div class="submenu-desc">Financial solutions KB</div>
                                         </div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="https://docs.superna.io/" target="_blank" class="submenu-item kb-item">
-                                        <div class="submenu-icon kb-icon"><i class="far fa-server"></i></div>
+                                        <div class="submenu-icon kb-icon"><i class="fas fa-server"></i></div>
                                         <div class="submenu-content">
-                                            <div class="submenu-title">Superna Documentation</div>
-                                            <div class="submenu-desc">Enterprise storage solutions guides</div>
+                                            <div class="submenu-title">Superna</div>
+                                            <div class="submenu-desc">Enterprise storage docs</div>
                                         </div>
                                     </a>
                                 </li>
@@ -623,16 +598,19 @@
                     </div>
                 </div>
             </li>
-            <li><a href="value.html"><i class="far fa-chart-bar"></i> Why Hire a Tech Writer?</a></li>
-            <li><a href="contact.html"><i class="far fa-envelope"></i> Contact</a></li>
+            <li><a href="value.html"><i class="fas fa-star"></i> Services</a></li>
+            <li><a href="contact.html"><i class="fas fa-paper-plane"></i> Contact</a></li>
         </ul>
         <button class="close-menu" id="closeMenu">
-            <i class="far fa-times-circle"></i>
+            <i class="fas fa-times"></i>
         </button>
     </div>
     <div class="navbar-controls">
+        <button class="theme-toggle" id="theme-toggle">
+            <i class="fas fa-moon"></i>
+        </button>
         <button class="mobile-toggle" id="mobileToggle">
-            <i class="far fa-list-alt"></i>
+            <i class="fas fa-bars"></i>
         </button>
     </div>
 </header>
@@ -695,50 +673,7 @@
             }
         }
         
-        // Theme toggle functionality
-        const themeToggle = document.getElementById('theme-toggle');
-        
-        if (themeToggle) {
-            // Check for saved theme preference
-            const savedTheme = localStorage.getItem('theme');
-            
-            if (savedTheme === 'light') {
-                document.documentElement.classList.add('light-theme');
-                themeToggle.querySelector('i').classList.remove('fa-moon');
-                themeToggle.querySelector('i').classList.add('fa-sun');
-                themeToggle.querySelector('i').classList.remove('fas');
-                themeToggle.querySelector('i').classList.add('far');
-            } else {
-                // Ensure moon icon is using outline style
-                themeToggle.querySelector('i').classList.remove('fas');
-                themeToggle.querySelector('i').classList.add('far');
-            }
-            
-            // Toggle theme when button is clicked
-            themeToggle.addEventListener('click', function() {
-                document.documentElement.classList.toggle('light-theme');
-                
-                const isLight = document.documentElement.classList.contains('light-theme');
-                
-                if (isLight) {
-                    localStorage.setItem('theme', 'light');
-                    themeToggle.querySelector('i').classList.remove('fa-moon');
-                    themeToggle.querySelector('i').classList.add('fa-sun');
-                    themeToggle.querySelector('i').classList.remove('fas');
-                    themeToggle.querySelector('i').classList.add('far');
-                    // Dispatch event for theme change
-                    document.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme: 'light' } }));
-                } else {
-                    localStorage.setItem('theme', 'dark');
-                    themeToggle.querySelector('i').classList.remove('fa-sun');
-                    themeToggle.querySelector('i').classList.add('fa-moon');
-                    themeToggle.querySelector('i').classList.remove('fas');
-                    themeToggle.querySelector('i').classList.add('far');
-                    // Dispatch event for theme change
-                    document.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme: 'dark' } }));
-                }
-            });
-        }
+        // Theme toggle functionality is now handled in common.js
     });
 </script>
 

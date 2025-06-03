@@ -182,7 +182,7 @@ body {
 .flashcard .metric {
     font-size: 24px;
     font-weight: 700;
-    color: #FFD700; /* Nice color for big numbers */
+    color: #B8860B; /* Changed to darker gold (DarkGoldenrod) */
 }
 
 .menu-item .tags {

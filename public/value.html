@@ -114,13 +114,22 @@
     <script src="js/page-transitions.js"></script>
     
     <script>
-    // Always use dark theme for this page
+    // Respect the user's theme choice
     document.addEventListener('DOMContentLoaded', function() {
-        localStorage.setItem('theme', 'dark');
-        document.documentElement.classList.remove('light-theme');
-        const themeToggle = document.getElementById('theme-toggle');
-        if (themeToggle) {
-            themeToggle.innerHTML = '<i class="far fa-moon"></i>';
+        // Apply theme from storage instead of forcing dark theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.documentElement.classList.add('light-theme');
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        } else {
+            document.documentElement.classList.remove('light-theme');
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
         }
     });
     </script>

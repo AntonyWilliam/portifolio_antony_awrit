@@ -230,7 +230,7 @@ main {
 
 /* Preview Content */
 .preview-content {
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid #000;
     border-radius: 2px;
     padding: 2rem;
     overflow-y: auto;
@@ -238,10 +238,20 @@ main {
     color: var(--secondary-text);
     position: relative;
     transition: all 0.3s ease;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
 .preview-content:hover {
-    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+:root.light-theme .preview-content {
+    border: 1px solid #000;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+:root.light-theme .preview-content:hover {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
 }
 
 /* Markdown Styling */

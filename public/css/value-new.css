@@ -9,6 +9,42 @@ body {
     overflow-x: hidden;
 }
 
+/* Light theme styles */
+:root.light-theme .value-card {
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+:root.light-theme .value-card-header {
+    border-bottom-color: rgba(0, 0, 0, 0.05);
+}
+
+:root.light-theme .case-study {
+    border-top-color: rgba(0, 0, 0, 0.05);
+}
+
+:root.light-theme .bottom-line {
+    border-top-color: rgba(0, 0, 0, 0.05);
+}
+
+:root.light-theme .cta-button {
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+:root.light-theme .big-metric::after {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+:root.light-theme .big-metric {
+    background: linear-gradient(
+        to right, 
+        var(--text-color) 0%, 
+        var(--text-color) 50%, 
+        var(--gold) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
 main {
     min-height: 100vh;
 }
