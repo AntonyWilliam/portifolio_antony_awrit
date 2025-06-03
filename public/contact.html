@@ -157,9 +157,6 @@
     <script>
         // Main form submission handler - using the approach from the example
         window.onload = function() {
-            // Keep test button functionality for debugging
-            addTestButton();
-            
             document.getElementById('contact-form').addEventListener('submit', function(event) {
                 event.preventDefault();
                 
@@ -224,53 +221,6 @@
                     });
             });
         };
-        
-        // Add test button for debugging purposes
-        function addTestButton() {
-            const testButton = document.createElement("button");
-            testButton.textContent = "Test EmailJS";
-            testButton.style.position = "fixed";
-            testButton.style.bottom = "10px";
-            testButton.style.right = "10px";
-            testButton.style.zIndex = "9999";
-            testButton.style.padding = "8px 12px";
-            testButton.style.backgroundColor = "#333";
-            testButton.style.color = "#fff";
-            testButton.style.border = "none";
-            testButton.style.borderRadius = "4px";
-            testButton.style.cursor = "pointer";
-            testButton.addEventListener("click", function() {
-                // Simple test that follows the example approach
-                const tempForm = document.createElement('form');
-                tempForm.innerHTML = `
-                    <input type="hidden" name="user_name" value="Test User">
-                    <input type="hidden" name="user_email" value="test@example.com">
-                    <input type="hidden" name="subject" value="Test Email">
-                    <input type="hidden" name="message" value="This is a test message">
-                    <input type="hidden" name="to_name" value="Antony William">
-                `;
-                document.body.appendChild(tempForm);
-                
-                emailjs.sendForm('service_8ca4upp', 'template_ixcdi8b', tempForm)
-                    .then(function() {
-                        console.log('TEST SUCCESS!');
-                        alert('Test email sent successfully!');
-                        document.body.removeChild(tempForm);
-                    })
-                    .catch(function(error) {
-                        console.log('TEST FAILED...', error);
-                        let errorMsg = 'Test failed.';
-                        if (error && error.text) {
-                            errorMsg += ' ' + error.text;
-                        } else if (error && error.message) {
-                            errorMsg += ' ' + error.message;
-                        }
-                        alert(errorMsg);
-                        document.body.removeChild(tempForm);
-                    });
-            });
-            document.body.appendChild(testButton);
-        }
     </script>
     <script src="js/common.js"></script>
     </main>
