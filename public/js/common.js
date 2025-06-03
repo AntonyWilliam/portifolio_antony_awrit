@@ -93,14 +93,33 @@ document.addEventListener('DOMContentLoaded', function() {
                                     
                                     // Increase hero height and padding to accommodate dropdown
                                     if (heroSection) {
-                                        heroSection.style.minHeight = 'max(700px, 80vh)';
-                                        heroSection.style.padding = 'clamp(5rem, 8vw, 8rem) 0';
+                                        // Check if we're on mobile
+                                        if (window.innerWidth <= 480) {
+                                            heroSection.style.minHeight = 'max(1500px, 150vh)'; // Even taller on mobile
+                                            heroSection.style.padding = 'clamp(5rem, 8vw, 8rem) 0 10rem 0'; // Extra bottom padding
+                                            
+                                            // Scroll to the active dropdown
+                                            setTimeout(() => {
+                                                const menuHeader = item.querySelector('.menu-header');
+                                                if (menuHeader) {
+                                                    menuHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                                }
+                                            }, 100);
+                                        } else {
+                                            heroSection.style.minHeight = 'max(900px, 90vh)';
+                                            heroSection.style.padding = 'clamp(5rem, 8vw, 8rem) 0';
+                                        }
                                     }
                                 } else {
                                     // Return to normal height and padding when closing
                                     if (heroSection) {
                                         heroSection.style.minHeight = '';
                                         heroSection.style.padding = '';
+                                        
+                                        // On mobile, ensure minimum padding at the bottom
+                                        if (window.innerWidth <= 480) {
+                                            heroSection.style.paddingBottom = '8rem';
+                                        }
                                     }
                                 }
                             });
@@ -117,6 +136,11 @@ document.addEventListener('DOMContentLoaded', function() {
                             if (heroSection) {
                                 heroSection.style.minHeight = '';
                                 heroSection.style.padding = '';
+                                
+                                // On mobile, ensure minimum padding at the bottom
+                                if (window.innerWidth <= 480) {
+                                    heroSection.style.paddingBottom = '8rem';
+                                }
                             }
                         }
                     });

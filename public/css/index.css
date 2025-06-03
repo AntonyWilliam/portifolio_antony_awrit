@@ -10,15 +10,21 @@
     flex-direction: column;
     overflow: visible;
     font-size: clamp(14px, calc(0.6em + 0.3vw), 18px); /* Use clamp for responsive font sizing */
-    padding-top: clamp(20px, 3vh, 30px); /* Greatly reduced top padding */
+    padding-top: clamp(60px, 10vh, 90px); /* Increased padding to prevent navbar overlap */
+    position: relative; /* Add position context */
 }
 
 /* Adjust body and html to ensure scrolling works */
 html, body {
     overflow-y: auto !important; /* Force scrollbar to be visible */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
     height: auto; /* Allow content to expand naturally */
     min-height: 100vh; /* Ensure minimum height is full viewport */
     cursor: default; /* Default cursor for entire page */
+    max-width: 100vw; /* Prevent content from extending beyond viewport */
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 /* Prevent text selection on the entire site */
@@ -42,11 +48,14 @@ footer {
     margin: 0 auto;
     padding: clamp(0.25rem, 1.5vh, 1rem) 0;
     padding-top: clamp(0.5rem, 1.5vh, 1rem);
+    padding-bottom: 3rem; /* Add bottom padding */
     position: relative;
     overflow: visible;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    box-sizing: border-box; /* Ensure padding is included in width */
+    z-index: 5; /* Higher z-index to ensure content stays above trusted section */
 }
 
 /* Particles background */
@@ -75,6 +84,8 @@ footer {
     box-sizing: border-box;
     gap: clamp(1rem, 3vw, 3rem); /* Further reduced gap between sections */
     padding: clamp(0.4rem, 1.25vw, 1.25rem);
+    overflow: visible; /* Allow content to overflow */
+    flex-wrap: wrap; /* Allow wrapping on small screens */
 }
 
 /* Left Side - Intro */
@@ -87,6 +98,8 @@ footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box; /* Include padding in width calculation */
+    padding: 0 10px;
 }
 
 .profile-section {
@@ -244,6 +257,8 @@ h2 {
     flex-direction: column;
     align-items: center;
     position: relative;
+    box-sizing: border-box; /* Include padding in width calculation */
+    padding: 0 10px;
 }
 
 /* Additional particle background for hero-right */
@@ -395,11 +410,13 @@ h2 {
     max-width: 700px;
     box-sizing: border-box;
     border-radius: 0;
-    overflow: hidden;
+    overflow: visible; /* Changed from hidden to allow dropdowns to be fully visible */
     background-color: rgba(5, 5, 5, 0.4);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
     border: none;
     border-bottom: 1px solid rgba(157, 157, 157, 0.15);
+    display: flex;
+    flex-direction: column;
 }
 
 /* Add animation for dropdown */
@@ -420,6 +437,8 @@ h2 {
     position: relative;
     transition: all 0.3s ease;
     pointer-events: none; /* Disable pointer events on the item itself */
+    width: 100%;
+    display: block;
 }
 
 /* But enable pointer events on the header and dropdown specifically */
@@ -499,6 +518,8 @@ h2 {
     border-radius: 0 0 8px 8px;
     box-shadow: inset 0 10px 20px rgba(0,0,0,0.1);
     border-top: 1px solid rgba(255, 215, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .dropdown p {
@@ -611,7 +632,7 @@ h2 {
 .menu-item.active .dropdown {
     display: block;
     opacity: 1;
-    max-height: 1000px;
+    max-height: 2000px; /* Increased max height to ensure all content is visible */
     transform: scaleY(1);
     animation: fadeInDown 0.3s ease-out;
 }
@@ -639,7 +660,7 @@ h2 {
     z-index: 10;
     overflow: visible;
     transition: background-color 0.5s ease;
-    margin-top: -1rem; /* Negative margin to move it up */
+    margin-top: 0; /* Removed negative margin */
     text-align: center;
     width: 100%;
     display: flex;
@@ -1067,8 +1088,9 @@ h2 {
     
     .hero {
         min-height: max(450px, 55vh); /* Even smaller for tablets */
-        max-height: 650px;
+        max-height: none; /* Remove max height limitation */
         flex: 2; /* Take up 2/3 of vh-wrapper on tablets */
+        padding-bottom: 3rem; /* Add bottom padding */
     }
     
     .hero-container {
@@ -1076,6 +1098,7 @@ h2 {
         align-items: center;
         gap: clamp(2rem, 3vw, 3rem);
         transform: scale(1); /* Remove scaling on smaller screens for better readability */
+        padding: 0 1rem; /* Add horizontal padding */
     }
     
     .hero-left, .hero-right {
@@ -1086,6 +1109,10 @@ h2 {
         display: flex;
         flex-direction: column;
         align-items: center; /* Center children in mobile view */
+    }
+    
+    .hero-right {
+        margin-bottom: 2rem; /* Add bottom margin */
     }
     
     .title {
@@ -1106,12 +1133,14 @@ h2 {
     }
     
     .trusted-section {
-        margin-top: -2rem; /* Slightly less overlap on medium screens */
+        margin-top: 0; /* No negative margin */
         width: 100%;
+        padding-top: 3rem; /* Add top padding */
     }
     
     .trusted-section .container {
-        transform: scale(0.9); /* Adjust scaling for better readability */
+        width: 90%; /* Increase width instead of scaling */
+        transform: none; /* Remove scaling which can cause issues */
     }
     
     .intro {
@@ -1128,6 +1157,7 @@ h2 {
     .hero-container {
         flex-direction: column;
         align-items: center;
+        padding: 0 1.5rem; /* Ensure enough horizontal padding */
     }
     
     .hero-left, .hero-right {
@@ -1137,6 +1167,7 @@ h2 {
     .dropdown {
         max-width: 100%;
         width: 100%;
+        padding: 1rem; /* Less padding on mobile */
     }
     
     .trusted-section {
@@ -1158,41 +1189,60 @@ h2 {
     
     h2 {
         font-size: clamp(1rem, 2vw, 1.2rem);
+        max-width: 90%; /* Prevent text overflow */
+    }
+    
+    .hero-description {
+        max-width: 90%; /* Constrain text width */
     }
     
     .trusted-title {
-        font-size: clamp(0.8rem, 2vw, 1.2rem);
+        font-size: clamp(1.2rem, 2vw, 1.4rem); /* Slightly larger */
+    }
+    
+    .trusted-description {
+        width: 90%; /* Constrain width */
+        max-width: 90%;
     }
     
     .client-logos {
         padding: 0 1rem;
-        gap: clamp(0.15rem, 0.4vw, 0.4rem);
+        gap: 1.2rem; /* Use a fixed gap instead of clamp for better spacing */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
     }
     
     .client-logo {
-        width: calc(33.33% - 0.8rem);
-        max-width: 100px;
+        flex-basis: calc(33.33% - 1rem); /* Base size */
+        max-width: 90px;
+        height: auto; /* Let height adjust automatically */
     }
     
     .featured-logo {
-        width: calc(50% - 0.8rem);
-        max-width: 120px;
+        flex-basis: calc(33.33% - 1rem);
+        max-width: 100px;
+        height: auto;
     }
     
     .client-logo img {
-        max-height: 50px;
+        max-width: 100%;
+        max-height: 40px;
+        width: auto;
+        height: auto;
+        object-fit: contain;
     }
     
     .featured-logo img {
-        max-height: 60px;
+        max-height: 50px;
     }
     
     .keep-size img {
-        max-height: 70px !important;
+        max-height: 60px !important;
     }
     
     .intro {
-        margin-top: clamp(-90px, -8vw, -60px); /* Responsive positioning */
+        margin-top: 0; /* Reset negative margin which can cause layout issues */
     }
     
     #particles-js {
@@ -1202,21 +1252,55 @@ h2 {
         top: 0;
         left: 0;
     }
+    
+    /* Improve menu readability on tablets */
+    .menu-header {
+        padding: 0.8rem 1rem;
+    }
+    
+    .menu-header .text {
+        font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+    }
 }
 
 @media (max-width: 480px) {
     .vh-wrapper {
         min-height: 100vh;
-        padding-top: 60px; /* Adjust top padding for smaller screens */
+        padding-top: 70px; /* Increase padding to prevent navbar overlap */
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+        width: 100%;
     }
     
     .hero {
-        padding: 1rem 0;
+        padding: 1rem 0 5rem 0; /* Added significant bottom padding */
         padding-top: clamp(3rem, 8vh, 4rem); /* Adjust top padding for smaller screens */
+        width: 100%; /* Full width */
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+        max-width: 100%;
+        margin: 0;
+        min-height: max(100vh, 750px); /* Increased minimum height on mobile */
     }
     
     .hero-container {
-        padding: 0.5rem 0;
+        padding: 0.5rem 1rem; /* Add horizontal padding */
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+        margin: 0;
+    }
+    
+    .hero-right {
+        min-height: 500px; /* Increased minimum height for hero-right on mobile */
+        margin-top: 2rem; /* Add space between hero sections */
+        margin-bottom: 3rem; /* Add space at the bottom before trusted section */
+    }
+    
+    /* Ensure trusted section doesn't overlap */
+    .trusted-section {
+        margin-top: 0;
+        padding-top: 4rem; /* Increased padding */
+        position: relative;
+        z-index: 1; /* Lower z-index than hero content */
     }
     
     .dropdown {
@@ -1238,6 +1322,12 @@ h2 {
     .hero-buttons {
         flex-direction: column;
         gap: clamp(0.5rem, 1vw, 0.8rem);
+        width: 100%; /* Full width buttons */
+    }
+    
+    .hero-btn, .hero-btn-secondary {
+        width: 100%; /* Full width buttons */
+        text-align: center;
     }
     
     .squares {
@@ -1246,46 +1336,87 @@ h2 {
     
     .menu-header {
         font-size: clamp(13px, 3.2vw, 15px);
+        padding: 0.7rem 0.8rem; /* More compact padding */
+    }
+    
+    .menu-header .text {
+        font-size: 0.85rem; /* Fixed size for better readability */
+    }
+    
+    .menu-header .number {
+        font-size: 0.8rem;
+        margin-right: 10px; /* Less spacing */
     }
     
     .client-logos {
         padding: 0 0.5rem;
-        gap: clamp(0.1rem, 0.3vw, 0.3rem);
+        gap: 1rem; /* Fixed gap for more even spacing */
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 columns for most screens */
+        align-items: center;
+        justify-items: center;
     }
     
     .client-logo {
-        width: calc(50% - 0.6rem);
-        max-width: 80px;
+        width: 100%;
+        max-width: 70px;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .featured-logo {
         width: 100%;
-        max-width: 100px;
+        max-width: 80px;
+        grid-column: span 1; /* Take up one column */
+    }
+    
+    /* Make certain logos span 2 columns */
+    .vast-logo, .itecsa-logo, .dock-logo {
+        grid-column: span 2;
+        max-width: 90px;
     }
     
     .client-logo img {
-        max-height: 40px;
+        max-width: 100%;
+        max-height: 35px;
+        width: auto;
+        height: auto;
+        object-fit: contain;
     }
     
     .featured-logo img {
-        max-height: 50px;
+        max-height: 40px;
     }
     
-    .keep-size img {
-        max-height: 60px !important;
+    .vast-logo img, .itecsa-logo img, .dock-logo img {
+        max-height: 45px;
     }
     
     .trusted-section {
         min-height: auto; /* Remove fixed height constraint */
         max-height: none; /* Remove max-height restriction */
         height: auto; /* Allow height to adjust to content */
-        padding: 1rem 0; /* Add some padding */
+        padding: 1.5rem 0; /* Add some padding */
         margin-top: -1rem;
     }
     
+    .trusted-title {
+        font-size: 1.2rem; /* Fixed size for better readability */
+        margin-bottom: 0.5rem;
+    }
+    
     .trusted-description {
-        font-size: clamp(0.8rem, 1.3vw, 1rem); /* Smaller font */
-        margin-bottom: clamp(0.3rem, 0.7vw, 0.7rem); /* Smaller spacing */
+        font-size: 0.75rem; /* Fixed size for better readability */
+        margin-bottom: 1.5rem; /* Increased spacing */
+        width: 90%;
+        max-width: 300px;
+    }
+    
+    .title-line {
+        width: 60px; /* Shorter line */
+        margin-bottom: 0.8rem;
     }
     
     .intro {
@@ -1298,6 +1429,94 @@ h2 {
         position: absolute;
         top: 0;
         left: 0;
+    }
+    
+    /* Fix menu system to be more touch-friendly */
+    .menu-item {
+        margin-bottom: 0.5rem;
+    }
+    
+    .menu {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .dropdown p {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+    
+    /* Ensure the hero description is readable */
+    .hero-description {
+        font-size: 0.8rem;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    /* Improve heading readability */
+    h1 {
+        font-size: 1.6rem;
+        margin-bottom: 0.5rem;
+        width: 100%;
+    }
+    
+    h2 {
+        font-size: 1rem;
+        width: 100%;
+        max-width: 290px;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 375px) {
+    .client-logos {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for very small screens */
+        gap: 0.8rem;
+    }
+    
+    .hero-left, .hero-right {
+        padding: 0 0.5rem;
+    }
+    
+    .profile-img {
+        width: 75px;
+        height: 75px;
+    }
+    
+    h1 {
+        font-size: 1.3rem;
+    }
+    
+    h2 {
+        font-size: 0.9rem;
+    }
+    
+    .hero-description {
+        font-size: 0.75rem;
+    }
+    
+    .menu-header {
+        padding: 0.6rem 0.7rem;
+    }
+    
+    .menu-header .text {
+        font-size: 0.8rem;
+    }
+    
+    .trusted-title {
+        font-size: 1.1rem;
+    }
+    
+    .trusted-description {
+        font-size: 0.7rem;
+    }
+    
+    /* Ensure full width container */
+    .container {
+        width: 95%;
+        padding: 0;
     }
 }
 
@@ -1327,5 +1546,20 @@ h2 {
         animation-duration: 0.001s !important;
         animation-delay: 0s !important;
         transition-duration: 0.001s !important;
+    }
+}
+
+/* Fix for touch devices */
+@media (hover: none) {
+    .client-logo {
+        filter: grayscale(0%);
+    }
+    
+    .menu-header:hover {
+        background: none;
+    }
+    
+    .hero-btn-secondary:hover {
+        background: transparent;
     }
 }
