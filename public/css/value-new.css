@@ -1,0 +1,441 @@
+/**
+ * Minimalist style for the "Why Hire a Tech Writer?" page
+ */
+
+/* Base layout */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+main {
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* Value Section */
+.value-section {
+    padding: 6rem 0 4rem;
+    position: relative;
+}
+
+/* Header styles */
+.value-header {
+    margin-bottom: 4rem;
+    text-align: center;
+    position: relative;
+}
+
+.value-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    position: relative;
+    display: inline-block;
+}
+
+.value-title::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background-color: var(--gold);
+}
+
+.value-subtitle {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    font-weight: 300;
+    color: var(--secondary-text);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Metrics Showcase */
+.metrics-showcase {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 3rem;
+    margin: 3rem 0 5rem;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.metric-highlight {
+    text-align: center;
+    flex: 1;
+    min-width: 220px;
+    max-width: 320px;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+.metric-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5rem 1rem;
+    position: relative;
+    transition: all 1.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 2px;
+}
+
+.metric-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--gold);
+}
+
+.big-metric {
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--text-color);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    display: block;
+    letter-spacing: -0.03em;
+    position: relative;
+    transition: color 1.2s ease;
+    background: linear-gradient(
+        to right, 
+        var(--text-color) 0%, 
+        var(--text-color) 50%, 
+        var(--gold) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+}
+
+.big-metric::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: all 1.2s ease;
+}
+
+.metric-card:hover .big-metric {
+    background-position: -100% center;
+}
+
+.metric-card:hover .big-metric::after {
+    background-color: var(--gold);
+    width: 50px;
+}
+
+.percentage {
+    font-size: 1.6rem;
+    font-weight: 300;
+    vertical-align: top;
+    margin-left: 2px;
+    background: inherit;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+}
+
+.metric-label {
+    font-size: 1rem;
+    color: var(--secondary-text);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    transition: opacity 0.3s ease;
+}
+
+/* Value Grid */
+.value-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    margin-bottom: 5rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.value-card {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 2px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--gold);
+}
+
+.value-card-header {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.value-number {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--secondary-text);
+    margin-right: 1.5rem;
+    opacity: 0.8;
+}
+
+.value-card:hover .value-number {
+    color: var(--gold);
+    opacity: 1;
+}
+
+.value-card-header h3 {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--text-color);
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+.value-content {
+    padding: 2rem;
+    color: var(--secondary-text);
+}
+
+.value-content p {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    font-weight: 300;
+}
+
+.source {
+    font-size: 0.8rem;
+    opacity: 0.6;
+    font-style: italic;
+    display: inline-block;
+    margin-left: 0.5rem;
+}
+
+.metric {
+    color: var(--gold);
+    font-weight: 400;
+}
+
+.case-study {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.case-study h4 {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    letter-spacing: -0.02em;
+}
+
+.case-study p {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+}
+
+/* Bottom CTA */
+.bottom-line {
+    text-align: center;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: 3rem;
+}
+
+.cta-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.final-note {
+    font-size: 1.4rem;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 0.8rem 2.5rem;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+}
+
+.cta-button:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-5px);
+}
+
+.cta-button-outline {
+    background-color: transparent;
+    color: var(--secondary-text);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.cta-button-outline:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes numberColorChange {
+    0% { color: var(--text-color); }
+    100% { color: var(--gold); }
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+    .value-section {
+        padding: 5rem 0 3rem;
+    }
+    
+    .value-header {
+        margin-bottom: 3rem;
+    }
+    
+    .metrics-showcase {
+        gap: 2rem;
+        margin: 2.5rem 0 4rem;
+    }
+    
+    .value-grid {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .value-section {
+        padding: 4rem 0 2rem;
+    }
+    
+    .value-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .metrics-showcase {
+        gap: 2rem;
+        margin: 2rem 0 3rem;
+    }
+    
+    .metric-highlight {
+        min-width: 200px;
+    }
+    
+    .big-metric {
+        font-size: 2.8rem;
+    }
+    
+    .percentage {
+        font-size: 1.4rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .cta-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .value-section {
+        padding: 3rem 0 2rem;
+    }
+    
+    .value-title {
+        font-size: 1.8rem;
+    }
+    
+    .value-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .metrics-showcase {
+        gap: 1.5rem;
+    }
+    
+    .metric-highlight {
+        min-width: 100%;
+    }
+    
+    .metric-card {
+        padding: 2rem 1rem;
+    }
+    
+    .big-metric {
+        font-size: 2.8rem;
+    }
+    
+    .big-metric::after {
+        bottom: -0.4rem;
+        width: 30px;
+    }
+    
+    .percentage {
+        font-size: 1.4rem;
+    }
+    
+    .value-card-header {
+        padding: 1.2rem;
+    }
+    
+    .value-content {
+        padding: 1.5rem;
+    }
+    
+    .final-note {
+        font-size: 1.2rem;
+    }
+}

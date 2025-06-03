@@ -8,24 +8,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/value.css">
-    <!-- Common styles moved to common.css and value.css -->
+    <link rel="stylesheet" href="css/value-new.css">
 </head>
-<body style="padding-top: 4rem;"> <!-- Reduced top padding -->
-    <!-- Navigation - Full Width -->
+<body>
     <!-- Header Placeholder - Will be populated by common.js -->
     <div id="header-placeholder"></div>
     
     <main>
-    <div class="container" style="padding-top: 0;">
-
     <!-- Modern Value of Technical Writers Section -->
     <section class="value-section" id="value">
-        <div class="section-transition-overlay"></div>
         <div class="container">
             <div class="value-header">
                 <h2 class="value-title">Why Hire a Tech Writer?</h2>
-                <p class="value-subtitle">How I deliver measurable results for your business:</p>
+                <p class="value-subtitle">Delivering measurable results that impact your bottom line</p>
             </div>
             
             <div class="metrics-showcase">
@@ -50,7 +45,7 @@
             </div>
             
             <div class="value-grid">
-                <div class="value-card" data-depth="0.35">
+                <div class="value-card">
                     <div class="value-card-header">
                         <span class="value-number">01</span>
                         <h3>Boost Productivity</h3>
@@ -66,7 +61,7 @@
                     </div>
                 </div>
                 
-                <div class="value-card" data-depth="0.6">
+                <div class="value-card">
                     <div class="value-card-header">
                         <span class="value-number">02</span>
                         <h3>Mitigate Risk</h3>
@@ -77,7 +72,7 @@
                     </div>
                 </div>
                 
-                <div class="value-card" data-depth="0.45">
+                <div class="value-card">
                     <div class="value-card-header">
                         <span class="value-number">03</span>
                         <h3>Engineering Efficiency</h3>
@@ -88,7 +83,7 @@
                     </div>
                 </div>
                 
-                <div class="value-card" data-depth="0.7">
+                <div class="value-card">
                     <div class="value-card-header">
                         <span class="value-number">04</span>
                         <h3>Enhanced User Experience</h3>
@@ -100,85 +95,34 @@
                 </div>
             </div>
             
-            <div class="bottom-line animated-element">
+            <div class="bottom-line">
                 <div class="cta-container">
                     <p class="final-note">Quality documentation is essential for business growth</p>
                     <div class="cta-buttons">
-                        <a href="contact.html" class="cta-button">Get Started</a>
-                        <a href="#" class="cta-button cta-button-outline">View Samples</a>
+                        <a href="contact.html" class="cta-button">Contact Me</a>
+                        <a href="samples.html" class="cta-button cta-button-outline">View Samples</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer removed for cleaner design -->
-
-    <script>
-        // Mobile Navigation Toggle
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileToggle = document.getElementById('mobileToggle');
-            const closeMenu = document.getElementById('closeMenu');
-            const navbarMenu = document.getElementById('navbarMenu');
-            
-            // Toggle mobile menu
-            if (mobileToggle) {
-                mobileToggle.addEventListener('click', function() {
-                    navbarMenu.classList.add('active');
-                    closeMenu.classList.add('active');
-                });
-            }
-            
-            // Close mobile menu
-            if (closeMenu) {
-                closeMenu.addEventListener('click', function() {
-                    navbarMenu.classList.remove('active');
-                    closeMenu.classList.remove('active');
-                });
-            }
-            
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (navbarMenu.classList.contains('active') && 
-                    !navbarMenu.contains(event.target) && 
-                    event.target !== mobileToggle) {
-                    navbarMenu.classList.remove('active');
-                    closeMenu.classList.remove('active');
-                }
-            });
-        });
-        
-        // Theme toggle functionality
-        const themeToggle = document.getElementById('theme-toggle');
-        const rootElement = document.documentElement;
-        
-        // Add transition for smooth theme changes
-        rootElement.style.transition = "background-color 0.3s ease, color 0.3s ease";
-        
-        // Always use dark theme for this page, regardless of saved preference
-        localStorage.setItem('theme', 'dark');
-        rootElement.classList.remove('light-theme');
-        themeToggle.innerHTML = '<i class="far fa-moon"></i>';
-        
-        // Toggle between dark and light themes
-        themeToggle.addEventListener('click', () => {
-            rootElement.classList.toggle('light-theme');
-            
-            // Update the icon based on current theme
-            if (rootElement.classList.contains('light-theme')) {
-                themeToggle.innerHTML = '<i class="fas fa-sun" style="color: #0d47a1;"></i>';
-                localStorage.setItem('theme', 'light');
-            } else {
-                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-                localStorage.setItem('theme', 'dark');
-            }
-        });
-        
-    </script>
     <script src="js/common.js"></script>
     </main>
     
     <!-- Page Transitions Script -->
     <script src="js/page-transitions.js"></script>
+    
+    <script>
+    // Always use dark theme for this page
+    document.addEventListener('DOMContentLoaded', function() {
+        localStorage.setItem('theme', 'dark');
+        document.documentElement.classList.remove('light-theme');
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.innerHTML = '<i class="far fa-moon"></i>';
+        }
+    });
+    </script>
 </body>
 </html>
