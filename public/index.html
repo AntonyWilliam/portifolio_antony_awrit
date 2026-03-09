@@ -26,9 +26,9 @@
 </head>
 <body>
     <div class="page-transition"></div>
-    
+
     <div id="header-placeholder"></div>
-    
+
     <main>
         <!-- Viewport-height wrapper -->
         <div class="vh-wrapper">
@@ -42,6 +42,12 @@
                     <div class="title-line"></div>
                     <p class="trusted-description">Companies that have utilized and implemented my documentation solutions</p>
                     <div class="client-logos">
+                        <!-- Medtronic - First position -->
+                        <div class="client-logo featured-logo medtronic-logo">
+                            <a href="https://www.medtronic.com" target="_blank" rel="noopener noreferrer">
+                                <img src="images/medtronic-logo-svg-vector.svg" alt="Medtronic" />
+                            </a>
+                        </div>
                         <!-- Top row logos -->
                         <div class="client-logo featured-logo">
                             <a href="https://www.dell.com" target="_blank" rel="noopener noreferrer">
@@ -73,7 +79,7 @@
                                 <img src="images/logos/ZUP.png" alt="ZUP" />
                             </a>
                         </div>
-                        
+
                         <!-- Bottom row logos -->
                         <div class="client-logo featured-logo itecsa-logo">
                             <a href="https://itecsa.com.br" target="_blank" rel="noopener noreferrer">
@@ -90,12 +96,225 @@
                                 <img src="images/logos/rpe_retail_payment_ecosystem_logo.jpeg" alt="RPE" />
                             </a>
                         </div>
+                        <div class="client-logo featured-logo">
+                            <a href="https://www.farmers.com" target="_blank" rel="noopener noreferrer">
+                                <img src="images/logos/farmers-insurance.png" alt="Farmers Insurance" />
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
+
+            <!-- Floating Testimonial Indicator -->
+            <div class="testimonial-indicator" onclick="scrollToTestimonials()" title="See what others say">
+                <i class="fas fa-quote-right"></i>
+            </div>
+
+            <!-- Testimonials / Recommendations Section -->
+            <section class="testimonials-section" id="testimonials">
+                <div class="container">
+                    <div class="testimonials-header minimal">
+                        <h3 class="testimonials-title">In their words.</h3>
+                    </div>
+
+                    <div class="testimonials-carousel">
+                        <div class="testimonial-slides" id="testimonialSlides">
+                            <!-- Slide 1 - Kyle Fransham (SVP Superna) -->
+                            <div class="testimonial-slide active">
+                                <div class="testimonial-quote-bg">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <div class="testimonial-inner">
+                                    <div class="testimonial-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <blockquote class="testimonial-quote">
+                                        "I've never met a Tech Writer that is Antony's equal. Rather than simply writing documentation, Antony is deeply technical. As we adopted docs-as-code, he led the charge developing frameworks, CI/CD pipelines, and processes. His role evolved to AI developer, leveraging generative AI in documentation with resounding success."
+                                    </blockquote>
+                                    <div class="testimonial-author">
+                                        <div class="author-avatar">
+                                            <span class="avatar-initials">KF</span>
+                                        </div>
+                                        <div class="author-details">
+                                            <h4 class="author-name">Kyle Fransham</h4>
+                                            <p class="author-role">Senior Vice President - R&D</p>
+                                            <p class="author-company">
+                                                <i class="fas fa-building"></i>
+                                                Superna
+                                                <span class="separator">•</span>
+                                                <a href="javascript:void(0)" onclick="openPdfModal('Antony William - Recommendation (1).pdf')" class="view-letter-link">
+                                                    View recommendation <i class="fas fa-external-link-alt"></i>
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2 - Fletcher Galeano -->
+                            <div class="testimonial-slide">
+                                <div class="testimonial-quote-bg">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <div class="testimonial-inner">
+                                    <div class="testimonial-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <blockquote class="testimonial-quote">
+                                        "Antony is the most impressive coworker I've had so far. His versatility, speed (without compromising accuracy nor quality), and commitment are unmatched. He's definitely a dreamer, with ideas that he'll hatch and start executing almost immediately if given the green light, however he never loses sight of the main project or tasks."
+                                    </blockquote>
+                                    <div class="testimonial-author">
+                                        <div class="author-avatar">
+                                            <span class="avatar-initials">FG</span>
+                                        </div>
+                                        <div class="author-details">
+                                            <h4 class="author-name">Fletcher Galeano</h4>
+                                            <p class="author-role">Documentation & Operations Manager</p>
+                                            <p class="author-company">
+                                                <i class="fab fa-linkedin"></i>
+                                                Managed Antony directly
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2 - Kefton Melo -->
+                            <div class="testimonial-slide">
+                                <div class="testimonial-quote-bg">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <div class="testimonial-inner">
+                                    <div class="testimonial-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <blockquote class="testimonial-quote">
+                                        "It is a privilege to have the opportunity to work with Antony. As a manager, he demonstrates strong leadership, organization, and clear communication, fostering a productive and collaborative software development environment. His leadership and market knowledge consistently contribute to successful software development and delivery."
+                                    </blockquote>
+                                    <div class="testimonial-author">
+                                        <div class="author-avatar">
+                                            <span class="avatar-initials">KM</span>
+                                        </div>
+                                        <div class="author-details">
+                                            <h4 class="author-name">Kefton Melo</h4>
+                                            <p class="author-role">Frontend Developer | Software Engineer</p>
+                                            <p class="author-company">
+                                                <i class="fab fa-linkedin"></i>
+                                                Reported to Antony directly
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 3 - Leandro Gabriel -->
+                            <div class="testimonial-slide">
+                                <div class="testimonial-quote-bg">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <div class="testimonial-inner">
+                                    <div class="testimonial-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <blockquote class="testimonial-quote">
+                                        "Antony is an exceptionally charismatic and considerate individual, and an incredible colleague. He consistently comes up with brilliant ideas and thinks outside the box to solve any challenge that comes his way. His performance and quality of work are outstanding."
+                                    </blockquote>
+                                    <div class="testimonial-author">
+                                        <div class="author-avatar">
+                                            <span class="avatar-initials">LG</span>
+                                        </div>
+                                        <div class="author-details">
+                                            <h4 class="author-name">Leandro Gabriel</h4>
+                                            <p class="author-role">Senior Technical Writer | API Specialist</p>
+                                            <p class="author-company">
+                                                <i class="fab fa-linkedin"></i>
+                                                Worked on the same team
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 4 - Kleber Rocha -->
+                            <div class="testimonial-slide">
+                                <div class="testimonial-quote-bg">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <div class="testimonial-inner">
+                                    <div class="testimonial-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <blockquote class="testimonial-quote">
+                                        "Antony was a pioneer in creating a technical documentation department. He proved to be a very dedicated and versatile professional, intelligent from the project's conception in prospecting tools, methodologies, and processes for implementation. He greatly contributes to the development of the team, encouraging other professionals to reach their potential."
+                                    </blockquote>
+                                    <div class="testimonial-author">
+                                        <div class="author-avatar">
+                                            <span class="avatar-initials">KR</span>
+                                        </div>
+                                        <div class="author-details">
+                                            <h4 class="author-name">Kleber Rocha</h4>
+                                            <p class="author-role">QA Tech Manager | Agile Process Manager</p>
+                                            <p class="author-company">
+                                                <i class="fab fa-linkedin"></i>
+                                                Managed Antony directly
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Dots -->
+                        <div class="testimonial-nav">
+                            <button class="nav-dot active" data-slide="0" aria-label="Slide 1"></button>
+                            <button class="nav-dot" data-slide="1" aria-label="Slide 2"></button>
+                            <button class="nav-dot" data-slide="2" aria-label="Slide 3"></button>
+                            <button class="nav-dot" data-slide="3" aria-label="Slide 4"></button>
+                            <button class="nav-dot" data-slide="4" aria-label="Slide 5"></button>
+                        </div>
+
+                        <!-- Arrow Navigation -->
+                        <button class="testimonial-arrow prev" aria-label="Previous testimonial">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="testimonial-arrow next" aria-label="Next testimonial">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <!-- PDF Modal -->
+        <div id="pdfModal" class="pdf-modal">
+            <div class="pdf-modal-content">
+                <button class="pdf-modal-close" onclick="closePdfModal()">&times;</button>
+                <iframe id="pdfViewer" src="" frameborder="0"></iframe>
+            </div>
         </div>
     </main>
-    
+
     <!-- Footer removed for cleaner design -->
     
     <script src="js/common.js"></script>
@@ -131,6 +350,176 @@
                     cursor.style.opacity = '0.6';
                 }
             }, 500);
+        });
+
+        // Testimonials Carousel - Simple Fade
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const dots = document.querySelectorAll('.nav-dot');
+            const prevBtn = document.querySelector('.testimonial-arrow.prev');
+            const nextBtn = document.querySelector('.testimonial-arrow.next');
+
+            if (!slides.length) return;
+
+            let currentSlide = 0;
+            let autoPlayInterval;
+            const autoPlayDelay = 6000;
+
+            function showSlide(index) {
+                // Handle wrap-around
+                if (index >= slides.length) index = 0;
+                if (index < 0) index = slides.length - 1;
+
+                // Hide all slides
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+
+                // Show target slide
+                slides[index].classList.add('active');
+                dots[index].classList.add('active');
+
+                currentSlide = index;
+            }
+
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+
+            function prevSlide() {
+                showSlide(currentSlide - 1);
+            }
+
+            function startAutoPlay() {
+                stopAutoPlay();
+                autoPlayInterval = setInterval(nextSlide, autoPlayDelay);
+            }
+
+            function stopAutoPlay() {
+                if (autoPlayInterval) {
+                    clearInterval(autoPlayInterval);
+                }
+            }
+
+            // Event listeners
+            if (nextBtn) nextBtn.addEventListener('click', () => {
+                nextSlide();
+                startAutoPlay();
+            });
+
+            if (prevBtn) prevBtn.addEventListener('click', () => {
+                prevSlide();
+                startAutoPlay();
+            });
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    const direction = index > currentSlide ? 'next' : 'prev';
+                    showSlide(index, direction);
+                    startAutoPlay();
+                });
+            });
+
+            // Touch/swipe support
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const slidesContainer = document.querySelector('.testimonial-slides');
+
+            if (slidesContainer) {
+                slidesContainer.addEventListener('touchstart', e => {
+                    touchStartX = e.changedTouches[0].screenX;
+                    stopAutoPlay();
+                }, { passive: true });
+
+                slidesContainer.addEventListener('touchend', e => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    const diff = touchStartX - touchEndX;
+                    if (Math.abs(diff) > 50) {
+                        if (diff > 0) nextSlide();
+                        else prevSlide();
+                    }
+                    startAutoPlay();
+                }, { passive: true });
+            }
+
+            // Pause on hover
+            const carousel = document.querySelector('.testimonials-carousel');
+            if (carousel) {
+                carousel.addEventListener('mouseenter', stopAutoPlay);
+                carousel.addEventListener('mouseleave', startAutoPlay);
+            }
+
+            // Start autoplay
+            startAutoPlay();
+        });
+
+        // PDF Modal Functions
+        function openPdfModal(pdfUrl) {
+            const modal = document.getElementById('pdfModal');
+            const pdfViewer = document.getElementById('pdfViewer');
+
+            if (modal && pdfViewer) {
+                pdfViewer.src = pdfUrl;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closePdfModal() {
+            const modal = document.getElementById('pdfModal');
+            const pdfViewer = document.getElementById('pdfViewer');
+
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+                // Clear src after animation
+                setTimeout(() => {
+                    if (pdfViewer) pdfViewer.src = '';
+                }, 300);
+            }
+        }
+
+        // Close modal on backdrop click
+        document.getElementById('pdfModal')?.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePdfModal();
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePdfModal();
+            }
+        });
+
+        // Scroll to testimonials function
+        function scrollToTestimonials() {
+            const testimonials = document.getElementById('testimonials');
+            if (testimonials) {
+                testimonials.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Hide indicator when testimonials are visible
+        document.addEventListener('DOMContentLoaded', function() {
+            const indicator = document.querySelector('.testimonial-indicator');
+            const testimonials = document.getElementById('testimonials');
+
+            if (indicator && testimonials) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            indicator.style.opacity = '0';
+                            indicator.style.pointerEvents = 'none';
+                        } else {
+                            indicator.style.opacity = '1';
+                            indicator.style.pointerEvents = 'auto';
+                        }
+                    });
+                }, { threshold: 0.2 });
+
+                observer.observe(testimonials);
+            }
         });
     </script>
     <!-- Particles script removed -->

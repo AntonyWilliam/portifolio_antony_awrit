@@ -15,7 +15,7 @@
     <!-- Navigation - Full Width -->
     <!-- Header Placeholder - Will be populated by common.js -->
     <div id="header-placeholder"></div>
-    
+
     <main>
     <div class="container" style="padding-top: 0;">
 
@@ -105,80 +105,16 @@
                     <p class="final-note">Quality documentation is essential for business growth</p>
                     <div class="cta-buttons">
                         <a href="contact.html" class="cta-button">Get Started</a>
-                        <a href="#" class="cta-button cta-button-outline">View Samples</a>
+                        <a href="samples.html" class="cta-button cta-button-outline">View Samples</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    </main>
 
     <!-- Footer removed for cleaner design -->
 
-    <script>
-        // Mobile Navigation Toggle
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileToggle = document.getElementById('mobileToggle');
-            const closeMenu = document.getElementById('closeMenu');
-            const navbarMenu = document.getElementById('navbarMenu');
-            
-            // Toggle mobile menu
-            if (mobileToggle) {
-                mobileToggle.addEventListener('click', function() {
-                    navbarMenu.classList.add('active');
-                    closeMenu.classList.add('active');
-                });
-            }
-            
-            // Close mobile menu
-            if (closeMenu) {
-                closeMenu.addEventListener('click', function() {
-                    navbarMenu.classList.remove('active');
-                    closeMenu.classList.remove('active');
-                });
-            }
-            
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (navbarMenu.classList.contains('active') && 
-                    !navbarMenu.contains(event.target) && 
-                    event.target !== mobileToggle) {
-                    navbarMenu.classList.remove('active');
-                    closeMenu.classList.remove('active');
-                }
-            });
-        });
-        
-        // Theme toggle functionality
-        const themeToggle = document.getElementById('theme-toggle');
-        const rootElement = document.documentElement;
-        
-        // Add transition for smooth theme changes
-        rootElement.style.transition = "background-color 0.3s ease, color 0.3s ease";
-        
-        // Always use dark theme for this page, regardless of saved preference
-        localStorage.setItem('theme', 'dark');
-        rootElement.classList.remove('light-theme');
-        themeToggle.innerHTML = '<i class="far fa-moon"></i>';
-        
-        // Toggle between dark and light themes
-        themeToggle.addEventListener('click', () => {
-            rootElement.classList.toggle('light-theme');
-            
-            // Update the icon based on current theme
-            if (rootElement.classList.contains('light-theme')) {
-                themeToggle.innerHTML = '<i class="fas fa-sun" style="color: #0d47a1;"></i>';
-                localStorage.setItem('theme', 'light');
-            } else {
-                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-                localStorage.setItem('theme', 'dark');
-            }
-        });
-        
-    </script>
     <script src="js/common.js"></script>
-    </main>
-    
-    <!-- Page Transitions Script -->
-    <script src="js/page-transitions.js"></script>
 </body>
 </html>

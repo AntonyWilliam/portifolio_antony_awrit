@@ -23,7 +23,7 @@
 <body style="padding-top: 4rem;"> <!-- Reduced top padding -->
     <!-- Header Placeholder - Will be populated by common.js -->
     <div id="header-placeholder"></div>
-    
+
     <main>
     <div class="container" style="padding-top: 0;">
         <!-- Contact Section -->
@@ -146,6 +146,7 @@
             </div>
         </section>
     </div>
+    </main>
 
     <!-- Footer removed for cleaner design -->
 
@@ -155,11 +156,11 @@
             // Handle form submission
             document.getElementById('contact-form').addEventListener('submit', function(event) {
                 event.preventDefault();
-                
+
                 // Set loading state
                 document.getElementById('submit-btn').textContent = 'Sending...';
                 document.getElementById('submit-btn').disabled = true;
-                
+
                 // Get form data
                 const templateParams = {
                     name: document.getElementById('name').value,
@@ -167,22 +168,22 @@
                     subject: document.getElementById('subject').value,
                     message: document.getElementById('message').value
                 };
-                
+
                 // Send the email using EmailJS
                 emailjs.send('service_32s2xdl', 'template_s9eyo35', templateParams)
                     .then(function(response) {
                         console.log('SUCCESS!', response.status, response.text);
-                        
+
                         // Show success message
                         document.getElementById('success-message').style.display = 'block';
                         document.getElementById('error-message').style.display = 'none';
-                        
+
                         // Reset form
                         document.getElementById('contact-form').reset();
                     })
                     .catch(function(error) {
                         console.log('FAILED...', error);
-                        
+
                         // Show error message
                         document.getElementById('error-message').style.display = 'block';
                         document.getElementById('success-message').style.display = 'none';
@@ -196,9 +197,5 @@
         });
     </script>
     <script src="js/common.js"></script>
-    </main>
-    
-    <!-- Page Transitions Script -->
-    <script src="js/page-transitions.js"></script>
 </body>
 </html>
